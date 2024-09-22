@@ -1,0 +1,20 @@
+{
+  "size": {
+    "spacing": {
+      "none": {
+        "value": 0,
+        "comment": "Values are in 'px' unit."
+      },
+
+      "small-100": { "value": 2 },
+      "small-200": { "value": 4 },
+
+      "medium-100": { "value": 8 },
+      "medium-200": { "value": 12 },
+
+      "large-100": { "value": 16 },
+      "large-200": { "value": 24 },
+      "large-300": { "value": 32 }
+    }
+  }
+}

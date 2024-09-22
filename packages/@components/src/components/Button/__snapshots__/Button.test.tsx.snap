@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button Snapshot 1`] = `
+<div>
+  <button
+    class="h-button h-button-size-medium h-button-primary"
+  >
+    Shmallas
+  </button>
+</div>
+`;

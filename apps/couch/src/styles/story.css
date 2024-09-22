@@ -1,0 +1,207 @@
+@import 'palette.css';
+@import 'animations.css';
+@import 'aside.css';
+@import 'button.css';
+@import 'card-grid.css';
+@import 'card.css';
+@import 'chip.css';
+@import 'error.css';
+@import 'link.css';
+@import 'tooltip.css';
+
+:root {
+  --story-max-width: 1024px;
+}
+
+.story__wrapper {
+  width: 100%;
+  height: 100%;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: auto;
+  justify-content: flex-start;
+  align-items: flex-start;
+  box-sizing: border-box;
+  margin: 0;
+  padding: var(--size-spacing-large-200);
+  background: var(--color-base-black-eta);
+}
+
+.story__micro-banner {
+  margin-top: 40px;
+  width: 100%;
+  margin-left: 0px;
+  margin-right: 0px;
+  height: 40px;
+  background: var(--cyber-punk-green);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.story__micro-banner p {
+  font-family: Pacifico;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.15;
+  color: black;
+}
+
+.story__micro-banner span {
+  float: right;
+}
+
+.story_title-container {
+  margin-top: 40px;
+  max-width: var(--story-max-width);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: left;
+}
+
+.story_title-container h1 {
+  font-family: Chunk;
+  font-weight: 900;
+  font-size: 4rem;
+  font-weight: 500;
+  z-index: 3;
+  margin-block: 8px;
+  color: var(--color-base-blue-secondary);
+}
+
+.story_sub-container {
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  text-align: left;
+  gap: 20px;
+}
+
+.story_description {
+  font-family: League-Spartan;
+  color: rgba(255, 255, 255, 0.75);
+  text-align: left;
+}
+
+.story_author {
+  font-family: League-Spartan;
+  text-align: left;
+}
+
+.story_image-container {
+  width: 100%;
+  height: 500px;
+}
+
+.story_image {
+  height: 500px;
+  width: 100%;
+  object-fit: cover;
+  object-position: bottom;
+  aspect-ratio: 16 / 7;
+}
+
+.story_badge_row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: var(--story-max-width);
+  margin-bottom: 36px;
+}
+
+.story_social_bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 40px;
+  width: 100%;
+  max-width: var(--story-max-width);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 20px;
+  font-family: League-Spartan;
+  font-weight: 600;
+}
+
+.story_social_action_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  max-width: var(--story-max-width);
+  gap: 16px;
+  font-family: League-Spartan;
+}
+
+.story__icon-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 22px;
+  height: 44px;
+  width: 44px;
+  background-color: var(--color-base-blue-primary);
+  cursor: pointer;
+}
+
+.story__icon-btn[data-color='green'] {
+  background-color: var(--color-base-green-primary);
+}
+
+.story_content {
+  max-width: var(--story-max-width);
+  color: white;
+  font-family: League-Spartan;
+}
+
+@media screen and (min-width: 1224px) {
+  .story_content {
+    max-width: 1024px;
+  }
+}
+
+@media screen and (max-width: 820px) {
+  .story_content {
+    max-width: 90%;
+  }
+}
+
+.story_splash-hero-container {
+  min-height: 100vh;
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    color: var(--lasercat-red);
+    margin-block: 8px;
+    width: fit-content;
+    padding-right: 8px;
+    box-sizing: border-box;
+    line-height: 1.845;
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: 0.15em solid var(--color-base-blue-primary); /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    animation: typing 2s steps(11, end), blink-caret 1s step-end infinite;
+    letter-spacing: -0.04em;
+    font-size: var(--font-size-heading-max);
+  }
+}

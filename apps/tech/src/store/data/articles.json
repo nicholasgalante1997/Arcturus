@@ -1,0 +1,256 @@
+[
+  {
+    "key": "@mint/WEBWORKERS_PREFETCH_1",
+    "contentPath": "data/WEBWORKERS_PREFETCH_1.md",
+    "display": {
+      "image": "/doodles/doodles_space_banana.jpeg",
+      "imageAltText": "A doodles nft character emerging from a banana peel in a light blue themed outer space.",
+      "title": "PREFETCH RESOURCES WITH WEB WORKERS AND REACT",
+      "subtitle": "Do you hate your end user? Us too. Remember 2004? Remember myspace and hypertext, you member.",
+      "tags": [
+        {
+          "visible": "React",
+          "keys": [
+            "react",
+            "react-dom"
+          ]
+        },
+        {
+          "visible": "Optimization",
+          "keys": [
+            "optimization"
+          ]
+        },
+        {
+          "visible": "Web Workers",
+          "keys": [
+            "web-workers",
+            "webworkers",
+            "web workers"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "key": "@mint/WEBAPP_PERFORMANCE_1",
+    "contentPath": "data/WEBAPP_PERFORMANCE_1.md",
+    "display": {
+      "image": "/doodles/doodles_pink.png",
+      "imageAltText": "A doodles character in a blue shirt against a pink background.",
+      "title": "CRYSTAL BALL, WHY DOES MY APP SUCK",
+      "subtitle": "Take longer to load your webpage. I'll wait.",
+      "tags": [
+        {
+          "visible": "React",
+          "keys": [
+            "react",
+            "react-dom"
+          ]
+        },
+        {
+          "visible": "Optimization",
+          "keys": [
+            "optimization"
+          ]
+        },
+        {
+          "visible": "Web Vitals",
+          "keys": [
+            "web-vitals",
+            "webvitals",
+            "web vitals"
+          ]
+        },
+        {
+          "visible": "Lighthouse",
+          "keys": [
+            "lighthouse",
+            "browser-tools"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "key": "@mint/HTML5_IMAGE_LAZY_LOADING",
+    "contentPath": "data/HTML5_IMAGE_LAZY_LOADING.md",
+    "display": {
+      "image": "/doodles/doodles_cloud.webp",
+      "imageAltText": "A doodle nft character floating on a cloud.",
+      "title": "BE LAZIER: HTML5 LAZY LOADING MEDIA",
+      "subtitle": "Didnt even really need to be an article this one. Too quick.",
+      "tags": [
+        {
+          "visible": "Html",
+          "keys": [
+            "html"
+          ]
+        },
+        {
+          "visible": "Optimization",
+          "keys": [
+            "optimization"
+          ]
+        },
+        {
+          "visible": "Javascript",
+          "keys": [
+            "javascript"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "key": "@mint/PATTERNS_TRY_1",
+    "contentPath": "data/PATTERNS_TRY_1.md",
+    "display": {
+      "image": "/doodles/doodles_pink.png",
+      "imageAltText": "A doodles character in a blue shirt against a pink background.",
+      "title": "[JS PATTERNS]: CODE THAT MIGHT FAIL",
+      "subtitle": "Its a suggestion, you know. Like do it.",
+      "tags": [
+        {
+          "visible": "Javascript",
+          "keys": [
+            "javascript"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "key": "@mint/ANECDOTE_GOTHAM_1",
+    "contentPath": "data/ANECDOTE_GOTHAM_1.md",
+    "display": {
+      "image": "/doodles/doodles_space_banana.jpeg",
+      "imageAltText": "A doodles nft character emerging from a banana peel in a light blue themed outer space.",
+      "title": "ANECDOTE: AMAZON GAMES - GOTHAM DESIGN SYSTEM ONE",
+      "subtitle": "I hate styled components. I've always hated styled components.",
+      "tags": [
+        {
+          "visible": "React",
+          "keys": [
+            "react",
+            "react-dom"
+          ]
+        },
+        {
+          "visible": "styled-components",
+          "keys": [
+            "styled-components"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "key": "@mint/ANECDOTE_COUCHGAG_1",
+    "contentPath": "data/ANECDOTE_COUCHGAG_1.md",
+    "display": {
+      "image": "/doodles/doodles_skeleton.webp",
+      "imageAltText": "The react.js logo in a light blue hue.",
+      "title": "ANECDOTE: COUCH GAG ONE",
+      "subtitle": "This is my everest.",
+      "tags": [
+        {
+          "visible": "React",
+          "keys": [
+            "react",
+            "react-dom"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "key": "@mint/ESM_BROADCAST_CHANNEL_1",
+    "contentPath": "data/ESM_BROADCAST_CHANNEL_1.md",
+    "display": {
+      "image": "/doodles/doodles_space_banana.jpeg",
+      "imageAltText": "A doodle nft character floating on a cloud.",
+      "title": "ESM + IMPORT MAPS + BROADCAST CHANNEL + POKEMON",
+      "subtitle": "Went and did a whole lot trying to do a whole little. Why.",
+      "tags": [
+        {
+          "visible": "Broadcast Channel",
+          "keys": [
+            "broadacast-channel",
+            "event",
+            "messaging",
+            "window communication"
+          ]
+        },
+        {
+          "visible": "ESM",
+          "keys": [
+            "ecmascript modules",
+            "es6",
+            "esm",
+            "javascript"
+          ]
+        },
+        {
+          "visible": "Import Maps",
+          "keys": [
+            "import maps",
+            "html5",
+            "javascript",
+            "frameworkless"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "key": "@mint/TC39_SIGNALS_1",
+    "contentPath": "data/TC39_SIGNALS_1.md",
+    "display": {
+      "image": "/doodles/doodles_space_banana.jpeg",
+      "imageAltText": "A doodle nft character floating on a cloud.",
+      "title": "TC39 ECMASCRIPT SIGNALS",
+      "subtitle": "Actually sort of cool.",
+      "tags": [
+        {
+          "visible": "Ecmascript Proposals",
+          "keys": [
+            "ecmascript"
+          ]
+        },
+        {
+          "visible": "Signals",
+          "keys": [
+            "reactive signals"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "key": "@mint/REACT-COMPILER_1",
+    "contentPath": "data/REACT-COMPILER_1.md",
+    "display": {
+      "date": "05/17/2024",
+      "image": "/react/react-conf-2024.png",
+      "imageAltText": "React Conf 2024 Logo",
+      "title": "REACT CONF 2024 - React Compiler: Migrate A Custom SSG React App to use React Compiler",
+      "subtitle": "Let's migrate a React App to use React 19 and React Compiler",
+      "tags": [
+        {
+          "visible": "React 19",
+          "keys": [
+            "react",
+            "react-19"
+          ]
+        },
+        {
+          "visible": "React Compiler",
+          "keys": [
+            "react compiler"
+          ]
+        }
+      ]
+    }
+  }
+]

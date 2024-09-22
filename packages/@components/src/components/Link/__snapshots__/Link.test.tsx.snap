@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Link Snapshot 1`] = `
+<div>
+  <a
+    class="h-link"
+  >
+    More Information
+  </a>
+</div>
+`;

@@ -1,0 +1,20 @@
+{
+    "breakpoint": {
+        "mobile": {
+            "xs": { "value": "360px" },
+            "sm": { "value": "414px" },
+            "md": { "value": "468px" }
+        },
+        "tablet": {
+            "sm": { "value": "600px" },
+            "md": { "value": "810px" }
+        },
+        "desktop": {
+            "sm": { "value": "1024px" },
+            "md": { "value": "1280px" },
+            "lg": { "value": "1440px" },
+            "xl": { "value": "1920px" },
+            "xxl": { "value": "2560px" }
+        }
+    }
+}

@@ -1,0 +1,24 @@
+{
+  "color": {
+    "base": {
+      "system": {
+        "info": {
+          "light": { "value": "#00b4f5" },
+          "dark": { "value": "#00b4f5" }
+        },
+        "warning": {
+          "light": { "value": "#f9cb40" },
+          "dark": { "value": "#f9cb40" }
+        },
+        "success": {
+          "light": { "value": "#69dc9e" },
+          "dark": { "value": "#69dc9e" }
+        },
+        "error": {
+          "light": { "value": "#f05345" },
+          "dark": { "value": "#f05345" }
+        }
+      }
+    }
+  }
+}

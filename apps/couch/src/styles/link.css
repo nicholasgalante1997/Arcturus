@@ -1,0 +1,28 @@
+.couch-link {
+  font-family: League-Spartan;
+  color: var(--cyber-punk-blue-2);
+  letter-spacing: 0.04em;
+  line-height: 1.15;
+  font-weight: 500;
+  font-style: normal;
+  text-decoration: underline;
+}
+
+.couch-link:hover {
+  cursor: pointer;
+  color: var(--lasercat-teal);
+  transform: scale(1.2);
+  transition: color 400ms, transform 400ms;
+  text-decoration: underline;
+}
+
+.couch-link:active {
+  cursor: pointer;
+  transform: scale(1.2);
+  color: var(--lasercat-blue-2);
+  text-decoration: underline;
+}
+
+.couch-link:visited {
+  color: var(--amethyst);
+}

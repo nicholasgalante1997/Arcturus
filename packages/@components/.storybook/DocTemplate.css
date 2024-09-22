@@ -1,0 +1,23 @@
+.storybook-docs {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--color-font-dark-contrast-high);
+    margin-block: 4px;
+  }
+
+  p {
+    color: var(--color-font-dark-contrast-medium);
+    margin-block: 2px;
+  }
+}
+
+.docs-story {
+  background: var(--color-base-white-alpha);
+  p {
+    color: var(--color-font-light-contrast-high);
+  }
+}

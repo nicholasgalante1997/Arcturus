@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Alert Snapshot 1`] = `
+<div>
+  <div
+    class="h-alert"
+    role="alert"
+  >
+    <span
+      data-severity="info"
+      id="h-alert-severity-indicator"
+    />
+    <div
+      class="h-alert-body-content"
+      data-shrink="none"
+    >
+      <h6
+        class="h-heading-600"
+        data-severity="info"
+      >
+        A brief note
+      </h6>
+      <p
+        class="h-body h-body-bold h-body-accent"
+      >
+        A longer description of the event or cause of the alert dispatch.
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Alert Snapshot 2`] = `
+<div>
+  <div
+    class="h-alert"
+    role="alert"
+  >
+    <span
+      data-severity="error"
+      id="h-alert-severity-indicator"
+    />
+    <div
+      class="h-alert-body-content"
+      data-shrink="none"
+    >
+      <h6
+        class="h-heading-600"
+        data-severity="error"
+      >
+        A brief note
+      </h6>
+      <p
+        class="h-body h-body-bold h-body-accent"
+      >
+        A longer description of the event or cause of the alert dispatch.
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Alert Snapshot 3`] = `
+<div>
+  <div
+    class="h-alert"
+    role="alert"
+  >
+    <span
+      data-severity="success"
+      id="h-alert-severity-indicator"
+    />
+    <div
+      class="h-alert-body-content"
+      data-shrink="none"
+    >
+      <h6
+        class="h-heading-600"
+        data-severity="success"
+      >
+        A brief note
+      </h6>
+      <p
+        class="h-body h-body-bold h-body-accent"
+      >
+        A longer description of the event or cause of the alert dispatch.
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Alert Snapshot 4`] = `
+<div>
+  <div
+    class="h-alert"
+    role="alert"
+  >
+    <span
+      data-severity="warning"
+      id="h-alert-severity-indicator"
+    />
+    <div
+      class="h-alert-body-content"
+      data-shrink="none"
+    >
+      <h6
+        class="h-heading-600"
+        data-severity="warning"
+      >
+        A brief note
+      </h6>
+      <p
+        class="h-body h-body-bold h-body-accent"
+      >
+        A longer description of the event or cause of the alert dispatch.
+      </p>
+    </div>
+  </div>
+</div>
+`;

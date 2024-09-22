@@ -1,0 +1,29 @@
+{
+  "border": {
+    "outline": {
+      "none": { "value": "none" },
+      "dark": {
+        "thin": {
+          "value": "1px solid {color.base.white.alpha}"
+        },
+        "medium": {
+          "value": "2px solid {color.base.white.alpha}"
+        },
+        "thick": {
+          "value": "3px solid {color.base.white.alpha}"
+        }
+      },
+      "light": {
+        "thin": {
+          "value": "1px solid {color.base.black.gamma}"
+        },
+        "medium": {
+          "value": "2px solid {color.base.black.gamma}"
+        },
+        "thick": {
+          "value": "3px solid {color.base.black.gamma}"
+        }
+      }
+    }
+  }
+}

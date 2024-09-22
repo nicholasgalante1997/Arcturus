@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  couch-gag:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: couch-gag-nginx-webserver:v0.0.0
+    environment:
+      - TAG="${TAG}"
+      - RUNTIME_STAGE="production"
+    ports:
+      - "8080:80"

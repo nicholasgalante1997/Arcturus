@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card Card Snapshot 1`] = `
+<div>
+  <div
+    class="hlr-card"
+  >
+    <div
+      class="hlr-card-image-container"
+    >
+      <img
+        alt="alt-stub"
+        src="stub"
+      />
+    </div>
+    <div
+      class="hlr-card-body-container"
+    >
+      <h1
+        class="h-heading-100"
+      >
+        Stub
+      </h1>
+      <p
+        class="h-body hlr-card-body-description"
+      >
+        Stub
+      </p>
+    </div>
+    <div
+      class="hlr-card-action-container"
+    >
+      <a
+        class="h-link"
+        href="#"
+        target="_self"
+      >
+        Read
+      </a>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Card MicroCard Snapshot 1`] = `
+<div>
+  <div
+    class="hlr-micro-card"
+  >
+    <div
+      class="hlr-card-body-container"
+    >
+      <h1
+        class="h-heading-100"
+      >
+        Stub
+      </h1>
+      <p
+        class="h-body hlr-card-body-description"
+      >
+        Stub
+      </p>
+    </div>
+    <div
+      class="hlr-card-action-container"
+    >
+      <a
+        class="h-link"
+        href="#"
+        target="_self"
+      >
+        Read
+      </a>
+    </div>
+  </div>
+</div>
+`;

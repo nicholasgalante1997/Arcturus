@@ -1,0 +1,39 @@
+:root {
+  /* coolors.co color pack */
+  --moonstone: #4da1a9ff;
+  --brilliant-rose: #ef57a1ff;
+  --vermilion: #ff3333ff;
+  --orange-crayola: #ff7a33ff;
+  --orange-web: #fca311ff;
+  --gold: #ffd633ff;
+  --rich-black: #000018ff;
+  --risd-blue: #2248f1ff;
+  --amethyst: #aa63fdff;
+  --violet-web-color: #fe8febff;
+  --mimi-pink: #ffdafdff;
+  --ultra-pink: #f96deaff;
+  --heliotrope: #e579ffff;
+  --medium-blue: #3f1fb2ff;
+  --ultramarine: #290f8eff;
+  --russian-violet: #0e0035ff;
+  --dark-gray: #1f2833;
+
+  /* cyberpunk color pack */
+  --cyber-punk-green: #00ff9f;
+  --cyber-punk-blue-1: #00b8ff;
+  --cyber-punk-blue-2: #001eff;
+  --cyber-punk-purple: #bd00ff;
+  --cyber-punk-pink: #d600ff;
+
+  /*  lasercat color pack */
+  --lasercat-black-1: #010326;
+  --lasercat-black-2: #020426;
+  --lasercat-royal-blue: #150259;
+  --lasercat-royal-blue-2: #1d0673;
+  --lasercat-blue-1: #2b2073;
+  --lasercat-blue-2: #21038c;
+  --lasercat-pink-1: #d92365;
+  --lasercat-pink-2: #f20775;
+  --lasercat-red: #8c0343;
+  --lasercat-teal: #99f2e9;
+}

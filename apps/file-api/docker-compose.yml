@@ -1,0 +1,24 @@
+include:
+  - ./docker-compose.database.yml
+
+services:
+  dotafts-app:
+    image: dotafts:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - postgresdb
+    env_file:
+      - .env
+    environment:
+      - RS_ENV=DOCKER
+    expose:
+      - "8080"
+    ports:
+      - '8080:8080'
+    networks:
+      - dotafts-net
+
+networks:
+  dotafts-net:

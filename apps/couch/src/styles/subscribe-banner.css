@@ -1,0 +1,26 @@
+.sb__container {
+  width: 100%;
+  height: 72px;
+  box-sizing: border-box;
+  padding: 16px;
+  padding-right: 48px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-base-green-primary);
+}
+
+.sb__text {
+  font-family: Chunk;
+}
+
+.sb__span {
+  font-family: Chunk;
+  background: var(--color-base-white-alpha);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+}

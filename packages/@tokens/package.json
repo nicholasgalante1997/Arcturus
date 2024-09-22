@@ -1,0 +1,47 @@
+{
+  "name": "@project-arcturus/design-tokens",
+  "version": "0.0.22",
+  "description": "A minimal css token library.",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./build/js/esm.d.ts",
+      "import": "./build/js/esm.mjs",
+      "require": "./build/js/commonjs.cjs",
+      "default": "./build/js/commonjs.cjs"
+    },
+    "./js/commonjs/tokens.js": {
+      "types": "./build/js/commonjs.d.ts",
+      "require": "./build/js/commonjs.cjs",
+      "default": "./build/js/commonjs.cjs"
+    },
+    "./build/js/esm.d.ts": "./build/js/esm.d.ts",
+    "./build/js/commonjs.d.ts": "./build/js/commonjs.d.ts",
+    "./css/*.css": "./build/css/*.css",
+    "./scss/_variables.scss": "./build/scss/_variables.scss",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "clean:sd": "rm -rf build",
+    "build:sd": "style-dictionary build",
+    "copy:composite-css": "node ./src/postcss/index.js",
+    "build": "run-s clean:sd build:sd copy:composite-css",
+    "release": "release-it",
+    "lint": "prettier --write src"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cssnano": "^6.0.2",
+    "glob": "^10.3.10",
+    "npm-run-all": "^4.1.5",
+    "pino": "^8.17.2",
+    "pino-pretty": "^10.3.1",
+    "postcss": "^8.4.32",
+    "postcss-cli": "^11.0.0",
+    "prettier": "^3.1.1",
+    "release-it": "^17.0.1",
+    "style-dictionary": "^3.9.1"
+  }
+}

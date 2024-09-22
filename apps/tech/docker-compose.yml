@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  mint-web:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: couch-mint-web-server
+    ports:
+      - "8080:8080"

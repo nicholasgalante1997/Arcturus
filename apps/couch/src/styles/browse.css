@@ -1,0 +1,84 @@
+@import 'palette.css';
+@import 'animations.css';
+@import 'aside.css';
+@import 'button.css';
+@import 'card-grid.css';
+@import 'card.css';
+@import 'chip.css';
+@import 'error.css';
+@import 'link.css';
+@import 'tooltip.css';
+
+.browse-frame {
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+  padding: 32px;
+  background-color: var(--color-base-black-eta); /* heller ui token */
+}
+
+.browse-component__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: (100vw - 64px);
+}
+
+.browse-component__card-grid {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  overflow: hidden;
+  flex-grow: 1;
+  margin: 0px;
+  padding: 32px;
+  box-sizing: border-box;
+  max-width: 1440px;
+  align-self: center;
+  gap: 10px;
+}
+
+.browse-component__heading-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 20px;
+  background: var(--color-base-black-eta);
+}
+
+.browse-component__heading {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: 0.15em solid var(--color-base-blue-primary); /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  color: var(--color-base-blue-primary);
+  animation: typing 1.5s steps(11, end), blink-caret 400ms step-end infinite;
+  letter-spacing: -0.04em;
+  font-size: var(--font-size-heading-max);
+}
+
+.browse-component__subheading {
+  opacity: 0;
+  animation: fade-in-up 600ms ease-in 2s 1 forwards;
+  --color-font-dark-contrast-high: var(--color-base-gray-gamma);
+  color: var(--color-base-gray-gamma);
+  max-width: 712px;
+}
+
+.browse-component__arrow-down-pos-absolute {
+  opacity: 0;
+  position: absolute;
+  z-index: 2;
+  bottom: 64px;
+  right: calc(50% - 56px);
+  animation: fade-in-up 600ms ease-in 2.7s 1 forwards, bob 900ms linear 3.3s infinite;
+}

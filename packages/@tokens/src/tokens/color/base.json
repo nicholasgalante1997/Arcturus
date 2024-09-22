@@ -1,0 +1,57 @@
+{
+  "color": {
+    "base": {
+      "black": {
+        "alpha": { "value": "#0C0C0C" },
+        "beta": { "value": "#0B1215" },
+        "gamma": { "value": "#0D1717" },
+        "epsilon": { "value": "#101720" },
+        "theta": { "value": "#171717" },
+        "eta": { "value": "#011222" },
+        "iota": { "value": "#020D19" }
+      },
+      "white": {
+        "alpha": {
+          "value": "#fff"
+        }
+      },
+      "gray": {
+        "alpha": { "value": "#343a40" },
+        "beta": { "value": "#495057" },
+        "gamma": { "value": "#6c757d" },
+        "epsilon": { "value": "#adb5bd" },
+        "theta": { "value": "#ced4da" },
+        "eta": { "value": "#dee2e6" },
+        "iota": { "value": "#e9ecef" }
+      },
+      "green": {
+        "primary": { "value": "#69dc9e" }
+      },
+      "blue": {
+        "primary": { "value": "#3f37c9" },
+        "secondary": { "value": "#4361ee" }
+      },
+      "red": {
+        "primary": { "value": "#ff4242" }
+      },
+      "synthwave": {
+        "pink": {
+          "primary": { "value": "#f72585" },
+          "secondary": { "value": "#b5179e" }
+        },
+        "purple": {
+          "primary": { "value": "#7209b7" },
+          "secondary": { "value": "#560bad" },
+          "tertiary": { "value": "#480ca8" },
+          "quadratic": { "value": "#3a0ca3" }
+        },
+        "blue": {
+          "primary": { "value": "#3f37c9" },
+          "secondary": { "value": "#4361ee" },
+          "tertiary": { "value": "#4895ef" },
+          "quadratic": { "value": "#4cc9f0" }
+        }
+      }
+    }
+  }
+}

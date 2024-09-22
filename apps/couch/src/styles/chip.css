@@ -1,0 +1,31 @@
+@import 'palette.css';
+
+.chip__root {
+  height: 20px;
+  min-width: 48px;
+  border-radius: 20px;
+  padding: 4px 12px;
+  text-align: center;
+  color: white;
+  border: 1px solid white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.chip__risd-blue {
+  background-color: var(--risd-blue);
+}
+
+.chip__orange {
+  background-color: var(--orange-crayola);
+}
+
+.chip__amethyst {
+  background-color: var(--amethyst);
+}
+
+.chip__gold {
+  background-color: var(--gold);
+}
