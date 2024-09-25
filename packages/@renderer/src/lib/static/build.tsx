@@ -20,7 +20,7 @@ export type PageConfiguration<
   };
 };
 
-export default async function build(pages: PageConfiguration[]) {
+export default async function build(pages: PageConfiguration<any>[]) {
   const timer = new Timer();
   info("Starting toStatic()");
   try {

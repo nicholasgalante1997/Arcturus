@@ -1,3 +1,0 @@
-#!/bin/bash
-
-autocannon -c 500 -l $1 

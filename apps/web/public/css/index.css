@@ -1,0 +1,197 @@
+:root {
+  --spacing-unit: 16px;
+  --box-shadow-50: 4.0px 8.0px 8.0px hsl(0deg 0% 0% / 0.38);
+  --box-shadow-75: 6.0px 12.0px 12.0px hsl(0deg 0% 0% / 0.31);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+@font-face {
+  font-family: "Strange";
+  src: url(fonts/SomethingStrange-vjYD.ttf) format(truetype);
+}
+
+.strange {
+  font-family: "Strange";
+  font-style: normal;
+}
+
+.fira-sans-thin {
+  font-family: "Fira Sans", system-ui;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.fira-sans-extralight {
+  font-family: "Fira Sans", system-ui;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.fira-sans-light {
+  font-family: "Fira Sans", system-ui;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.fira-sans-regular {
+  font-family: "Fira Sans", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.fira-sans-medium {
+  font-family: "Fira Sans", system-ui;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.fira-sans-semibold {
+  font-family: "Fira Sans", system-ui;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.fira-sans-bold {
+  font-family: "Fira Sans", system-ui;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.fira-sans-extrabold {
+  font-family: "Fira Sans", system-ui;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.fira-sans-black {
+  font-family: "Fira Sans", system-ui;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.fira-sans-thin-italic {
+  font-family: "Fira Sans", system-ui;
+  font-weight: 100;
+  font-style: italic;
+}
+
+.fira-sans-extralight-italic {
+  font-family: "Fira Sans", system-ui;
+  font-weight: 200;
+  font-style: italic;
+}
+
+.fira-sans-light-italic {
+  font-family: "Fira Sans", system-ui;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.fira-sans-regular-italic {
+  font-family: "Fira Sans", system-ui;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.fira-sans-medium-italic {
+  font-family: "Fira Sans", system-ui;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.fira-sans-semibold-italic {
+  font-family: "Fira Sans", system-ui;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.fira-sans-bold-italic {
+  font-family: "Fira Sans", system-ui;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.fira-sans-extrabold-italic {
+  font-family: "Fira Sans", system-ui;
+  font-weight: 800;
+  font-style: italic;
+}
+
+.fira-sans-black-italic {
+  font-family: "Fira Sans", system-ui;
+  font-weight: 900;
+  font-style: italic;
+}
+
+.noto-serif {
+  font-family: "Noto Serif", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+
+nav.navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: calc(var(--spacing-unit) * 0.5);
+  border-bottom: 1.5px solid black;
+  border-top: 3px solid black;
+  box-shadow: var(--box-shadow-50);
+
+  span.navitem.logo {
+    > img {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--box-shadow-50);
+    }
+  }
+
+  span.navitem.menu {
+    margin-left: var(--spacing-unit);
+    cursor: pointer;
+  }
+
+  span.navitem.title {
+    margin-left: auto;
+    overflow: visible;
+    > h1 {
+      font-size: 32px;
+      font-weight: 600;
+      text-decoration: underline;
+      margin-block: 0px;
+      /* background: #69dc9e;
+      background: -webkit-linear-gradient(90deg, #69dc9e 0%, #3f37c9 100%);
+      background: linear-gradient(90deg, #69dc9e 0%, #3f37c9 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent; */
+      width: 110%;
+      letter-spacing: -0.04em;
+
+    }
+  }
+
+  span.navitem.subscribe {
+    margin-left: auto;
+  }
+}

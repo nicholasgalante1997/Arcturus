@@ -1,0 +1,17 @@
+{
+  "name": "@project-arcturus/docs",
+  "version": "1.0.0",
+  "files": [
+    "docsify"
+  ],
+  "scripts": {
+    "start-docs": "docsify serve --no-open --port=5280 ./docsify"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "docsify": "^4.13.1",
+    "docsify-cli": "^4.4.4"
+  }
+}

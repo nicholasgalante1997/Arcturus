@@ -4,8 +4,8 @@ import {
   renderToPipeableStream,
 } from "react-dom/server";
 import { Log } from "sleepydogs";
-import { createWriteStream, existsSync, mkdirSync, rmSync } from "node:fs";
-import path from "node:path";
+import { createWriteStream, existsSync, mkdirSync, rmSync } from "fs";
+import path from "path";
 
 export interface ReactRenderToFileOptions<
   P extends React.JSX.IntrinsicAttributes = object,

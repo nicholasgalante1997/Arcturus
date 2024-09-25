@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "es2022",
     "lib": ["es6", "dom", "dom.iterable"],
     "jsx": "react",
-    "module": "es6",
+    "module": "es2022",
     "rootDir": "./",
     "moduleResolution": "bundler",
     "baseUrl": "./",
@@ -26,5 +26,5 @@
     "allowArbitraryExtensions": true
   },
   "include": ["src"],
-  "exclude": ["node_modules", "esbuild.config.cjs"]
+  "exclude": ["node_modules", "esbuild.config.mjs", "src/**/*.stories.*"]
 }

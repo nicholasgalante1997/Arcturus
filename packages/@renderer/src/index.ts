@@ -2,6 +2,7 @@ import { default as toFile, type ReactRenderToFileOptions } from './renderToFile
 import { default as toPipe, type ReactRenderIntoPipeOptions } from './renderIntoPipe';
 import { default as ReactStaticPageBuilder } from './models/StaticRenderer';
 import { default as ReactServerRenderer } from './models/ServerRenderer';
+import { default as ReactBrowserRenderer } from './models/BrowserRenderer';
 import { default as toStatic } from "./lib/static/build";
 import { getStaticBundle } from "./lib/static/get";
 import { getSleepyProps } from './lib/browser';
@@ -13,6 +14,7 @@ export {
   type ReactRenderIntoPipeOptions,
   ReactStaticPageBuilder,
   ReactServerRenderer,
+  ReactBrowserRenderer,
   toStatic,
   getStaticBundle,
   getSleepyProps
@@ -23,6 +25,7 @@ export default {
   toPipe,
   ReactStaticPageBuilder,
   ReactServerRenderer,
+  ReactBrowserRenderer,
   toStatic,
   getStaticBundle,
   getSleepyProps

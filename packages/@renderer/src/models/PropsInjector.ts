@@ -8,8 +8,8 @@ class PropsInjector<Props extends React.JSX.IntrinsicAttributes = object> {
 
     toJS() {
         return `
-            window.__sleepy_props__ = {
-                _data: ${JSON.stringify(this.props)}
+            window.__APP_PROPS__ = {
+                data: ${JSON.stringify(this.props)}
             };
         `
     }

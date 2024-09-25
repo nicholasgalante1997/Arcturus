@@ -4,7 +4,7 @@ import {
   renderToPipeableStream,
 } from "react-dom/server";
 import { Log } from "sleepydogs";
-import { Writable } from "node:stream";
+import { Writable } from "stream";
 
 export interface ReactRenderIntoPipeOptions<
   P extends React.JSX.IntrinsicAttributes = object,
