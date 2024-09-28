@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
-import App, { AppProps } from '../App';
+import App from '../App';
+import { AppProps } from '../App.types';
 
 import { Article, type ArticleProps } from '@/components/Article';
 

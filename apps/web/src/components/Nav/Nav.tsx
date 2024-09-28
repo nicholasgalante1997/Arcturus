@@ -1,17 +1,18 @@
 import React, { memo } from 'react';
-import { Button } from '@project-arcturus/components';
 import { Props as NavProps } from './Nav.types';
 import Icon from '../Icon/Icon';
+import { useOverlayContext } from '@/contexts/Overlay';
 
-function Nav({ logoImgAltText, logoImgUrl, websiteTitle }: NavProps) {
+function Nav({ websiteTitle }: NavProps) {
+  const { close, isOpen, open } = useOverlayContext();
   return (
     <nav className="navbar">
       <span className="navitem logo">
-        <img src={logoImgUrl} alt={logoImgAltText} height="64px" width="auto" />
+        <span className="letter strange">T</span>
       </span>
 
-      <span className="navitem menu">
-        <Icon icon="hamburger-menu" height="48px" width="48px" />
+      <span className="navitem menu" onClick={isOpen ? close : open}>
+        <Icon icon="hamburger-menu" height="24px" width="24px" />
       </span>
 
       <span className="navitem title">
@@ -19,9 +20,7 @@ function Nav({ logoImgAltText, logoImgUrl, websiteTitle }: NavProps) {
       </span>
 
       <span className="navitem subscribe">
-        <Button rounded className="fira-sans-bold">
-          Subscribe
-        </Button>
+        Subscribe
       </span>
     </nav>
   );

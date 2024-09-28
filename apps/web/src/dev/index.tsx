@@ -12,6 +12,8 @@ import { ArticleSeries } from '@/types/ArticleSeries';
 import { ArticleType } from '@/types/ArticleType';
 import { WebsiteName } from '@/types/WebsiteName';
 
+import { strings } from './data';
+
 const props: Props = {
   app: {
     ui: {
@@ -25,14 +27,17 @@ const props: Props = {
   article: {
     author: 'Washington Irving',
     description:
-      'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.',
-    headlineImg: '',
-    headlineImgAltText: '',
-    id: '',
-    release: '20 September 2024',
-    title: 'Babel III: Kor Na Garoth',
+      'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.',
+    headlineImg: '/assets/shoggoths-among-us.jpg',
+    headlineImgAspectRatio: '16 / 9',
+    headlineImgAltText: 'A Shoggoth reading in a library. Stencil, drawn style.',
+    id: '01',
+    release: 'September 20, 2024',
+    title: 'Babel III - The One\'s That Came From Dreams, ',
     type: ArticleType.Fiction,
-    headlineImgPublisher: ''
+    headlineImgPublisher: 'Henry Farrell',
+    series: ArticleSeries.COUCH__BABEL_CANON,
+    content: strings.join('\n\n')
   },
   document: {
     head: {

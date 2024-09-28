@@ -5,9 +5,9 @@ import LinkProps from './Link.types';
 
 const linkClassName = 'h-link';
 
-function LinkComponent({ children, className, ...rest }: LinkProps) {
+function LinkComponent({ children, className = '', ...rest }: LinkProps) {
   return (
-    <a {...rest} className={classNames({ [linkClassName]: true, className })}>
+    <a {...rest} className={classNames({ [linkClassName]: true, [className]: !!className })}>
       {children}
     </a>
   );

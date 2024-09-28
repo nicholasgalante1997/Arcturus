@@ -49,13 +49,16 @@ export async function getStaticProps(
     article: {
       author: parsed.attributes.author,
       description: parsed.attributes.description,
-      headlineImg: parsed.attributes.headlineImg,
+      headlineImg: '/assets/shoggoths-among-us.jpg',
       headlineImgAltText: parsed.attributes.headlineImgAltText,
       id: parsed.attributes.id,
       release: parsed.attributes.release,
       title: parsed.attributes.title,
       type: parsed.attributes.type,
-      headlineImgPublisher: parsed.attributes.headlineImgPublisher
+      headlineImgPublisher: parsed.attributes.headlineImgPublisher,
+      content: parsed.body,
+      series: parsed.attributes.series,
+      headlineImgAspectRatio: '16 / 9'
     },
     series: options?.series
   };

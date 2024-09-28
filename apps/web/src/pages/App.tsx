@@ -19,10 +19,10 @@ function App({ app, children, document: { head }, theme }: AppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{head.title}</title>
         <meta name="description" content={head.description} />
-        <link rel="prefetch" as="stylesheet" href="css/index.css" />
-        <link rel="stylesheet" href="css/index.css" />
         <link rel="prefetch" as="stylesheet" href="css/variables.css" />
         <link rel="stylesheet" href="css/variables.css" />
+        <link rel="prefetch" as="stylesheet" href="css/index.css" />
+        <link rel="stylesheet" href="css/index.css" />
         <link rel="prefetch" as="stylesheet" href="css/base.min.css" />
         <link rel="stylesheet" href="css/base.min.css" />
         <link rel="prefetch" as="stylesheet" href="css/button.min.css" />
@@ -40,7 +40,8 @@ function App({ app, children, document: { head }, theme }: AppProps) {
       </head>
       <body data-arc-theme={$theme}>
         <ThemeContext.Provider value={{ setTheme, theme: $theme }}>
-          <OverlayContext.Provider value={{ open: openOverlay, close: closeOverlay }}>
+          <OverlayContext.Provider
+            value={{ isOpen: $overlay, open: openOverlay, close: closeOverlay }}>
             <Nav
               websiteTitle={app.ui.nav.websiteTitle}
               logoImgAltText={app.ui.nav.logoImgAltText}

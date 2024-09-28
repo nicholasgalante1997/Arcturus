@@ -6,3 +6,4 @@ export { GlassPane, GlassPaneProps } from './components/GlassPane';
 export { default as Grid, GridItem, GridItemProps, GridRootProps } from './components/Grid';
 export { Heading, HeadingProps } from './components/Heading';
 export { Link, LinkProps } from './components/Link';
+export { Input, InputProps } from './components/Input';
