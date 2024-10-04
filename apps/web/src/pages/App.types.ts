@@ -13,8 +13,6 @@ export interface AppProps {
     ui: {
       nav: {
         websiteTitle: WebsiteName;
-        logoImgSrc: string;
-        logoImgAltText: string;
       };
     };
   };

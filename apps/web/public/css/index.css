@@ -1,15 +1,13 @@
+@import 'themes/light.css';
+@import 'themes/dark.css';
+@import 'themes/lovecraft.css';
+@import 'themes/rust.css';
+
 :root {
   --spacing-unit: 16px;
   --box-shadow-20: 1.6px 3.2px 3.2px hsl(0deg 0% 0% / 0.45);
-  --box-shadow-50: 4.0px 8.0px 8.0px hsl(0deg 0% 0% / 0.38);
-  --box-shadow-75: 6.0px 12.0px 12.0px hsl(0deg 0% 0% / 0.31);
-  --black: #000;
-  --off-black: #0d1b2aff;
-  --dark-blue: #1b263bff;
-  --off-silver-blue: #415a77ff;
-  --silver-blue: #778da9ff;
-  --off-white: #e0e1ddff;
-  --white: #fff;
+  --box-shadow-50: 4px 8px 8px hsl(0deg 0% 0% / 0.38);
+  --box-shadow-75: 6px 12px 12px hsl(0deg 0% 0% / 0.31);
 }
 
 * {
@@ -35,134 +33,129 @@ body {
   scroll-behavior: smooth;
 }
 
-body[data-arc-theme="light"] {
-  background: var(--white);
-  color: var(--black);
-}
-
 @font-face {
-  font-family: "Strange";
+  font-family: 'Strange';
   src: url(fonts/SomethingStrange-vjYD.ttf) format(truetype);
 }
 
 .strange {
-  font-family: "Strange";
+  font-family: 'Strange';
   font-style: normal;
 }
 
 .fira-sans-thin {
-  font-family: "Fira Sans", system-ui;
+  font-family: 'Fira Sans', system-ui;
   font-weight: 100;
   font-style: normal;
 }
 
 .fira-sans-extralight {
-  font-family: "Fira Sans", system-ui;
+  font-family: 'Fira Sans', system-ui;
   font-weight: 200;
   font-style: normal;
 }
 
 .fira-sans-light {
-  font-family: "Fira Sans", system-ui;
+  font-family: 'Fira Sans', system-ui;
   font-weight: 300;
   font-style: normal;
 }
 
 .fira-sans-regular {
-  font-family: "Fira Sans", system-ui;
+  font-family: 'Fira Sans', system-ui;
   font-weight: 400;
   font-style: normal;
 }
 
 .fira-sans-medium {
-  font-family: "Fira Sans", system-ui;
+  font-family: 'Fira Sans', system-ui;
   font-weight: 500;
   font-style: normal;
 }
 
 .fira-sans-semibold {
-  font-family: "Fira Sans", system-ui;
+  font-family: 'Fira Sans', system-ui;
   font-weight: 600;
   font-style: normal;
 }
 
 .fira-sans-bold {
-  font-family: "Fira Sans", system-ui;
+  font-family: 'Fira Sans', system-ui;
   font-weight: 700;
   font-style: normal;
 }
 
 .fira-sans-extrabold {
-  font-family: "Fira Sans", system-ui;
+  font-family: 'Fira Sans', system-ui;
   font-weight: 800;
   font-style: normal;
 }
 
 .fira-sans-black {
-  font-family: "Fira Sans", system-ui;
+  font-family: 'Fira Sans', system-ui;
   font-weight: 900;
   font-style: normal;
 }
 
 .fira-sans-thin-italic {
-  font-family: "Fira Sans", system-ui;
+  font-family: 'Fira Sans', system-ui;
   font-weight: 100;
   font-style: italic;
 }
 
 .fira-sans-extralight-italic {
-  font-family: "Fira Sans", system-ui;
+  font-family: 'Fira Sans', system-ui;
   font-weight: 200;
   font-style: italic;
 }
 
 .fira-sans-light-italic {
-  font-family: "Fira Sans", system-ui;
+  font-family: 'Fira Sans', system-ui;
   font-weight: 300;
   font-style: italic;
 }
 
 .fira-sans-regular-italic {
-  font-family: "Fira Sans", system-ui;
+  font-family: 'Fira Sans', system-ui;
   font-weight: 400;
   font-style: italic;
 }
 
 .fira-sans-medium-italic {
-  font-family: "Fira Sans", system-ui;
+  font-family: 'Fira Sans', system-ui;
   font-weight: 500;
   font-style: italic;
 }
 
 .fira-sans-semibold-italic {
-  font-family: "Fira Sans", system-ui;
+  font-family: 'Fira Sans', system-ui;
   font-weight: 600;
   font-style: italic;
 }
 
 .fira-sans-bold-italic {
-  font-family: "Fira Sans", system-ui;
+  font-family: 'Fira Sans', system-ui;
   font-weight: 700;
   font-style: italic;
 }
 
 .fira-sans-extrabold-italic {
-  font-family: "Fira Sans", system-ui;
+  font-family: 'Fira Sans', system-ui;
   font-weight: 800;
   font-style: italic;
 }
 
 .fira-sans-black-italic {
-  font-family: "Fira Sans", system-ui;
+  font-family: 'Fira Sans', system-ui;
   font-weight: 900;
   font-style: italic;
 }
 
 .noto-serif {
-  font-family: "Noto Serif", serif;
+  font-family: 'Noto Serif', serif;
   font-optical-sizing: auto;
   font-style: normal;
-  font-variation-settings: "wdth" 100;
+  font-variation-settings: 'wdth' 100;
 }
 
 nav.navbar {
@@ -179,8 +172,6 @@ nav.navbar {
   box-sizing: border-box;
   margin: 0;
   padding: calc(var(--spacing-unit) * 0.5);
-  border-top: 3px solid black;
-  box-shadow: var(--box-shadow-20);
 
   span.navitem.logo {
     box-sizing: border-box;
@@ -191,7 +182,6 @@ nav.navbar {
     > span.letter {
       font-size: 24px;
       font-weight: 800;
-      color: var(--color-base-blue-primary);
     }
   }
 
@@ -203,14 +193,14 @@ nav.navbar {
   span.navitem.title {
     margin-left: auto;
     overflow: visible;
-    > h1 {
-      font-size: 24px;
-      font-weight: 600;
+
+    > a {
+      font-size: 18px;
+      font-weight: 500;
       text-decoration: underline;
       margin-block: 0px;
       width: 110%;
-      letter-spacing: -0.04em;
-
+      letter-spacing: -0.01em;
     }
   }
 
@@ -235,7 +225,6 @@ section.overlay {
   }
 
   div.overlay-actions {
-    border-bottom: 2px solid black;
     box-sizing: border-box;
     padding-bottom: calc(var(--spacing-unit) * 2);
   }
@@ -248,7 +237,6 @@ section.overlay {
     justify-content: flex-start;
     align-items: stretch;
     padding-bottom: calc(var(--spacing-unit) * 3);
-    border-bottom: 2px solid black;
   }
 
   div.series-container {
@@ -276,7 +264,7 @@ section.overlay {
       padding-left: calc(var(--spacing-unit) * 3);
       padding-right: calc(var(--spacing-unit) * 3);
       opacity: 0;
-      
+
       p {
         font-style: italic;
       }
@@ -300,7 +288,6 @@ section.article-container {
   --inner-article-max-width: 700px;
   --article-headline-image-width: 1024px;
 
-
   height: calc(100vh - 40px);
   max-height: calc(100vh - 40px);
   width: 100%;
@@ -309,7 +296,6 @@ section.article-container {
   overflow-y: scroll;
   margin: 0;
   padding: calc(var(--spacing-unit) * 2);
-  background-color: #f6f6f6;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -318,54 +304,43 @@ section.article-container {
   span.article-supp-divider {
     min-height: 24px;
     min-width: 2px;
-    background-color: #000;
   }
 
   > article.article-root {
-    > div.article-supplementary-info-container {
+    div.text-container {
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
       align-items: center;
-      gap: calc(var(--spacing-unit) * 0.5);
       min-width: var(--inner-article-max-width);
       width: var(--inner-article-max-width);
       max-width: var(--inner-article-max-width);
-      margin-top: var(--spacing-unit);
       margin-left: auto;
       margin-right: auto;
+    }
 
+    div.article-author-container {
+      > p {
+        font-weight: 600;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+    }
+
+    > div.article-supplementary-info-container {
+      gap: calc(var(--spacing-unit) * 0.5);
+      margin-top: var(--spacing-unit);
       font-size: 12px;
     }
 
     > div.article-title-container {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      align-items: center;
-      min-width: var(--inner-article-max-width);
-      width: var(--inner-article-max-width);
-      max-width: var(--inner-article-max-width);
-      margin-left: auto;
-      margin-right: auto;
-
       > h1.article-title {
         font-size: 1.875rem;
         letter-spacing: -0.04em;
-      } 
+      }
     }
 
     > div.article-description-container {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      align-items: center;
-      min-width: var(--inner-article-max-width);
-      width: var(--inner-article-max-width);
-      max-width: var(--inner-article-max-width);
-      margin-left: auto;
-      margin-right: auto;
-
       > p.article-description {
         margin-block: 2px;
         font-size: 1.25rem;
@@ -381,6 +356,7 @@ section.article-container {
       margin-right: auto;
       margin-top: calc(var(--spacing-unit) * 2);
       padding-bottom: calc(var(--spacing-unit) * 3);
+      position: relative;
 
       height: fit-content;
       overflow: hidden;
@@ -394,6 +370,13 @@ section.article-container {
         image-rendering: optimizeQuality;
         image-orientation: from-image;
       }
+
+      span.article-headline-image-publisher {
+        position: relative;
+        font-size: 12px;
+        font-weight: 400px;
+        font-family: 'Noto Serif';
+      }
     }
 
     > div.article-markdown-root {
@@ -404,7 +387,7 @@ section.article-container {
         width: var(--inner-article-max-width);
         font-size: 20px;
         letter-spacing: normal;
-        font-family: "Fira Sans";
+        font-family: 'Noto Serif';
         font-weight: 400;
       }
     }
@@ -422,6 +405,7 @@ input {
     border-color 0.3s,
     box-shadow 0.3s;
 }
+
 /* Focus state for text input */
 input:focus {
   border-color: #007bff;
@@ -435,14 +419,4 @@ input:focus {
     width: 100%;
     font-size: 1rem;
   }
-}
-
-@keyframes show {
-  0% { opacity: 0; };
-  100% { opacity: 1; };
-}
-
-@keyframes show {
-  0% { opacity: 1; };
-  100% { opacity: 0; };
 }

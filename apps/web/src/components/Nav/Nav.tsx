@@ -16,7 +16,7 @@ function Nav({ websiteTitle }: NavProps) {
       </span>
 
       <span className="navitem title">
-        <h1 className="fira-sans-bold">{websiteTitle}</h1>
+        <a target="_self" href="/" className="strange">{websiteTitle}</a>
       </span>
 
       <span className="navitem subscribe">

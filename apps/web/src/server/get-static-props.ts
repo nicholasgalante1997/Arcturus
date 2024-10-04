@@ -32,9 +32,6 @@ export async function getStaticProps(
     app: {
       ui: {
         nav: {
-          logoImgSrc: '/assets/couch.jpg',
-          logoImgAltText:
-            'The Simpsons Couch laid against a purple backdrop of the Simpson living room.',
           websiteTitle: WebsiteName.CouchGag
         }
       }
@@ -49,7 +46,7 @@ export async function getStaticProps(
     article: {
       author: parsed.attributes.author,
       description: parsed.attributes.description,
-      headlineImg: '/assets/shoggoths-among-us.jpg',
+      headlineImg: '/assets/doodles.jpg',
       headlineImgAltText: parsed.attributes.headlineImgAltText,
       id: parsed.attributes.id,
       release: parsed.attributes.release,

@@ -18,8 +18,6 @@ const props: Props = {
   app: {
     ui: {
       nav: {
-        logoImgAltText: 'The simpsons couch against a bright purple backdrop of their living room.',
-        logoImgSrc: '/assets/couch.jpg',
         websiteTitle: WebsiteName.CouchGag
       }
     }
@@ -28,14 +26,14 @@ const props: Props = {
     author: 'Washington Irving',
     description:
       'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.',
-    headlineImg: '/assets/shoggoths-among-us.jpg',
+    headlineImg: '/assets/doodles.jpg',
     headlineImgAspectRatio: '16 / 9',
     headlineImgAltText: 'A Shoggoth reading in a library. Stencil, drawn style.',
     id: '01',
     release: 'September 20, 2024',
     title: 'Babel III - The One\'s That Came From Dreams, ',
     type: ArticleType.Fiction,
-    headlineImgPublisher: 'Henry Farrell',
+    headlineImgPublisher: 'Doodles, NFT Campaign',
     series: ArticleSeries.COUCH__BABEL_CANON,
     content: strings.join('\n\n')
   },
