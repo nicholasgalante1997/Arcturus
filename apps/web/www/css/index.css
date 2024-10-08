@@ -1,0 +1,36 @@
+@import 'font.css';
+@import 'navbar.css';
+@import 'themes/light.css';
+@import 'themes/dark.css';
+@import 'themes/lovecraft.css';
+@import 'themes/rust.css';
+
+:root {
+  --spacing-unit: 16px;
+  --box-shadow-20: 1.6px 3.2px 3.2px hsl(0deg 0% 0% / 0.45);
+  --box-shadow-50: 4px 8px 8px hsl(0deg 0% 0% / 0.38);
+  --box-shadow-75: 6px 12px 12px hsl(0deg 0% 0% / 0.31);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  height: 100vh;
+  width: 100%;
+}
+
+html {
+  overflow: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}

@@ -1,0 +1,5 @@
+dependency = "marked"
+version = "14.1.2"
+
+[cdn]
+links = [ "https://cdn.jsdelivr.net/npm/marked@14.1.2/+esm",  ]
