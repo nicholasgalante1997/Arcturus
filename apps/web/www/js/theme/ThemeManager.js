@@ -1,3 +1,5 @@
+import { LazySingleton } from 'sleepydogs';
+
 class ThemeManager {
   static #browserCacheKey = 'project-arcturus-user-theme-preference';
 
@@ -10,20 +12,24 @@ class ThemeManager {
     window.localStorage.setItem(ThemeManager.#browserCacheKey, theme);
   }
 
-  setupInitialTheme() {
+  #setupInitialTheme() {
     const preference = this.#systemTheme;
     this.dispatchThemeUpdate(preference);
   }
 
   setupTheme() {
+    /** TODO -> remove following short return */
+    this.dispatchThemeUpdate('light');
+    return;
+
     const cached = window.localStorage.getItem(ThemeManager.#browserCacheKey);
     if (cached) {
       this.dispatchThemeUpdate(cached);
       return;
     }
 
-    this.setupInitialTheme();
+    this.#setupInitialTheme();
   }
 }
 
-export { ThemeManager };
+export default LazySingleton(ThemeManager);

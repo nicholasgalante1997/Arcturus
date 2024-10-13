@@ -8,11 +8,18 @@
   "scripts": {
     "prettier": "prettier --write www",
     "start": "serve www",
-    "dev": "browser-sync www -w --port 4200"
+    "dev": "browser-sync www -w --port 4200",
+    "sync:css": "rm -rf www/css/design && mkdir -p www/css/design && cp -R node_modules/@project-arcturus/design-tokens/build/css/*.css www/css/design/"
   },
   "dependencies": {
     "@project-arcturus/design-tokens": "workspace:*",
-    "serve": "^14.2.3"
+    "front-matter": "^4.0.2",
+    "lottie-web": "^5.12.2",
+    "lru-cache": "^11.0.0",
+    "mitt": "^3.0.1",
+    "serve": "^14.2.3",
+    "sleepydogs": "^1.0.7",
+    "web-vitals": "^4.2.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.7.0",
@@ -20,7 +27,6 @@
     "eslint": "^9.12.0",
     "globals": "^15.8.0",
     "npm-run-all": "^4.1.5",
-    "prettier": "^3.3.3",
-    "web-vitals": "^4.2.3"
+    "prettier": "^3.3.3"
   }
 }

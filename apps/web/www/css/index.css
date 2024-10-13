@@ -1,15 +1,13 @@
 @import 'font.css';
-@import 'navbar.css';
-@import 'themes/light.css';
-@import 'themes/dark.css';
-@import 'themes/lovecraft.css';
-@import 'themes/rust.css';
 
 :root {
   --spacing-unit: 16px;
   --box-shadow-20: 1.6px 3.2px 3.2px hsl(0deg 0% 0% / 0.45);
   --box-shadow-50: 4px 8px 8px hsl(0deg 0% 0% / 0.38);
   --box-shadow-75: 6px 12px 12px hsl(0deg 0% 0% / 0.31);
+
+  --text-soft: #e1e1e0;
+  --button-primary: #c2d8ff;
 }
 
 * {
@@ -23,14 +21,109 @@ body {
   min-height: 100vh;
   height: 100vh;
   width: 100%;
+  position: relative;
 }
 
 html {
   overflow: hidden;
+  max-height: 100vh;
+
+  * {
+    font-family: 'Fira Sans';
+  }
 }
 
 body {
   overflow-x: hidden;
   overflow-y: scroll;
-  scroll-behavior: smooth;
+  max-height: 100vh;
+}
+
+section.splash-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 128px;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+
+  > div[data-intent='project-image'] {
+    width: 200px;
+    height: 200px;
+    display: block;
+    margin-bottom: -64px;
+  }
+
+  > :is(h1, p) {
+    text-align: center;
+  }
+
+  > h1 {
+    font-family: 'Space Mono';
+    margin-block: 8px;
+    letter-spacing: -0.04em;
+  }
+}
+
+section.subscribe-container {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+
+  form#subscribe-form {
+    display: flex;
+    flex-direction: column;
+
+    fieldset {
+      display: inline-flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 12px;
+      align-items: center;
+
+      > input {
+        min-width: 400px;
+      }
+    }
+  }
+}
+
+section.posts-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  gap: 16px;
+
+  max-width: 600px;
+
+  margin-top: 24px;
+}
+
+div.minor-info__chips {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+span.post-card__chip {
+  border: 1px solid #b5aded;
+  box-sizing: border-box;
+  padding: 4px;
+  color: #b5aded;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: capitalize;
+  font-feature-settings: "liga";
+  font-variant: normal;
 }

@@ -12,6 +12,7 @@ nav.navbar {
   box-sizing: border-box;
   margin: 0;
   padding: calc(var(--spacing-unit) * 0.5);
+  z-index: 10;
 
   span.navitem.logo {
     box-sizing: border-box;

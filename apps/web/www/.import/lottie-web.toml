@@ -1,0 +1,9 @@
+dependency = "lottie-web"
+version = "5.12.2"
+
+[cdn]
+links = [ "https://cdn.jsdelivr.net/npm/lottie-web@5.12.2/+esm", ]
+
+[usage]
+
+usage.description = "Run lottie animations using javascript in the browser"

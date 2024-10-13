@@ -1,24 +1,31 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Arcturus</title>
-    <meta name="description" content="" />
+    <title>Project Arcturus</title>
+    <meta name="description" content="A content engine, started by Nick Galante" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="/" />
+    <!-- Progressive Web App, manifest -->
     <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Preconnect to Google Font API -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <!-- Load Google Fonts, Fira Sans + Space Mono -->
     <link
       href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet" />
     <link
       href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
       rel="stylesheet" />
-    <link rel="preload" as="style" href="css/index.css" />
-    <link rel="stylesheet" href="css/index.css" />
-    <link rel="preload" as="style" href="css/home.css" />
-    <link rel="stylesheet" href="css/home.css" />
+    <!-- Load Pico CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+
+    <link rel="preload" as="style" href="/css/index.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+
+    <!-- Preload Javascript Imports for Importmap -->
     <link
       rel="preload"
       crossorigin="anonymous"
@@ -28,11 +35,18 @@
       rel="preload"
       crossorigin="anonymous"
       as="script"
-      href="https://cdn.jsdelivr.net/npm/gsap@3.12.5/+esm" />
+      href="https://cdn.jsdelivr.net/npm/lottie-web@5.12.2/+esm" />
+    <link
+      rel="preload"
+      crossorigin="anonymous"
+      as="script"
+      href="https://cdn.jsdelivr.net/npm/mitt@3.0.1/+esm" />
+    
     <script type="importmap">
       {
         "imports": {
-          "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.12.5/+esm",
+          "lottie-web": "https://cdn.jsdelivr.net/npm/lottie-web@5.12.2/+esm",
+          "mitt": "https://cdn.jsdelivr.net/npm/mitt@3.0.1/+esm",
           "web-vitals": "https://cdn.jsdelivr.net/npm/web-vitals@4.2.3/+esm"
         }
       }
@@ -73,28 +87,35 @@
                                       `---.__,--.' 
    -->
   </head>
-
   <body>
     <main>
-      <section id="arc-terminal__root">
-        <span class="arc-terminal__banner">
-          <small class="space-mono-bold"
-            ><b>globex</b> commit
-            2109a12ac5d4a2d418a336bf586eddc14416cb4cb1511e4662dff8a0089ec079</small
-          >
-        </span>
-        <div class="arc-terminal__shell">
-          <p class="booting-program-line">$ <span>Booting program...</span></p>
-          <p class="project-version-line">
-            $
-            <span
-              >Project Arcturus, version: <i><small>Evergreen</small></i>
-            </span>
-          </p>
-          <p class="command-prompt"> > <span class="cursor">_</span></p>
-        </div>
+      
+      <section class="splash-container">
+        <div data-intent="project-image"></div>
+        <h1 data-intent="project-title">Project Arcturus</h1>
+        <p data-intent="project-description">
+          A content microengine, supported and maintained by the team at <b>Arcturus</b>
+        </p>
+      </section>
+      
+      <section class="subscribe-container">
+        <form data-intent="subscribe-to-newsletter-form" name="subscribe-form" id="subscribe-form">
+          <label>
+            Subscribe to our Newsletter 
+            <span>Or grab our <a href="#">RSS Feed</a></span>
+          </label>
+          <fieldset>
+            <input type="email" placeholder="Type your email" required>
+            <button type="submit">Subscribe</button>
+          </fieldset>
+        </form>
+      </section>
+      
+      <section id="posts" class="posts-container">
+
       </section>
     </main>
   </body>
 </html>
 <script type="module" src="js/performance/web-vitals.js"></script>
+<script type="module" src="js/events/DOMContentLoaded.js"></script>

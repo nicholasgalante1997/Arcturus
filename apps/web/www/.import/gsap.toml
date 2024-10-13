@@ -2,4 +2,8 @@ dependency = "gsap"
 version = "3.12.5"
 
 [cdn]
-links = [ "https://cdn.jsdelivr.net/npm/gsap@3.12.5/+esm",  ]
+links = [ "https://cdn.jsdelivr.net/npm/gsap@3.12.5/+esm", ]
+
+[usage]
+
+usage.description = "Gsap is used to facilitate complex animations in javascript"
