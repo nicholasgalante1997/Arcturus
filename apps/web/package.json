@@ -9,10 +9,12 @@
     "prettier": "prettier --write www",
     "start": "serve www",
     "dev": "browser-sync www -w --port 4200",
-    "sync:css": "rm -rf www/css/design && mkdir -p www/css/design && cp -R node_modules/@project-arcturus/design-tokens/build/css/*.css www/css/design/"
+    "sync:css": "rm -rf www/css/design && mkdir -p www/css/design && cp -R node_modules/@project-arcturus/design-tokens/build/css/*.css www/css/design/",
+    "sync:ws-vendor": "cp -R node_modules/@project-arcturus/store/dist/esm/bundle.mjs www/js/vendor/@project-arcturus/store.js"
   },
   "dependencies": {
     "@project-arcturus/design-tokens": "workspace:*",
+    "@project-arcturus/store": "workspace:*",
     "front-matter": "^4.0.2",
     "lottie-web": "^5.12.2",
     "lru-cache": "^11.0.0",
