@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Arcturus</title>
+    <meta name="description" content="" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet" />
+    <link rel="preload" as="style" href="/css/index.css" />
+    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="preload" as="style" href="css/post.css" />
+    <link rel="stylesheet" href="/css/post.css" />
+    <link
+      rel="preload"
+      crossorigin="anonymous"
+      as="script"
+      href="https://cdn.jsdelivr.net/npm/web-vitals@4.2.3/+esm" />
+    <link
+      rel="preload"
+      crossorigin="anonymous"
+      as="script"
+      href="https://cdn.jsdelivr.net/npm/sleepydogs@1.0.7/+esm" />
+    <script type="importmap">
+      {
+        "imports": {
+          "web-vitals": "https://cdn.jsdelivr.net/npm/web-vitals@4.2.3/+esm",
+          "sleepydogs": "https://cdn.jsdelivr.net/npm/sleepydogs@1.0.7/+esm"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <span class="navitem logo">
+        <span class="letter strange">T</span>
+      </span>
+
+      <span class="navitem menu" id="menu-overlay-action">
+        <!-- <Icon icon="hamburger-menu" height="24px" width="24px" /> -->
+      </span>
+
+      <span class="navitem title">
+        <a target="_self" href="/" class="strange"> Tales From the Couch </a>
+      </span>
+
+      <span class="navitem subscribe" id="subscribe-action"> Subscribe </span>
+    </nav>
+    <main id="arc-root">
+      <section class="article-container">
+        <article class="article-root">
+          <div class="article-supplementary-info-container text-container">
+            <span class="article-date fira-sans-semibold" id="release-date"></span>
+            <span class="article-supp-divider" />
+            <span class="article-series fira-sans-semibold" id="series-label">
+              <i></i> <b></b>
+            </span>
+          </div>
+
+          <div class="article-title-container text-container" id="post-title-container">
+            <h1 class="article-title fira-sans-bold" id="post-title"></h1>
+          </div>
+
+          <div class="article-description-container text-container" id="post-description-container">
+            <p class="article-description noto-serif" id="post-description"></p>
+          </div>
+
+          <div class="article-author-container text-container" id="post-author-container">
+            <p class="article-author noto-serif" id="post-author"></p>
+          </div>
+
+          <div class="article-headline-image-container" id="post-image-container">
+            <img style="aspect-ratio: 16 / 9" class="article-headline-image" id="post-image" />
+            <span class="article-headline-image-publisher" id="post-image-publisher"></span>
+          </div>
+
+          <div class="article-markdown-root"></div>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>
+<script type="module" src="js/performance/web-vitals.js"></script>
+<script type="module" src="js/theme/bootstrap.js"></script>
+<script type="module" src="js/events/DOMContentLoaded.js"></script>

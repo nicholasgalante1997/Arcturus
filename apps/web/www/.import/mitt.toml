@@ -1,0 +1,5 @@
+dependency = "mitt"
+version = "3.0.1"
+
+[cdn]
+links = [ "https://cdn.jsdelivr.net/npm/mitt@3.0.1/+esm", ]

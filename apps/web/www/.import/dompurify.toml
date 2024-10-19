@@ -1,0 +1,9 @@
+dependency = "dompurify"
+version = "3.1.7"
+
+[cdn]
+links = [ "https://cdn.jsdelivr.net/npm/dompurify@3.1.7/+esm", ]
+
+[usage]
+
+usage.description = "Purify html against xss injection attacks in markdown translated elements"
