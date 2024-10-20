@@ -2,4 +2,5 @@
 .env
 .env.*
 node_modules
-*storybook.log
+*storybook.log.shuttle*
+Secrets*.toml
