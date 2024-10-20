@@ -1,4 +1,6 @@
+use actix_cors::Cors;
 use actix_web::{
+    http,
     middleware::{self, Logger},
     web::{self, ServiceConfig},
 };
@@ -30,6 +32,14 @@ async fn main(
             web::scope("/api")
                 .wrap(Logger::default())
                 .wrap(
+                    Cors::default()
+                        .allow_any_origin() // Temporarily allow any origin -> .allowed_origin("http://example.com") // Allow only this origin
+                        .allowed_methods(vec!["GET", "OPTIONS"]) // Allow only GET and POST methods
+                        .allowed_headers(vec![http::header::AUTHORIZATION, http::header::ACCEPT]) // Allow only these headers
+                        .allowed_header(http::header::CONTENT_TYPE) // Allow Content-Type header
+                        .max_age(3600),
+                )
+                .wrap(
                     middleware::DefaultHeaders::new().add(("X-Dotafts-Server-API-Version", "0.1")),
                 )
                 .wrap(middleware::DefaultHeaders::new().add(("X-Dotafts-Markdown-Version", "0.1")))
@@ -41,6 +51,14 @@ async fn main(
         cfg.service(
             web::scope("")
                 .wrap(Logger::default())
+                .wrap(
+                    Cors::default()
+                        .allow_any_origin() // Temporarily allow any origin -> .allowed_origin("http://example.com") // Allow only this origin
+                        .allowed_methods(vec!["GET", "OPTIONS"]) // Allow only GET and POST methods
+                        .allowed_headers(vec![http::header::AUTHORIZATION, http::header::ACCEPT]) // Allow only these headers
+                        .allowed_header(http::header::CONTENT_TYPE) // Allow Content-Type header
+                        .max_age(3600),
+                )
                 .wrap(
                     middleware::DefaultHeaders::new().add(("X-Dotafts-Server-API-Version", "0.1")),
                 )

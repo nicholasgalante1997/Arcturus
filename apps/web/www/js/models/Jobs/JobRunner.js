@@ -8,7 +8,7 @@ class JobRunner {
    * @param {typeof runHomePageAnimationJobKey | typeof runRenderHomePagePostCardsJobKey} job 
    * @param {'low' | 'med' | 'high'} priority 
    */
-  run(job, priority = 'med', name = job?.name || 'Anonymous Job') {
+  queueJob(job, priority = 'med', name = job?.name || 'Anonymous Job') {
     if (typeof job === 'function') {
       switch (priority) {
         case 'low': {

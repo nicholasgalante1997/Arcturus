@@ -5,7 +5,7 @@ function getEsbuildConfig(format, outfile) {
     entryPoints: ['src/index.ts'],
     platform: "node",
     bundle: true,
-    minify: true,
+    minify: false,
     sourcemap: true,
     outfile,
     format,

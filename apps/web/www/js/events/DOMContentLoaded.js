@@ -3,7 +3,7 @@ import { setupWindowLogLevel, info, error } from '../log/index.js';
 
 const homeRoutes = ['/', '/index.html'];
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   setupWindowLogLevel('*');
 
   const path = window.location.pathname;
@@ -11,17 +11,26 @@ document.addEventListener('DOMContentLoaded', () => {
   if (homeRoutes.includes(path)) {
     import('../models/Jobs/runHomePageAnimation.js')
       .then(({ runHomePageAnimation, runHomePageAnimationJobKey }) => {
-        JobRunner.run(runHomePageAnimation, 'high', runHomePageAnimationJobKey);
+        JobRunner.queueJob(runHomePageAnimation, 'high', runHomePageAnimationJobKey);
+      })
+      .catch((e) => error(e));
+
+    import('../models/Jobs/runLoadPosts.js')
+      .then(({ runLoadPostsIntoStateJob }) => {
+        // JobRunner.queueJob(runLoadPostsIntoStateJob, "med", runLoadPostsKey);
+        runLoadPostsIntoStateJob()
+          .then(() => info('Loaded posts'))
+          .catch((e) => error(e))
       })
       .catch((e) => error(e));
 
     import('../models/Jobs/runRenderHomePagePostCards.js')
       .then(({ runRenderHomePagePostCards, runRenderHomePagePostCardsJobKey }) => {
-        JobRunner.run(runRenderHomePagePostCards, 'med', runRenderHomePagePostCardsJobKey);
+        JobRunner.queueJob(runRenderHomePagePostCards, 'med', runRenderHomePagePostCardsJobKey);
       })
       .catch((e) => error(e));
 
     return;
   }
-  
+
 });

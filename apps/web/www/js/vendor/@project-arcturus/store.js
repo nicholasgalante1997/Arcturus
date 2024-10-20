@@ -1,2 +1,24 @@
-function u(c,s){let t=s,e=[];return{useStore:()=>t,dispatch:n=>{t=c(t,n),e.forEach(i=>i(t))},subscribe:n=>(e.push(n),function(){let a=e.indexOf(n);a!==-1&&e.splice(a,1)})}}export{u as createStore};
+// src/index.ts
+function createStore(reducer, initState) {
+  let state = initState;
+  let listeners = [];
+  const useStore = () => state;
+  const dispatch = (action) => {
+    state = reducer(state, action);
+    listeners.forEach((listener) => listener(state));
+  };
+  const subscribe = (listener) => {
+    listeners.push(listener);
+    return function unsubscribe() {
+      const index = listeners.indexOf(listener);
+      if (index !== -1) {
+        listeners.splice(index, 1);
+      }
+    };
+  };
+  return { useStore, dispatch, subscribe };
+}
+export {
+  createStore
+};
 //# sourceMappingURL=bundle.mjs.map
