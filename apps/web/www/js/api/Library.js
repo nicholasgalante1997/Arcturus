@@ -11,7 +11,7 @@ class PostLibrary {
 
   async loadPost(postUrlPathFragment) {
     const headers = { Accept: 'text/markdown' };
-    const mode = 'no-cors';
+    const mode = 'cors';
     const method = 'GET';
     const options = { headers, mode, method };
     const response = await fetch(PostLibrary.#baseUrl + postUrlPathFragment, options);
@@ -30,7 +30,7 @@ class PostLibrary {
 
   async loadPosts() {
     const headers = { Accept: 'application/json' };
-    const mode = 'no-cors';
+    const mode = 'cors';
     const method = 'GET';
     const options = { headers, mode, method };
 
