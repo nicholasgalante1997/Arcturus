@@ -1,23 +1,27 @@
+import JobRunner from '../models/Jobs/JobRunner.js';
 import { setupWindowLogLevel, info, error } from '../log/index.js';
+
+const homeRoutes = ['/', '/index.html'];
 
 document.addEventListener('DOMContentLoaded', () => {
   setupWindowLogLevel('*');
 
   const path = window.location.pathname;
-  switch (path) {
-    case '/': {
-    }
-    case '/index.html': {
-      import('../models/Jobs/JobRunner.js')
-        .then(({ default: jobRunner }) => {
-          jobRunner.run('lottie.home-page.run-animation');
-          jobRunner.run('render.home-page.post-cards');
-        })
-        .catch((e) => error(e));
-      break;
-    }
 
-    default: {
-    }
+  if (homeRoutes.includes(path)) {
+    import('../models/Jobs/runHomePageAnimation.js')
+      .then(({ runHomePageAnimation, runHomePageAnimationJobKey }) => {
+        JobRunner.run(runHomePageAnimation, 'high', runHomePageAnimationJobKey);
+      })
+      .catch((e) => error(e));
+
+    import('../models/Jobs/runRenderHomePagePostCards.js')
+      .then(({ runRenderHomePagePostCards, runRenderHomePagePostCardsJobKey }) => {
+        JobRunner.run(runRenderHomePagePostCards, 'med', runRenderHomePagePostCardsJobKey);
+      })
+      .catch((e) => error(e));
+
+    return;
   }
+  
 });

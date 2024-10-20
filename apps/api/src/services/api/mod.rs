@@ -27,8 +27,8 @@ pub fn configure_api_service(cfg: &mut web::ServiceConfig) {
             .route(web::delete().to(HttpResponse::MethodNotAllowed)),
     );
     cfg.service(
-        web::resource("/files/category")
-            .route(web::get().to(AppRoutes::info::get_all_files_in_category))
+        web::resource("/files/dir/index")
+            .route(web::get().to(AppRoutes::info::get_all_articles_in_public))
             .route(web::post().to(HttpResponse::MethodNotAllowed))
             .route(web::put().to(HttpResponse::MethodNotAllowed))
             .route(web::patch().to(HttpResponse::MethodNotAllowed))

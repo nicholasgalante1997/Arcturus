@@ -1,89 +1,147 @@
-import { ChipElementBuilder } from "./Chip.js";
+import { ChipElementBuilder } from './Chip.js';
 
 class CardElementBuilder {
-    #title;
-    #desc;
-    #link;
-    #publishDate;
-    #readingTime;
-    #labels;
-    #author;
+  #title;
+  #desc;
+  #link;
+  #publishDate;
+  #readingTime;
+  #labels;
+  #author;
 
-    constructor(){}
+  constructor() {}
 
-    setTitle(title) {
-        this.#title = title;
-        return this;
+  setTitle(title) {
+    this.#title = title;
+    return this;
+  }
+
+  setDescription(desc) {
+    this.#desc = desc;
+    return this;
+  }
+
+  setLink(link) {
+    this.#link = link;
+    return this;
+  }
+
+  setPublishingDate(publishingDate) {
+    this.#publishDate = publishingDate;
+    return this;
+  }
+
+  setReadingTime(readingTime) {
+    this.#readingTime = readingTime;
+    return this;
+  }
+
+  setLabels(labels) {
+    if (Array.isArray(this.#labels)) {
+      this.#labels = Array.from(new Set([...this.#labels, labels]));
+    } else {
+      this.#labels = labels;
     }
 
-    setDescription(desc) {
-        this.#desc = desc;
-        return this;
+    return this;
+  }
+
+  setAuthor(author) {
+    this.#author = author;
+    return this;
+  }
+
+  toElement() {
+    if (!this.#validateSelf()) {
+      error(new Error('Card infalid'));
+      return null;
     }
 
-    setLink(link) {
-        this.#link = link;
-        return this;
-    }
+    const root = this.#createRootElement();
+    const minorInfoRoot = this.#createMinorInfoWrapperElement();
+    const readingTimeRoot = this.#createMinorInfoReadingTimeContainerElement();
+    const readingTimeText = this.#createMinorInfoReadingTimeBoldTextElement(this.#readingTime);
+    const heading = this.#createTitleElement(this.#title);
+    const chipRoot = this.#createMinorInfoChipsContinerElement();
+    const description = this.#createMinorInfoDescription(this.#desc);
+    const link = this.#createLink();
 
-    setPublishingDate(publishingDate) {
-        this.#publishDate = publishingDate;
-        return this;
-    }
+    readingTimeRoot.appendChild(readingTimeText);
+    chipRoot.append(
+      ...this.#labels.map((label) => new ChipElementBuilder().setLabel(label).toElement())
+    );
 
-    setReadingTime(readingTime) {
-        this.#readingTime = readingTime;
-        return this;
-    }
+    minorInfoRoot.append(readingTimeRoot, heading, chipRoot, description, link);
+    root.appendChild(minorInfoRoot);
 
-    setLabels(labels) {
-        if (Array.isArray(this.#labels)) {
-            this.#labels = Array.from(new Set([...this.#labels, labels]));
-        } else {
-            this.#labels = labels;
-        }
+    return root;
+  }
 
-        return this;
-    }
+  #createRootElement() {
+    const container = document.createElement('div');
+    container.className = 'post-card';
+    container.dataset.intent = 'display';
+    return container;
+  }
 
-    setAuthor(author) {
-        this.#author = author;
-        return this;
-    }
+  #createMinorInfoWrapperElement() {
+    const container = document.createElement('div');
+    container.className = 'post-card__minor-info';
+    return container;
+  }
 
-    toElement() {
-        if (!this.#validateSelf()) return;
-        const container = document.createElement('div');
-        container.className = 'post-card';
-        container.dataset.intent = 'display';
-        container.innerHTML = `
-            <div class="post-card__minor-info">
-                <div class="minor-info__reading-time">
-                  <b>${this.#readingTime}</b>
-                </div>
-                <h1>${this.#title}</h1>
-                <div class="minor-info__chips">
-                  ${this.#labels.map(label => new ChipElementBuilder().setLabel(label).toString())}
-                </div>
-                <p>${this.#desc}</p>
-                <a href="#">Read More</a>
-            </div>
-        `;
+  #createMinorInfoReadingTimeContainerElement() {
+    const container = document.createElement('div');
+    container.className = 'minor-info__reading-time';
+    return container;
+  }
 
-        return container;
-    }
+  #createMinorInfoReadingTimeBoldTextElement(innerText) {
+    const textElement = document.createElement('b');
+    const text = document.createTextNode(innerText);
+    textElement.appendChild(text);
+    return textElement;
+  }
 
-    #validateSelf() {
-        return Boolean(
-            this.#author &&
-            this.#desc &&
-            this.#labels && 
-            this.#link && 
-            this.#publishDate && 
-            this.#readingTime && 
-            this.#title
-        );
-    }
+  #createTitleElement(innerText) {
+    const titleElement = document.createElement('h1');
+    const text = document.createTextNode(innerText);
+    titleElement.appendChild(text);
+    return titleElement;
+  }
+
+  #createMinorInfoChipsContinerElement() {
+    const container = document.createElement('div');
+    container.className = 'minor-info__chips';
+    return container;
+  }
+
+  #createMinorInfoDescription(innerText) {
+    const p = document.createElement('p');
+    const text = document.createTextNode(innerText);
+    p.appendChild(text);
+    return p;
+  }
+
+  #createLink() {
+    const a = document.createElement('a');
+    a.href = this.#link;
+    const text = document.createTextNode('Read More');
+    a.appendChild(text);
+    return a;
+  }
+
+  #validateSelf() {
+    return Boolean(
+      this.#author &&
+        this.#desc &&
+        this.#labels &&
+        this.#link &&
+        this.#publishDate &&
+        this.#readingTime &&
+        this.#title
+    );
+  }
 }
 
-export { CardElementBuilder }
+export { CardElementBuilder };

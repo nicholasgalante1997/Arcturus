@@ -23,6 +23,18 @@ impl Responder for FilesByCategoryResponseBody {
     }
 }
 
+#[derive(Deserialize, Serialize)]
+pub struct FilesInPublic {
+    pub data: Vec<String>,
+}
+
+impl Responder for FilesInPublic {
+    type Body = BoxBody;
+    fn respond_to(self, _req: &actix_web::HttpRequest) -> HttpResponse<Self::Body> {
+        convert_to_json_body(&self)
+    }
+}
+
 #[derive(Debug)]
 pub struct FilesByCategoryError;
 
