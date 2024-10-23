@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "files": [
+    "src",
     "www"
   ],
   "scripts": {
@@ -15,11 +16,15 @@
   "dependencies": {
     "@project-arcturus/design-tokens": "workspace:*",
     "@project-arcturus/store": "workspace:*",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
     "front-matter": "^4.0.2",
     "lottie-web": "^5.12.2",
     "lru-cache": "^11.0.0",
     "mitt": "^3.0.1",
     "serve": "^14.2.3",
+    "serve-static": "^1.16.2",
     "sleepydogs": "^1.0.7",
     "web-vitals": "^4.2.3"
   },

@@ -17,20 +17,24 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     import('../models/Jobs/runLoadPosts.js')
       .then(({ runLoadPostsIntoStateJob }) => {
-        // JobRunner.queueJob(runLoadPostsIntoStateJob, "med", runLoadPostsKey);
         runLoadPostsIntoStateJob()
           .then(() => info('Loaded posts'))
-          .catch((e) => error(e))
+          .catch((e) => error(e));
       })
       .catch((e) => error(e));
 
     import('../models/Jobs/runRenderHomePagePostCards.js')
-      .then(({ runRenderHomePagePostCards, runRenderHomePagePostCardsJobKey }) => {
-        JobRunner.queueJob(runRenderHomePagePostCards, 'med', runRenderHomePagePostCardsJobKey);
-      })
+      .then(
+        ({ runSubscribeToAndRenderPostCardUpdates, runSubscribeToAndRenderPostCardUpdatesKey }) => {
+          JobRunner.queueJob(
+            runSubscribeToAndRenderPostCardUpdates,
+            'med',
+            runSubscribeToAndRenderPostCardUpdatesKey
+          );
+        }
+      )
       .catch((e) => error(e));
 
     return;
   }
-
 });

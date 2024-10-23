@@ -1,22 +1,40 @@
-import { CardElementBuilder } from '../Components/Card.js'
+import { CardElementBuilder } from '../Components/Card.js';
+import { info } from '../../log/index.js';
+import Store from '../../store/index.js';
 import Renderer from '../Renderer/index.js';
 
-export const runRenderHomePagePostCardsJobKey = 'render.home-page.post-cards';
+export const runSubscribeToAndRenderPostCardUpdatesKey = 'subscribe.render.home-page.post-cards';
 
-export function runRenderHomePagePostCards() {
-    const mockPosts = [,,,,,,,,,,,,,,,,,,,];
-    for (const _ of mockPosts) {
+export function runSubscribeToAndRenderPostCardUpdates() {
+  const mountElement = document.getElementById('posts');
+
+  const { subscribe, useStore } = Store;
+
+  function removeCards() {
+    mountElement.innerHTML = '';
+  }
+
+  function renderCards() {
+    removeCards();
+    const { posts = [] } = useStore();
+    for (const [id, post] of posts) {
+      if (id && post && post?.metadata) {
+        info({ postIs: post, id  })
         const card = new CardElementBuilder();
-        
         card
-          .setAuthor('Washington Irving')
-          .setDescription('Lorem ipsum odor amet, consectetuer adipiscing elit. Libero pharetra felis in sit himenaeos. Convallis id turpis ornare sollicitudin dui parturient finibus mollis. Lobortis iaculis torquent aliquam malesuada libero hac vivamus? Maximus lacinia semper ante montes donec posuere potenti? Lectus habitasse porta potenti; est orci arcu magna.')
-          .setLabels(['FANTASY-FOOTBALL'])
-          .setLink('/some-url.html')
-          .setPublishingDate('15 October 2024')
-          .setReadingTime('3 mins')
-          .setTitle('Why Travis Etienne will prove to be the 2024 bust of the year based on ADP.');
+          .setAuthor(post?.metadata?.author)
+          .setDescription(post?.metadata?.description)
+          .setLabels(post?.metadata?.genres || post?.metadata?.motifs || [])
+          .setLink(post?.metadata?.slug)
+          .setPublishingDate(post?.metadata?.releaseDate)
+          .setReadingTime(post?.metadata?.estimatedReadingTime)
+          .setTitle(post?.metadata?.title);
 
-        Renderer.mount(document.getElementById('posts'), card.toElement());
+        Renderer.mount(mountElement, card.toElement());
+      }
     }
+  }
+
+  const _unsubscribe = subscribe(renderCards);
+  renderCards();
 }

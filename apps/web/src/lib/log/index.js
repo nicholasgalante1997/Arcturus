@@ -1,5 +1,5 @@
-const LOGGER_NAME = 'project-arcturus-browser-logger';
-const WINDOW_LOG_LEVEL_KEY = '__ARCTURUS_WINDOW_LOG_LEVEL__';
+const LOGGER_NAME = 'project-arcturus-srerver-logger';
+const NODE_PROCESS_LOG_LEVEL_KEY = '__ARCTURUS_NODE_LOG_LEVEL__';
 const LOG_TO_INT_MAP = new Map([
   ['info', 1],
   ['warn', 2],
@@ -8,11 +8,11 @@ const LOG_TO_INT_MAP = new Map([
 ]);
 
 function shouldLog(level) {
-  const LOG_LEVEL = window[WINDOW_LOG_LEVEL_KEY];
-  const windowLevel = LOG_LEVEL;
-  const windowLevelInt = LOG_TO_INT_MAP.get(windowLevel);
+  const LOG_LEVEL = process.env[NODE_PROCESS_LOG_LEVEL_KEY] || 'debug';
+  const processLevel = LOG_LEVEL;
+  const processLevelInt = LOG_TO_INT_MAP.get(processLevel);
   const levelInt = LOG_TO_INT_MAP.get(level);
-  if (windowLevelInt >= levelInt) return true;
+  if (processLevelInt >= levelInt) return true;
   return false;
 }
 
@@ -61,16 +61,5 @@ const debug = (msg, format = 'json') => {
   const level = 'debug';
   handleLogEvent(msg, level, format);
 };
-
-/**
- *
- * @param {'*' | 'info' | 'debug' | 'error' | 'warn'} level
- */
-export function setupWindowLogLevel(level) {
-  Object.defineProperty(window, WINDOW_LOG_LEVEL_KEY, {
-    value: level === '*' ? 'error' : level,
-    writable: true
-  });
-}
 
 export { info, warn, error, debug };

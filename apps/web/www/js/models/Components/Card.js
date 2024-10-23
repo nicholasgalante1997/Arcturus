@@ -1,4 +1,5 @@
 import { ChipElementBuilder } from './Chip.js';
+import { error } from '../../log/index.js';
 
 class CardElementBuilder {
   #title;
@@ -53,7 +54,7 @@ class CardElementBuilder {
 
   toElement() {
     if (!this.#validateSelf()) {
-      error(new Error('Card infalid'));
+      error(new Error('Card malformed'));
       return null;
     }
 
