@@ -5,7 +5,16 @@
   --box-shadow-20: 1.6px 3.2px 3.2px hsl(0deg 0% 0% / 0.45);
   --box-shadow-50: 4px 8px 8px hsl(0deg 0% 0% / 0.38);
   --box-shadow-75: 6px 12px 12px hsl(0deg 0% 0% / 0.31);
-
+  --shadow-color: 220deg 38% 0%;
+  --shadow-elevation-low:
+  0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.49),
+  0.5px 0.9px 1.2px -1.2px hsl(var(--shadow-color) / 0.49),
+  1.2px 2.4px 3px -2.5px hsl(var(--shadow-color) / 0.49);
+  --shadow-elevation-medium:
+    0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.51),
+    0.9px 1.9px 2.4px -0.8px hsl(var(--shadow-color) / 0.51),
+    2.4px 4.9px 6.1px -1.7px hsl(var(--shadow-color) / 0.51),
+    6px 12px 15.1px -2.5px hsl(var(--shadow-color) / 0.51);
   --text-soft: #e1e1e0;
   --button-primary: #c2d8ff;
 }
@@ -106,6 +115,68 @@ section.posts-container {
   margin-top: 24px;
 }
 
+div.post-card {
+  --fixed-height: 390px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  min-height: var(--fixed-height);
+  height: var(--fixed-height);
+  max-height: var(--fixed-height);
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 0;
+
+  overflow: hidden;
+  border-bottom: 1px solid #b5aded;
+  margin-bottom: var(--spacing-unit);
+}
+
+div.post-card__minor-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: var(--spacing-unit);
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin: 0;
+  padding: var(--spacing-unit);
+
+  h1 {
+    margin-block: 0px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+
+    --line-height: 1.15;
+    line-height: var(--line-height);
+    height: fit-content;
+    box-sizing: border-box;
+    padding-block: 0px;
+  }
+
+  p {
+    margin-block: 0px;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  a {
+    margin-top: auto;
+  }
+}
+
 div.minor-info__chips {
   display: flex;
   flex-direction: row;
@@ -124,6 +195,6 @@ span.post-card__chip {
   font-weight: 700;
   font-size: 14px;
   text-transform: capitalize;
-  font-feature-settings: "liga";
+  font-feature-settings: 'liga';
   font-variant: normal;
 }

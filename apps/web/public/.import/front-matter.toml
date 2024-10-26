@@ -5,5 +5,4 @@ version = "4.0.2"
 links = [ "https://cdn.jsdelivr.net/npm/front-matter@4.0.2/+esm", ]
 
 [usage]
-
-usage.description = "Parses yaml from the HEAD of text documents."
+description = "Parses yaml from the HEAD of text documents."

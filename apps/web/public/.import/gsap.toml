@@ -5,5 +5,4 @@ version = "3.12.5"
 links = [ "https://cdn.jsdelivr.net/npm/gsap@3.12.5/+esm", ]
 
 [usage]
-
-usage.description = "Gsap is used to facilitate complex animations in javascript"
+description = "Gsap is used to facilitate complex animations in javascript"

@@ -1,0 +1,11 @@
+#!/usr/bin/env node
+
+import { App, run } from '../src/index.js';
+import { info, debug, error } from '../src/lib/log/index.js';
+
+debug('Starting server with default port!');
+
+run(App);
+
+App.on('listening', () => info('ALIVE @ ' + App.address().address + ':' + App.address().port));
+App.on('error', (err) => error(err))
