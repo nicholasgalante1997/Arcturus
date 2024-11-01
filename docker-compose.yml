@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  turborepo:
+    image: project-arcturus-turborepo
+    build: 
+      context: ./apps/web
+      dockerfile: Dockerfile
+    depends_on:
+      - rs-file-api
+    env_file:
+      - ./apps/web/.env
+    expose:
+      - ""
+  rs-file-api:

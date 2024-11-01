@@ -1,7 +1,7 @@
 import $debug from 'debug';
-import { emojify } from 'node-emoji';
+import * as emoji from 'node-emoji';
 
-const LOGGER_NAME = 'project-arcturus-srerver-logger';
+const LOGGER_PREFIX = 'project-arcturus:web:express:server';
 const NODE_PROCESS_LOG_LEVEL_KEY = '__ARCTURUS_NODE_LOG_LEVEL__';
 const LOG_TO_INT_MAP = new Map([
   ['info', 1],
@@ -10,10 +10,10 @@ const LOG_TO_INT_MAP = new Map([
   ['debug', 1]
 ]);
 
-const _info = $debug(LOGGER_NAME + ':info');
-const _debug = $debug(LOGGER_NAME + ':debug');
-const _warn = $debug(LOGGER_NAME + ':warn');
-const _error = $debug(LOGGER_NAME + ':error');
+const _info = $debug(LOGGER_PREFIX + ':info');
+const _debug = $debug(LOGGER_PREFIX + ':debug');
+const _warn = $debug(LOGGER_PREFIX + ':warn');
+const _error = $debug(LOGGER_PREFIX + ':error');
 
 function shouldLog(level) {
   const LOG_LEVEL = process.env[NODE_PROCESS_LOG_LEVEL_KEY] || 'debug';
@@ -27,21 +27,21 @@ function shouldLog(level) {
 const getTrapHandler = (level) => ({
   apply(target, thisArg, argArray) {
     if (shouldLog(level)) {
-
       if (Array.isArray(argArray) && argArray.length === 1) {
         if (argArray.at(0) instanceof Error) {
           return handleErrorLogEvent(...argArray);
         }
       }
 
-      const argArrayTransformed = argArray.map(arg => {
+      const argArrayTransformed = argArray.map((arg) => {
         if (typeof arg === 'string') {
-          return emojify(arg);
+          return emoji.emojify(arg);
         }
+
         return arg;
-      })
-      
-      return target(...argArray);
+      });
+
+      return target(...argArrayTransformed);
     }
   }
 });

@@ -1,3 +1,3 @@
-import { OptionCache } from "sleepydogs";
+import { OptionCache } from 'sleepydogs';
 
 export default new OptionCache();

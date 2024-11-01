@@ -1,0 +1,24 @@
+<article class="post-card__root">
+  <header class="post-card__header">
+    <b class="post-card__estimated-reading-time"><%= post.estimatedReadingTime %></b>
+  </header>
+  <div class="post-card__body-root">
+    <h1 class="post-card__title">
+      <%= post.title %>
+    </h1>
+    <div class="post-card__category-row">
+      <% post.genres.forEach(function (genre) { %>
+        <%- include('chip', { genre: genre }) %>
+      <% }); %>
+    </div>
+    <p class="post-card__description">
+      <%= post.description %>
+    </p>
+    <small class="post-card__author">
+      <%= post.author %>
+    </small>
+  </div>
+  <footer class="post-card__footer">
+    <button>Read Post</button>
+  </footer>
+</article>

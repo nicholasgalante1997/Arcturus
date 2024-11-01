@@ -8,6 +8,6 @@ export default function setupStaticAssetRoutes(app) {
   return app;
 }
 
-function getAssetDir(dirname){
+function getAssetDir(dirname) {
   return path.resolve(process.cwd(), 'public', dirname);
 }

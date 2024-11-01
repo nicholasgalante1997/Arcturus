@@ -16,11 +16,11 @@ setupWebRoutes(app);
 setupViewEngine(app);
 
 /**
- * 
- * @param {import('express').Express} app 
- * @param {number} port 
- * @param {string} host 
- * @param {() => void} callback 
+ *
+ * @param {import('express').Express} app
+ * @param {number} port
+ * @param {string} host
+ * @param {() => void} callback
  */
 export function run(
   app,

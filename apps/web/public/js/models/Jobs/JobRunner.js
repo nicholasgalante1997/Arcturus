@@ -5,8 +5,8 @@ import { info } from '../../log/index.js';
  */
 class JobRunner {
   /**
-   * @param {typeof runHomePageAnimationJobKey | typeof runRenderHomePagePostCardsJobKey} job 
-   * @param {'low' | 'med' | 'high'} priority 
+   * @param {() => void} job 
+   * @param {'low' | 'med' | 'high' | 'immediate'} priority 
    */
   queueJob(job, priority = 'med', name = job?.name || 'Anonymous Job') {
     if (typeof job === 'function') {
@@ -24,6 +24,11 @@ class JobRunner {
         case 'high': {
           info('Queueing Job: ' + name + ' with high priority', 'pretty');
           queueMicrotask(job);
+          break;
+        }
+        case 'immediate': {
+          info('Queueing Job: ' + name + ' with immediate (URGENT) priority', 'pretty');
+          job();
           break;
         }
       }

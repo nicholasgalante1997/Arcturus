@@ -1,3 +1,1 @@
-export default function errorLogger(err, req, res, next) {
-
-}
+export default function errorLogger(err, req, res, next) {}
