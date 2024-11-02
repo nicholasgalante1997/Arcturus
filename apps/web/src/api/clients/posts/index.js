@@ -8,6 +8,9 @@ class PostLibrary {
   static #baseUrl = 'https://dotafts-server.shuttleapp.rs/';
   static #indexPath = 'api/files/dir/index';
 
+  /**
+   * @type {LRUCache<string, { key: string; metadata: any, article: string, pathFragment: string }>}
+   */
   #cache = new LRUCache({
     max: 100,
     maxSize: 100,

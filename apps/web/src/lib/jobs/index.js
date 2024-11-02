@@ -79,7 +79,7 @@ class JobManager {
     for (const jobConf of this.#instanceJobQueue) {
       if (jobConf) {
         const { job, key } = jobConf;
-        JobManager.#logger(':hammer: Working on job %s', jobKey);
+        JobManager.#logger(':hammer: Working on job %s', key);
         try {
           let _ = job();
           if (isPromise(_)) {

@@ -4,7 +4,7 @@ import express from 'express';
 import { info } from '../lib/log/index.js';
 
 import setupStaticAssetRoutes from '../middleware/static-files.js';
-import { setupWebRoutes } from '../routes/index.js';
+import { setupErrorHandler, setupWebRoutes } from '../routes/index.js';
 import setupViewEngine from '../lib/view/setup.js';
 import setupMiddleware from '../middleware/index.js';
 
@@ -14,6 +14,7 @@ setupMiddleware(app);
 setupStaticAssetRoutes(app);
 setupWebRoutes(app);
 setupViewEngine(app);
+setupErrorHandler(app);
 
 /**
  *
