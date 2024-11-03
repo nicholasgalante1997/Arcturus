@@ -30,7 +30,7 @@ class PostLibrary {
     const file = await response.text();
     const parsed = frontmatter(file);
 
-    const key = parsed.attributes?.slug;
+    const key = parsed.attributes?.id;
     const data = {
       key,
       metadata: parsed.attributes,

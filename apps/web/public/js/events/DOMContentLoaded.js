@@ -14,27 +14,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         JobRunner.queueJob(runHomePageAnimation, 'high', runHomePageAnimationJobKey);
       })
       .catch((e) => error(e));
-
-    import('../models/Jobs/runLoadPosts.js')
-      .then(({ runLoadPostsIntoStateJob }) => {
-        runLoadPostsIntoStateJob()
-          .then(() => info('Loaded posts'))
-          .catch((e) => error(e));
-      })
-      .catch((e) => error(e));
-
-    import('../models/Jobs/runRenderHomePagePostCards.js')
-      .then(
-        ({ runSubscribeToAndRenderPostCardUpdates, runSubscribeToAndRenderPostCardUpdatesKey }) => {
-          JobRunner.queueJob(
-            runSubscribeToAndRenderPostCardUpdates,
-            'med',
-            runSubscribeToAndRenderPostCardUpdatesKey
-          );
-        }
-      )
-      .catch((e) => error(e));
-
     return;
   }
 });

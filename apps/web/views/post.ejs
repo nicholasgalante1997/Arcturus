@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+    <%- include('partials/head', { document_title: title, document_description: description, imports: imports, css: { include: ['post', 'index']} }); %>
+  <body>
+    <main>
+        <section className="article-container">
+            <article className="article-root">
+              <div className="article-supplementary-info-container text-container">
+                <span className="article-date fira-sans-semibold"><%= post.releaseDate %></span>
+                <span className="article-supp-divider"></span>
+                <span className="article-series fira-sans-semibold">
+                  <i>from</i> <b>the <%= post.series %> Series</b>
+                </span>
+              </div>
+      
+              <div className="article-title-container text-container">
+                <h1 className="article-title fira-sans-bold"><%= post.title %></h1>
+              </div>
+      
+              <div className="article-description-container text-container">
+                <p className="article-description noto-serif"><%= post.description %></p>
+              </div>
+      
+              <div className="article-author-container text-container">
+                <p className="article-author noto-serif">
+                  by <%= post.author %>
+                </p>
+              </div>
+      
+              <div className="article-headline-image-container">
+                <img
+                  src="<%= post.image.src %>"
+                  alt="<%= post.image.alt %>"
+                  style="aspect-ratio: <%= post.image.aspectRatio %>;"
+                  className="article-headline-image"
+                />
+                <span className="article-headline-image-publisher">
+                  <%= post.image.publisherInfo %>
+                </span>
+              </div>
+
+              <section className="article__markdown-root">
+                <%- post.body %>
+              </section>
+            </article>
+          </section>
+    </main>
+  </body>
+</html>
+<script type="module" src="js/performance/web-vitals.js"></script>
+<script type="module" src="js/events/DOMContentLoaded.js"></script>

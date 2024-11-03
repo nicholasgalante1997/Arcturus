@@ -1,10 +1,12 @@
 import { error } from '../lib/log/index.js';
 import homePageRouter from './pages/home.js';
+import postRouter from './pages/post.js';
 
 /**
  * @param {import('express').Express} app
  */
 export function setupWebRoutes(app) {
+  app.use('/posts', postRouter)
   app.use('/', homePageRouter);
 }
 
