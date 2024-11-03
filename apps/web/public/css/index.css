@@ -109,37 +109,25 @@ section.posts-container {
   margin-left: auto;
   margin-right: auto;
   gap: 16px;
-
   max-width: 600px;
-
   margin-top: 24px;
 }
 
-div.post-card {
-  --fixed-height: 390px;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  min-height: var(--fixed-height);
-  height: var(--fixed-height);
-  max-height: var(--fixed-height);
-  width: 100%;
-
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  flex-shrink: 0;
-
+article.post-card__root {
+  --fixed-width: 100%;
+  min-width: var(--fixed-width);
+  width: var(--fixed-width);
+  max-width: var(--fixed-width);
+  height: fit-content;
   overflow: hidden;
-  border-bottom: 1px solid #b5aded;
-  margin-bottom: var(--spacing-unit);
 }
 
-div.post-card__minor-info {
+div.post-card__body-root {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  flex: 1 0 0;
   gap: var(--spacing-unit);
   width: 100%;
   height: 100%;

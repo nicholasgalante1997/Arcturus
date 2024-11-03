@@ -10,8 +10,6 @@ import { error } from '../../lib/log/index.js';
  */
 export default async function homePageHandler(req, res, next) {
   const posts = Posts.getAll();
-  console.log(posts[0][0]);
-  console.log(posts[0][1]);
   try {
     res.status(200).render('index', {
       title: 'Project Arcturus',
