@@ -1,7 +1,7 @@
 import JobRunner from '../models/Jobs/JobRunner.js';
 import { setupWindowLogLevel, info, error } from '../log/index.js';
 
-const homeRoutes = ['/', '/index.html'];
+const homeRoutes = ['/', '/index', '/index.html'];
 
 document.addEventListener('DOMContentLoaded', async () => {
   setupWindowLogLevel('*');
@@ -14,6 +14,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         JobRunner.queueJob(runHomePageAnimation, 'high', runHomePageAnimationJobKey);
       })
       .catch((e) => error(e));
+
+    import('../models/Jobs/runAttachCardEventListeners.js')
+      .then(({ runAttachPostCardEventListeners, runAttachPostCardEventListenersKey }) => {
+        JobRunner.queueJob(runAttachPostCardEventListeners, "high", runAttachPostCardEventListenersKey);
+      })
+      .catch((e) => error(e));
+
     return;
   }
 });
