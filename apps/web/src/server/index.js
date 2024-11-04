@@ -10,10 +10,10 @@ import setupMiddleware from '../middleware/index.js';
 
 const app = express();
 
+setupViewEngine(app);
 setupMiddleware(app);
 setupStaticAssetRoutes(app);
 setupWebRoutes(app);
-setupViewEngine(app);
 setupErrorHandler(app);
 
 /**

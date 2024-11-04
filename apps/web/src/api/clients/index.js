@@ -1,1 +1,1 @@
-export { default as postsLibClient } from './posts/index.js';
+export { default as Posts } from './posts/index.js';

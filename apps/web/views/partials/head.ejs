@@ -29,6 +29,11 @@
   <link rel="preload" as="style" href="/css/index.css" />
   <link rel="stylesheet" href="/css/index.css" />
 
+  <% if (css && css?.include?.post) { %>
+    <link rel="preload" as="style" href="/css/post.css" />
+    <link rel="stylesheet" href="/css/post.css" />
+  <% } %>
+
   <!-- Preload Javascript Imports for Importmap -->
 
   <% imports.forEach(function (_import) { %>

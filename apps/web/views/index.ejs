@@ -2,8 +2,8 @@
 <html lang="en">
     <%- include('partials/head', { document_title: title, document_description: description, imports: imports }); %>
   <body>
+    <%- include('partials/header') %>
     <main>
-      
       <section class="splash-container">
         <div data-intent="project-image"></div>
         <h1 data-intent="project-title">Project Arcturus</h1>
@@ -31,6 +31,15 @@
         <% }); %>
       </section>
     </main>
+
+    <aside id="sidebar" class="sidebar">
+
+    </aside>
+
+    <div id="sidebar-overlay" class="sidebar-overlay">
+
+    </div>
+    
   </body>
 </html>
 <script type="module" src="js/performance/web-vitals.js"></script>

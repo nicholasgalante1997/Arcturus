@@ -1,4 +1,4 @@
-import { postsLibClient as posts } from './api/index.js';
+import { Posts } from './api/index.js';
 import AppErrorCodes from './lib/errors/index.js';
 import { error } from './lib/log/index.js';
 import JobManager from './lib/jobs/index.js';
@@ -8,7 +8,7 @@ import { run, default as App } from './server/index.js';
 
 async function runLoadAllPosts() {
   try {
-    await posts.loadAllPosts();
+    await Posts.loadAllPosts();
   } catch (e) {
     error(
       new Error('PAWebServer:::FatalException - runLoadPosts() has thrown the following error')

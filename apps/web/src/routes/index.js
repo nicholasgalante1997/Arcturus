@@ -6,8 +6,8 @@ import postRouter from './pages/post.js';
  * @param {import('express').Express} app
  */
 export function setupWebRoutes(app) {
-  app.use('/posts', postRouter)
   app.use('/', homePageRouter);
+  app.use('/posts', postRouter)
 }
 
 /**

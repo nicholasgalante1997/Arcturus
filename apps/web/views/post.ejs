@@ -1,45 +1,45 @@
 <!doctype html>
 <html lang="en">
-    <%- include('partials/head', { document_title: title, document_description: description, imports: imports, css: { include: ['post', 'index']} }); %>
+    <%- include('partials/head', { document_title: title, document_description: description, imports: imports, css: { include: { post: true }} }); %>
   <body>
     <main>
-        <section className="article-container">
-            <article className="article-root">
-              <div className="article-supplementary-info-container text-container">
-                <span className="article-date fira-sans-semibold"><%= post.releaseDate %></span>
-                <span className="article-supp-divider"></span>
-                <span className="article-series fira-sans-semibold">
+        <section class="article-container">
+            <article class="article-root">
+              <div class="article-supplementary-info-container text-container">
+                <span class="article-date fira-sans-semibold"><%= post.releaseDate %></span>
+                <span class="article-supp-divider"></span>
+                <span class="article-series fira-sans-semibold">
                   <i>from</i> <b>the <%= post.series %> Series</b>
                 </span>
               </div>
       
-              <div className="article-title-container text-container">
-                <h1 className="article-title fira-sans-bold"><%= post.title %></h1>
+              <div class="article-title-container text-container">
+                <h1 class="article-title fira-sans-bold"><%= post.title %></h1>
               </div>
       
-              <div className="article-description-container text-container">
-                <p className="article-description noto-serif"><%= post.description %></p>
+              <div class="article-description-container text-container">
+                <p class="article-description noto-serif"><%= post.description %></p>
               </div>
       
-              <div className="article-author-container text-container">
-                <p className="article-author noto-serif">
+              <div class="article-author-container text-container">
+                <p class="article-author noto-serif">
                   by <%= post.author %>
                 </p>
               </div>
       
-              <div className="article-headline-image-container">
+              <div class="article-headline-image-container">
                 <img
-                  src="<%= post.image.src %>"
-                  alt="<%= post.image.alt %>"
-                  style="aspect-ratio: <%= post.image.aspectRatio %>;"
-                  className="article-headline-image"
+                  src="https://raw.githubusercontent.com/nicholasgalante1997/Arcturus/refs/heads/main/apps/web/public/assets/doodles.jpg"
+                  alt="Doodles NFT"
+                  style="aspect-ratio: 16 / 9;"
+                  class="article-headline-image"
                 />
-                <span className="article-headline-image-publisher">
-                  <%= post.image.publisherInfo %>
+                <span class="article-headline-image-publisher">
+                  Doodles NFT 2023
                 </span>
               </div>
 
-              <section className="article__markdown-root">
+              <section class="article__markdown-root">
                 <%- post.body %>
               </section>
             </article>

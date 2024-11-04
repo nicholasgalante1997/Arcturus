@@ -1,4 +1,4 @@
-import { postsLibClient as Posts } from '../../api/index.js';
+import { Posts } from '../../api/index.js';
 import WebDependencyManager  from '../../lib/dependencies/index.js';
 import { error } from '../../lib/log/index.js';
 
@@ -40,10 +40,16 @@ export default async function homePageHandler(req, res, next) {
         author: data?.metadata?.author,
         href: '/posts/' + k,
         key: k
-      }))
+      })),
+      css: {
+        include: {
+          post: false
+        }
+      }
     });
     return;
   } catch(e) {
+    error('An error has been thrown in attempt to render `index`');
     error(e);
     next(e)
   }

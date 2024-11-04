@@ -1,4 +1,4 @@
-import { postsLibClient as Posts } from '../../api/index.js';
+import { Posts } from '../../api/index.js';
 import WebDependencyManager  from '../../lib/dependencies/index.js';
 import { error } from '../../lib/log/index.js';
 import MarkdownHelper from '../../lib/markdown/index.js';
@@ -25,6 +25,8 @@ export default async function articlePageHandler(req, res, next) {
     next(new Error('UnableToFindPostWithKey'));
     return;
   }
+
+  console.log('image', post?.metadata?.media);
 
   try {
     res.status(200).render('post', {
