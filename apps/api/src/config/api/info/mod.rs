@@ -5,7 +5,6 @@ use std::env;
 
 use crate::util::res::convert_to_json_body;
 
-
 #[derive(Clone, Serialize, Deserialize)]
 pub struct ServiceInfo {
     application_name: String,

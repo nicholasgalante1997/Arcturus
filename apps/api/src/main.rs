@@ -18,11 +18,10 @@ use services as AppServices;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-
     env_logger::init_from_env(env_logger::Env::default().default_filter_or("info"));
 
     env::setup_env();
-    
+
     let pool = database::establish_connection()
         .await
         .expect("Failed to connect to database");
