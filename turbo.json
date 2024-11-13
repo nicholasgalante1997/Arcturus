@@ -6,12 +6,19 @@
     },
     "tasks": {
       "build": {
-        "outputs": ["dist/**", "build/**", "public/**"],
+        "outputs": ["dist/**", "build/**"],
         "dependsOn": ["^build"],
         "cache": true
       },
+      "dev": {
+        "cache": false,
+        "dependsOn": ["^dev"]
+      },
       "check-types": {
         "dependsOn": ["^check-types"]
+      },
+      "sync": {
+        "dependsOn": []
       },
       "prettier": {
         "dependsOn": []
@@ -21,7 +28,7 @@
       },
       "start": {
         "cache": false,
-        "dependsOn": ["build", "^start"]
+        "dependsOn": ["^start"]
       }
     }
   }

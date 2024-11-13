@@ -2,6 +2,11 @@ use actix_web::{body::BoxBody, http::header::ContentType, HttpResponse};
 use serde::{Deserialize, Serialize};
 use serde_json;
 
+/// Converts a serializable object into a JSON response body.
+///
+/// #### Errors
+///
+/// * Will panic if `body` cannot be serialized into JSON.
 pub fn convert_to_json_body<'a, T>(body: &'a T) -> HttpResponse<BoxBody>
 where
     T: Serialize + Deserialize<'a>,

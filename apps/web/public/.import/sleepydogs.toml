@@ -1,0 +1,8 @@
+dependency = "sleepydogs"
+version = "1.0.7"
+
+[cdn]
+links = [ "https://cdn.jsdelivr.net/npm/sleepydogs@1.0.7/+esm", ]
+
+[usage]
+description = "A couple of sweet sleepy dogs"

@@ -3,23 +3,18 @@ use std::env;
 
 use log::info;
 
+/// Establishes a connection to the PostgreSQL database using the DATABASE_URL
+/// environment variable. Returns a `sqlx::PgPool` representing the connection pool.
+///
+/// #### Errors
+///
+/// Returns an error if the DATABASE_URL is not set or if the connection cannot be established.
 pub async fn establish_connection() -> sqlx::Result<sqlx::PgPool> {
-    info!("Setting DB Env variables...");
-    dotenv::dotenv().ok();
-    info!("DB Env vars set!");
-
-    info!("Retrieving DB URL...");
     let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
-    info!("Database URL: {}", &database_url);
-
-    info!("Creating connections pool...");
-
     let pool = PgPoolOptions::new()
         .max_connections(2)
         .connect(&database_url)
         .await?;
-
-    info!("Created pool! Returning pool to calling scope...");
-
+    info!("Connected to database!");
     Ok(pool)
 }

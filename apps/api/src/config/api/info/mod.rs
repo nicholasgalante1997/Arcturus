@@ -1,5 +1,4 @@
 use actix_web::{body::BoxBody, HttpRequest, HttpResponse, Responder};
-use dotenv::dotenv;
 use serde::Deserialize;
 use serde::Serialize;
 use std::env;
@@ -15,8 +14,11 @@ pub struct ServiceInfo {
 }
 
 impl ServiceInfo {
+    /// This function creates a new instance of the ServiceInfo struct, using the values found in .env file
+    /// located in the root of the project. If the env vars are not found the value of the corresponding
+    /// field is set to "Unknown".
     pub fn new() -> Self {
-        dotenv().ok();
+        dotenv::dotenv().ok();
         let missing_env_var_text = String::from("Unknown");
         Self {
             application_name: env::var("X_APPLICATION_NAME")
@@ -31,10 +33,10 @@ impl ServiceInfo {
     }
 }
 
-// Responder
 impl Responder for ServiceInfo {
     type Body = BoxBody;
 
+    /// Returns a HTTP response containing the service info as json.
     fn respond_to(self, _req: &HttpRequest) -> HttpResponse<Self::Body> {
         convert_to_json_body(&self)
     }

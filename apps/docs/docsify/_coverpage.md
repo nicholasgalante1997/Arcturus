@@ -2,9 +2,9 @@
 
 # Project Arcturus <small>1.0</small>
 
-> An idea for a content platform
+> An idea for a content microengine
 
-[Getting Started](#)
+[Getting Started](WEB/index.md)
 
 <!-- background color -->
 
