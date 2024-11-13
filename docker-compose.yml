@@ -1,15 +1,44 @@
-version: '3.8'
+include:
+  - ./database/docker-compose.yml
 
 services:
-  turborepo:
-    image: project-arcturus-turborepo
+  node-turborepo:
+    image: project-arcturus-node-turborepo
+    restart: always
     build: 
-      context: ./apps/web
+      context: .
       dockerfile: Dockerfile
-    depends_on:
-      - rs-file-api
-    env_file:
-      - ./apps/web/.env
     expose:
-      - ""
-  rs-file-api:
+      - "4040"
+    ports:
+      - "4040:4040"
+    depends_on:
+      markdown-api:
+        condition: service_started
+        restart: true
+      postgres:
+        condition: service_healthy
+        restart: true
+    networks:
+      - arc.net
+  markdown-api:
+    image: project-arcturus-markdown-api
+    restart: always
+    depends_on:
+      postgres:
+        condition: service_healthy
+        restart: true
+    build: 
+      context: ./apps/api
+      dockerfile: Dockerfile
+    env_file:
+      - ./apps/api/.env
+    expose:
+      - "8080"
+    ports:
+      - "8080:8080"
+    networks:
+      - arc.net
+
+networks:
+  arc.net:

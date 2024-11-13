@@ -848,29 +848,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "dotafts-server"
-version = "0.1.0"
-dependencies = [
- "actix-cors",
- "actix-files",
- "actix-web",
- "chrono",
- "dotenv",
- "env_logger",
- "futures-util",
- "glob",
- "log",
- "pulldown-cmark",
- "serde",
- "serde_json",
- "shuttle-actix-web",
- "shuttle-runtime",
- "shuttle-shared-db",
- "sqlx",
- "tokio",
-]
-
-[[package]]
 name = "dotenv"
 version = "0.15.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1983,6 +1960,29 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ec96c6a92621310b51366f1e28d05ef11489516e93be030060e5fc12024a49d6"
 dependencies = [
  "unicode-ident",
+]
+
+[[package]]
+name = "project-arcturus-file-server"
+version = "0.1.0"
+dependencies = [
+ "actix-cors",
+ "actix-files",
+ "actix-web",
+ "chrono",
+ "dotenv",
+ "env_logger",
+ "futures-util",
+ "glob",
+ "log",
+ "pulldown-cmark",
+ "serde",
+ "serde_json",
+ "shuttle-actix-web",
+ "shuttle-runtime",
+ "shuttle-shared-db",
+ "sqlx",
+ "tokio",
 ]
 
 [[package]]

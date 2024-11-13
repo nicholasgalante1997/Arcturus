@@ -1,7 +1,7 @@
 export function runAttachPostCardEventListeners() {
   for (const element of document.querySelectorAll('article.post-card__root button')) {
     if (element.tagName === 'BUTTON') {
-      const href = element.dataset.href;
+      const href = element.dataset.postHref;
       if (href) {
         element.addEventListener('click', () => {
           /**

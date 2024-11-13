@@ -1,7 +1,6 @@
 pub mod fsutils {
     use std::fs;
     use std::io;
-    use std::path::Path;
 
     pub fn load_directory_contents(path: &str) -> io::Result<Vec<String>> {
         let mut contents = Vec::new();
