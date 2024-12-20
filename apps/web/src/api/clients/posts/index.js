@@ -5,8 +5,8 @@ import { Attempt, AttemptState } from 'sleepydogs';
 import { error } from '../../../lib/log/index.js';
 
 class PostLibrary {
-  static #baseUrl = 'https://dotafts-server.shuttleapp.rs/';
-  static #indexPath = 'api/files/dir/index';
+  static #baseUrl = 'http://markdown-api:8080/';
+  static #indexPath = 'api/files';
 
   /**
    * @type {LRUCache<string, { key: string; metadata: any, article: string, pathFragment: string }>}

@@ -46,6 +46,7 @@ RUN apt-get update && apt-get install -y \
     libssl-dev \
     ca-certificates \
     libpq-dev \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
 # Create working directory
@@ -68,3 +69,5 @@ ENV RUST_ENV=DOCKER
 
 # Run the Rust binary
 CMD ["./project-arcturus-file-server"]
+
+HEALTHCHECK --interval=30s --timeout=10s --retries=3 CMD curl --fail http://localhost:8080/health || exit 1

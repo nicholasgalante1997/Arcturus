@@ -4,17 +4,18 @@ include:
 services:
   node-turborepo:
     image: project-arcturus-node-turborepo
+    container_name: node-turborepo
     restart: always
     build: 
       context: .
       dockerfile: Dockerfile
     expose:
-      - "4040"
+      - '4040'
     ports:
       - "4040:4040"
     depends_on:
       markdown-api:
-        condition: service_started
+        condition: service_healthy
         restart: true
       postgres:
         condition: service_healthy
@@ -23,7 +24,13 @@ services:
       - arc.net
   markdown-api:
     image: project-arcturus-markdown-api
-    restart: always
+    container_name: markdown-api
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8080/health || exit 1"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+    restart: unless-stopped
     depends_on:
       postgres:
         condition: service_healthy
@@ -34,7 +41,7 @@ services:
     env_file:
       - ./apps/api/.env
     expose:
-      - "8080"
+      - '8080'
     ports:
       - "8080:8080"
     networks:

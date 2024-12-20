@@ -1,10 +1,11 @@
 use actix_files::{self as fs};
+
 use actix_web::{
     dev::{fn_service, ServiceRequest, ServiceResponse},
     web, HttpResponse,
 };
 
-use log::error;
+use crate::log::get_logger;
 
 pub fn configure_static_file_service(cfg: &mut web::ServiceConfig) {
     cfg.service(
@@ -17,7 +18,8 @@ pub fn configure_static_file_service(cfg: &mut web::ServiceConfig) {
             .redirect_to_slash_directory()
             .show_files_listing()
             .default_handler(fn_service(|req: ServiceRequest| async {
-                error!("File not found!");
+                let mut error_logger = get_logger("request:static:error");
+                error_logger.write("File not found!".to_string());
                 let (req, _) = req.into_parts();
                 let res = HttpResponse::InternalServerError().finish();
                 Ok(ServiceResponse::new(req, res))

@@ -1,13 +1,10 @@
 use actix_cors::Cors;
-use actix_web::{
-    http,
-    middleware::{self, Logger},
-    web, App, HttpServer,
-};
+use actix_web::{dev::Service, http, middleware, web, App, HttpServer};
 
 mod config;
 mod database;
 mod env;
+mod log;
 mod models;
 mod routes;
 mod services;
@@ -18,8 +15,6 @@ use services as AppServices;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    env_logger::init_from_env(env_logger::Env::default().default_filter_or("info"));
-
     env::setup_env();
 
     let pool = database::establish_connection()
@@ -29,7 +24,6 @@ async fn main() -> std::io::Result<()> {
     HttpServer::new(move || {
         App::new()
             .app_data(web::Data::new(pool.clone()))
-            .wrap(Logger::default())
             .wrap(
                 Cors::default()
                     .allow_any_origin() // Temporarily allow any origin -> .allowed_origin("http://example.com") // Allow only this origin
@@ -38,12 +32,27 @@ async fn main() -> std::io::Result<()> {
                     .allowed_header(http::header::CONTENT_TYPE)
                     .max_age(3600),
             )
+            .wrap_fn(|req, srv| {
+                let mut logger = log::get_logger("middleware");
+                let logline = format!("{} {}", req.method(), req.path());
+                logger.write(logline);
+                let fut = srv.call(req);
+                async {
+                    let res = fut.await?;
+                    Ok(res)
+                }
+            })
             .wrap(
                 middleware::DefaultHeaders::new()
                     .add(("X-RS-Project-Arcturus-Server-API-Version", "0.2")),
             )
             .service(web::scope("/api").configure(|api_config| {
                 AppServices::service_configurations::api::configure_api_service(api_config);
+            }))
+            .service(web::scope("/health").configure(|health_config| {
+                AppServices::service_configurations::health::configure_health_check_service(
+                    health_config,
+                );
             }))
             .service(
                 web::scope("")
