@@ -1,5 +1,5 @@
 import JobRunner from '../models/Jobs/JobRunner.js';
-import { setupWindowLogLevel, info, error } from '../log/index.js';
+import { setupWindowLogLevel, error } from '../log/index.js';
 
 const homeRoutes = ['/', '/index', '/index.html'];
 

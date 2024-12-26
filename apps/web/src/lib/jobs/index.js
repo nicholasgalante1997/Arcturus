@@ -1,5 +1,3 @@
-import { randomUUID } from 'node:crypto';
-
 import debug from 'debug';
 import nodeScheduler from 'node-schedule';
 
@@ -48,9 +46,10 @@ class JobManager {
 
   /**
    * @private
-   * @type {Set<InstanceJobSnapshot>}
+   * @type {InstanceJobSnapshot | null}
    */
-
+  #currentJob = null;
+  
   /**
    * @type {Map<string, nodeScheduler.Job>}
    * */
@@ -70,21 +69,18 @@ class JobManager {
     });
   }
 
-  /**
-   * @public
-   * @returns {JobProcessingSnapshot}
-   */
   processInstanceJobQueue() {
     this.#sortQueueOnPriority();
     for (const jobConf of this.#instanceJobQueue) {
       if (jobConf) {
+        this.#currentJob = jobConf;
         const { job, key } = jobConf;
         JobManager.#logger(':hammer: Working on job %s', key);
         try {
-          let _ = job();
-          if (isPromise(_)) {
+          let $jobOpResult = job();
+          if (isPromise($jobOpResult)) {
             JobManager.#logger('[WARNING]: An asynchronous job has just been invoked.');
-            _.then(() => this.#instanceJobQueueSucceededJobs.push(jobConf)).catch((e) => {
+            $jobOpResult.then(() => this.#instanceJobQueueSucceededJobs.push(jobConf)).catch((e) => {
               JobManager.#logger(
                 '%s threw the following error',
                 JobManager.name + ':' + this.processInstanceJobQueue.name

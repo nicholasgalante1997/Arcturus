@@ -11,23 +11,15 @@
     "email": "nicholasgalante1997@gmail.com",
     "name": "Nick Galante"
   },
-  "engines": {
-    "node": ">=20",
-    "pnpm": ">=8"
-  },
-  "packageManager": "pnpm@9.6.0",
+  "packageManager": "bun@1.39.0",
   "scripts": {
     "prettier": "prettier --write public/js src bin/www",
     "lint": "eslint --fix public/js src bin/www",
     "build": "echo \"Nothing to build! :) How nice is that?\"",
-    "start": "DEBUG=project-arcturus:* node bin/www",
-    "dev": "DEBUG=project-arcturus:* node --watch bin/www",
-    "sync": "run-p sync:*",
-    "sync:ws-vendor": "cp -R node_modules/@project-arcturus/store/dist/esm/bundle.mjs public/js/vendor/@project-arcturus/store.js"
+    "start": "DEBUG=project-arcturus:* bun run bin/www",
+    "dev": "DEBUG=project-arcturus:* bun run --watch bin/www"
   },
   "dependencies": {
-    "@project-arcturus/design-tokens": "workspace:*",
-    "@project-arcturus/store": "workspace:*",
     "body-parser": "^1.20.3",
     "cors": "^2.8.5",
     "debug": "^4.3.7",
@@ -54,6 +46,7 @@
   "devDependencies": {
     "@eslint/js": "^9.7.0",
     "@types/body-parser": "^1.19.5",
+    "@types/bun": "^1.1.14",
     "@types/debug": "^4.1.12",
     "@types/dompurify": "^3.0.5",
     "@types/express": "^5.0.0",

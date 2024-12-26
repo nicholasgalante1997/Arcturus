@@ -5,13 +5,16 @@ import { Attempt, AttemptState } from 'sleepydogs';
 import { error } from '../../../lib/log/index.js';
 
 class PostLibrary {
-  static #baseUrl = 'http://markdown-api:8080/';
-  static #indexPath = 'api/files';
+  /**
+   * Use the docker container name to resolve the host from within the shared container network
+   */
+  static #postsApiEndpoint = 'http://markdown-api:8080/';
+  static #postsApiEndpointReadAll = PostLibrary.#postsApiEndpoint + 'api/files';
 
   /**
    * @type {LRUCache<string, { key: string; metadata: any, article: string, pathFragment: string }>}
    */
-  #cache = new LRUCache({
+  #postsCache = new LRUCache({
     max: 100,
     maxSize: 100,
     sizeCalculation(v, k) {
@@ -22,11 +25,8 @@ class PostLibrary {
   });
 
   async loadPost(postUrlPathFragment) {
-    const headers = { Accept: 'text/markdown' };
-    const mode = 'cors';
-    const method = 'GET';
-    const options = { headers, mode, method };
-    const response = await fetch(PostLibrary.#baseUrl + postUrlPathFragment, options);
+    const options = this.#createDefaultHttpOptions();
+    const response = await fetch(PostLibrary.#postsApiEndpoint + postUrlPathFragment, options);
     const file = await response.text();
     const parsed = frontmatter(file);
 
@@ -39,7 +39,7 @@ class PostLibrary {
     };
 
     if (key) {
-      this.#cache.set(key, data);
+      this.#postsCache.set(key, data);
     }
 
     return data;
@@ -47,11 +47,8 @@ class PostLibrary {
 
   async loadAllPosts() {
     const headers = { Accept: 'application/json' };
-    const mode = 'cors';
-    const method = 'GET';
-    const options = { headers, mode, method };
-    const url = PostLibrary.#baseUrl + PostLibrary.#indexPath;
-    const fileListResponse = await fetch(url, options);
+    const options = this.#createDefaultHttpOptions({ headers });
+    const fileListResponse = await fetch(PostLibrary.#postsApiEndpointReadAll, options);
     const fileList = await fileListResponse.json();
     const promises =
       fileList?.data
@@ -62,26 +59,38 @@ class PostLibrary {
       error(new Error('Failed to load posts'));
     }
 
-    const callback = async () => await Promise.all(promises);
-
-    const $ = new Attempt({
-      callback,
-      retries: 3
+    const $postsAttempt = new Attempt({
+      callback: async () => await Promise.all(promises),
+      retries: 10,
+      onError: (e) => {
+        error(e);
+        throw e;
+      }
     });
 
-    await $.run();
+    await $postsAttempt.run();
 
-    if ($.state === AttemptState.FAILED) {
-      error(new Error('Failed to load posts. Attempts exceeded specified max.'));
+    if ($postsAttempt.state === AttemptState.FAILED) {
+      const e = new Error('Failed to load posts. Attempts exceeded specified max.')
+      error(e);
+      throw e;
     }
   }
 
   get(slug) {
-    return this.#cache.get(slug);
+    return this.#postsCache.get(slug);
   }
 
   getAll() {
-    return Array.from(this.#cache.entries());
+    return Array.from(this.#postsCache.entries());
+  }
+
+  #createDefaultHttpOptions(suppliedOptions) {
+    const headers = { Accept: 'text/markdown' };
+    const mode = 'cors';
+    const method = 'GET';
+    const options = { headers, mode, method };
+    return { ...options, ...suppliedOptions };
   }
 }
 

@@ -1,39 +1,34 @@
-import { Posts } from './api/index.js';
 import AppErrorCodes from './lib/errors/index.js';
-import { error } from './lib/log/index.js';
 import JobManager from './lib/jobs/index.js';
 import WebDependencyManager from './lib/dependencies/index.js';
 
+import { Posts } from './api/index.js';
+import { error, warn, info, debug } from './lib/log/index.js';
 import { run, default as App } from './server/index.js';
 
-async function runLoadAllPosts() {
-  try {
-    await Posts.loadAllPosts();
-  } catch (e) {
-    error(
-      new Error('PAWebServer:::FatalException - runLoadPosts() has thrown the following error')
-    );
-    error(e);
-    throw e;
-  }
-}
-
+/**
+ * Schedules a job to refresh all posts daily at midnight.
+ *
+ * The job key is 'refresh-posts'.
+ *
+ * @function queueRefreshPostsJob
+ * @memberof module:web/index
+ */
 function queueRefreshPostsJob() {
-  JobManager.queueRecurringJob(runLoadAllPosts, '0 0 * * *', 'refresh-posts');
+  JobManager.queueRecurringJob(async () => await Posts.loadAllPosts(), '0 0 * * *', 'refresh-posts');
 }
 
-async function runPreInitServerTasks() {
-  await WebDependencyManager.setupImportMap();
-  await runLoadAllPosts();
-  queueRefreshPostsJob();
-  const interval = setInterval(() => JobManager.processInstanceJobQueue(), 450);
-  process.on('uncaughtException', () => closeAppSafely(interval, 'uncaughtException'));
-  process.on('unhandledRejection', () => closeAppSafely(interval, 'unhandledRejection'));
-}
-
-function closeAppSafely(interval, type) {
+/**
+ * Safely closes the server.
+ *
+ * @function closeAppSafely
+ * @memberof module:web/index
+ * @param {string} type - The type of event that triggered closing the server
+ */
+function closeAppSafely(type) {
   try {
-    clearInterval(interval);
+    warn(':warning: Closing server! Receieved %s event', type);
+    info('Attempting to close the server gracefully, please wait...');
     App.close();
   } catch (e) {
     error(e instanceof Error ? e?.name + ": " + e?.message : e);
@@ -41,4 +36,21 @@ function closeAppSafely(interval, type) {
   }
 }
 
-export { runPreInitServerTasks, run, App };
+export { 
+  App,
+  AppErrorCodes,
+  JobManager,
+  Posts,
+  WebDependencyManager,
+
+  error,
+  info,
+  warn,
+  debug,
+
+  closeAppSafely,
+  run,
+
+  queueRefreshPostsJob
+ };
+
