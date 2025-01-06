@@ -16,10 +16,6 @@ export default async function homePageHandler(req, res, next) {
       description: 'A content microengine, maintained by the team at Arcturus',
       imports: [
         {
-          name: WebDependencyManager.getDependency('front-matter')?.dependency,
-          url: WebDependencyManager.getDependency('front-matter')?.cdn?.links?.at(0)
-        },
-        {
           name: WebDependencyManager.getDependency('lottie-web')?.dependency,
           url: WebDependencyManager.getDependency('lottie-web')?.cdn?.links?.at(0)
         },
@@ -28,8 +24,8 @@ export default async function homePageHandler(req, res, next) {
           url: WebDependencyManager.getDependency('web-vitals')?.cdn?.links?.at(0)
         },
         {
-          name: WebDependencyManager.getDependency('sleepydogs')?.dependency,
-          url: WebDependencyManager.getDependency('sleepydogs')?.cdn?.links?.at(0)
+          name: WebDependencyManager.getDependency('@supra-dev/pico')?.dependency,
+          url: WebDependencyManager.getDependency('@supra-dev/pico')?.cdn?.links?.at(0)
         }
       ],
       posts: posts.map(([k, data]) => ({

@@ -8,7 +8,7 @@ class PostLibrary {
   /**
    * Use the docker container name to resolve the host from within the shared container network
    */
-  static #postsApiEndpoint = 'http://markdown-api:8080/';
+  static #postsApiEndpoint = 'http://localhost:8080/';
   static #postsApiEndpointReadAll = PostLibrary.#postsApiEndpoint + 'api/files';
 
   /**
