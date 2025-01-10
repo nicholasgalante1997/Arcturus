@@ -52,7 +52,7 @@ run(App);
  * Server event listeners
  */
 App.on('listening', () =>
-  info(':rocket: :+1: :clip: @ ' + App.address().address + ':' + App.address().port)
+  info(':rocket: :+1: :cowboy: @ ' + App.address().address + ':' + App.address().port)
 );
 App.on('error', (err) => error(err));
 
@@ -60,10 +60,10 @@ App.on('error', (err) => error(err));
  * Process event listeners
  */
 process.on('uncaughtException', () => {
-    clearInterval(jobQueueInterval);
-    closeAppSafely(interval, 'uncaughtException')
+  clearInterval(jobQueueInterval);
+  closeAppSafely(interval, 'uncaughtException');
 });
 process.on('unhandledRejection', () => {
-    clearInterval(jobQueueInterval);
-    closeAppSafely(interval, 'unhandledRejection')
+  clearInterval(jobQueueInterval);
+  closeAppSafely(interval, 'unhandledRejection');
 });

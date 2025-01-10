@@ -26,7 +26,7 @@ const defaultState = {
   posts: [],
   ui: {
     settings: {
-      visibleCategories: ['WEB DEVELOPMENT', 'FICTION', 'CONTENT AND MEDIA', 'FOOTBALL'],
+      visibleCategories: ['WEB DEVELOPMENT', 'FICTION', 'CONTENT AND MEDIA', 'FOOTBALL']
     }
   }
 };

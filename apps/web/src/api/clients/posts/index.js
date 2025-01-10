@@ -71,7 +71,7 @@ class PostLibrary {
     await $postsAttempt.run();
 
     if ($postsAttempt.state === AttemptState.FAILED) {
-      const e = new Error('Failed to load posts. Attempts exceeded specified max.')
+      const e = new Error('Failed to load posts. Attempts exceeded specified max.');
       error(e);
       throw e;
     }

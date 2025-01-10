@@ -1,5 +1,5 @@
 import { Posts } from '../../api/index.js';
-import WebDependencyManager  from '../../lib/dependencies/index.js';
+import WebDependencyManager from '../../lib/dependencies/index.js';
 import { error } from '../../lib/log/index.js';
 import MarkdownHelper from '../../lib/markdown/index.js';
 
@@ -10,10 +10,9 @@ import MarkdownHelper from '../../lib/markdown/index.js';
  * @returns {Promise<void>}
  */
 export default async function articlePageHandler(req, res, next) {
-
   const params = req.params;
   const id = params.id;
-  
+
   if (!id) {
     next(new Error('MissingPostID'));
     return;
@@ -50,17 +49,17 @@ export default async function articlePageHandler(req, res, next) {
         estimatedReadingTime: post.metadata?.estimatedReadingTime,
         author: post.metadata?.author,
         image: {
-            src: post.metadata?.media?.source,
-            alt: post.metadata?.media?.alt,
-            publisherInfo: post.metadata?.media?.publisherInfo,
-            aspectRatio: post.metadata?.media?.aspectRatio
+          src: post.metadata?.media?.source,
+          alt: post.metadata?.media?.alt,
+          publisherInfo: post.metadata?.media?.publisherInfo,
+          aspectRatio: post.metadata?.media?.aspectRatio
         },
         body: await MarkdownHelper.convert(post.article)
       }
     });
     return;
-  } catch(e) {
+  } catch (e) {
     error(e);
-    next(e)
+    next(e);
   }
 }

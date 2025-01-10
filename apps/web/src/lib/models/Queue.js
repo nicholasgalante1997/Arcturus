@@ -96,7 +96,7 @@ export default class Queue {
 
   /**
    * @public
-   * @param {(a: T, b: T) => number} comparator 
+   * @param {(a: T, b: T) => number} comparator
    */
   sort(comparator) {
     this.#internalQueue.sort(comparator);

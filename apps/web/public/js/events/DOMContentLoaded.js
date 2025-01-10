@@ -17,7 +17,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     import('../models/Jobs/runAttachCardEventListeners.js')
       .then(({ runAttachPostCardEventListeners, runAttachPostCardEventListenersKey }) => {
-        JobRunner.queueJob(runAttachPostCardEventListeners, "high", runAttachPostCardEventListenersKey);
+        JobRunner.queueJob(
+          runAttachPostCardEventListeners,
+          'high',
+          runAttachPostCardEventListenersKey
+        );
       })
       .catch((e) => error(e));
 

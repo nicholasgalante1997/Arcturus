@@ -5,8 +5,8 @@ import { info } from '../../log/index.js';
  */
 class JobRunner {
   /**
-   * @param {() => void} job 
-   * @param {'low' | 'med' | 'high' | 'immediate'} priority 
+   * @param {() => void} job
+   * @param {'low' | 'med' | 'high' | 'immediate'} priority
    */
   queueJob(job, priority = 'med', name = job?.name || 'Anonymous Job') {
     if (typeof job === 'function') {

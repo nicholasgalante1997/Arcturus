@@ -1,5 +1,5 @@
 function isPromise(value) {
-    return Boolean(value && value instanceof Promise);
+  return Boolean(value && value instanceof Promise);
 }
 
 export { isPromise };

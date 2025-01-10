@@ -15,7 +15,11 @@ import { run, default as App } from './server/index.js';
  * @memberof module:web/index
  */
 function queueRefreshPostsJob() {
-  JobManager.queueRecurringJob(async () => await Posts.loadAllPosts(), '0 0 * * *', 'refresh-posts');
+  JobManager.queueRecurringJob(
+    async () => await Posts.loadAllPosts(),
+    '0 0 * * *',
+    'refresh-posts'
+  );
 }
 
 /**
@@ -31,26 +35,26 @@ function closeAppSafely(type) {
     info('Attempting to close the server gracefully, please wait...');
     App.close();
   } catch (e) {
-    error(e instanceof Error ? e?.name + ": " + e?.message : e);
-    process.exit(type === 'unhandledRejection' ? AppErrorCodes.UNCAUGHT_REJECTION : AppErrorCodes.UNCAUGHT_EXCEPTION)
+    error(e instanceof Error ? e?.name + ': ' + e?.message : e);
+    process.exit(
+      type === 'unhandledRejection'
+        ? AppErrorCodes.UNCAUGHT_REJECTION
+        : AppErrorCodes.UNCAUGHT_EXCEPTION
+    );
   }
 }
 
-export { 
+export {
   App,
   AppErrorCodes,
   JobManager,
   Posts,
   WebDependencyManager,
-
   error,
   info,
   warn,
   debug,
-
   closeAppSafely,
   run,
-
   queueRefreshPostsJob
- };
-
+};

@@ -13,7 +13,7 @@
   },
   "packageManager": "bun@1.39.0",
   "scripts": {
-    "prettier": "prettier --write public/js src bin/www",
+    "prettier": "prettier --write public/js src",
     "lint": "eslint --fix public/js src bin/www",
     "build": "echo \"Nothing to build! :) How nice is that?\"",
     "start": "DEBUG=project-arcturus:* bun run bin/www",

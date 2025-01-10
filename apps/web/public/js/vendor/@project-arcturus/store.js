@@ -18,7 +18,5 @@ function createStore(reducer, initState) {
   };
   return { useStore, dispatch, subscribe };
 }
-export {
-  createStore
-};
+export { createStore };
 //# sourceMappingURL=bundle.mjs.map

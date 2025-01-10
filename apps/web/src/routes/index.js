@@ -7,7 +7,7 @@ import postRouter from './pages/post.js';
  */
 export function setupWebRoutes(app) {
   app.use('/', homePageRouter);
-  app.use('/posts', postRouter)
+  app.use('/posts', postRouter);
 }
 
 /**
@@ -15,7 +15,6 @@ export function setupWebRoutes(app) {
  */
 export function setupErrorHandler(app) {
   app.use((err, req, res, next) => {
-    
     if (err instanceof Error) {
       error('Error %s', err?.name);
       error('Error Message %s', err?.message);
@@ -23,12 +22,12 @@ export function setupErrorHandler(app) {
     } else {
       try {
         error(JSON.stringify(err));
-      } catch(e) {
+      } catch (e) {
         error(e);
         error('Recursive JSON Exception');
       }
     }
 
     res.status(500).send('An error occurred');
-  })
+  });
 }

@@ -25,6 +25,12 @@
         </form>
       </section>
       
+      <section class="category-container">
+        <% categories.forEach(function (category) { %>
+          <%- include('partials/selectChip', { category: category }) %>
+        <% }); %>
+      </section>
+
       <section id="posts" class="posts-container">
         <% posts.forEach(function (post) { %>
           <%- include('partials/card', { post: post }) %>

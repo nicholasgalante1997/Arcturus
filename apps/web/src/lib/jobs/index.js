@@ -49,7 +49,7 @@ class JobManager {
    * @type {InstanceJobSnapshot | null}
    */
   #currentJob = null;
-  
+
   /**
    * @type {Map<string, nodeScheduler.Job>}
    * */
@@ -80,14 +80,16 @@ class JobManager {
           let $jobOpResult = job();
           if (isPromise($jobOpResult)) {
             JobManager.#logger('[WARNING]: An asynchronous job has just been invoked.');
-            $jobOpResult.then(() => this.#instanceJobQueueSucceededJobs.push(jobConf)).catch((e) => {
-              JobManager.#logger(
-                '%s threw the following error',
-                JobManager.name + ':' + this.processInstanceJobQueue.name
-              );
-              JobManager.#logger('Error: %O', e);
-              this.#instanceJobQueueFailedJobs.push(jobConf);
-            });
+            $jobOpResult
+              .then(() => this.#instanceJobQueueSucceededJobs.push(jobConf))
+              .catch((e) => {
+                JobManager.#logger(
+                  '%s threw the following error',
+                  JobManager.name + ':' + this.processInstanceJobQueue.name
+                );
+                JobManager.#logger('Error: %O', e);
+                this.#instanceJobQueueFailedJobs.push(jobConf);
+              });
           } else {
             this.#instanceJobQueueSucceededJobs.push(jobConf);
           }

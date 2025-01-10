@@ -17,7 +17,8 @@ function shouldLog(level) {
 }
 
 const formatJson = (msg, level) => ({ name: LOGGER_NAME, timestamp: Date.now(), level, data: msg });
-const formatPretty = (msg, level) => `[${new Date().toISOString()}] ${level.toUpperCase()} (${LOGGER_NAME}): ${typeof msg === 'object' ? JSON.stringify(msg, null, 2) : msg}`;
+const formatPretty = (msg, level) =>
+  `[${new Date().toISOString()}] ${level.toUpperCase()} (${LOGGER_NAME}): ${typeof msg === 'object' ? JSON.stringify(msg, null, 2) : msg}`;
 
 function handleErrorLogEvent(msg) {
   console.error('An error was thrown');
@@ -51,8 +52,8 @@ const error = (msg, format = 'json') => {
   const level = 'error';
   if (msg instanceof Error) {
     handleErrorLogEvent(msg);
-    return
-  };
+    return;
+  }
 
   handleLogEvent(msg, level, format);
 };
