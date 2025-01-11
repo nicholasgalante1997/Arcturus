@@ -44,9 +44,7 @@
   </body>
 
   <script>
-    window.$arc = {};
-    window.$arc.posts = JSON.parse('{}');
-    window.$arc.categories = JSON.parse('{}');
+    window.$arc = JSON.parse(`<%- state %>`);
   </script>
 
   <script>

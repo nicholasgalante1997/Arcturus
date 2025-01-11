@@ -11,22 +11,27 @@ import { error, info } from '../../lib/log/index.js';
 export default async function homePageHandler(req, res, next) {
   const posts = Posts.getAll();
 
+  const depLottie = WebDependencyManager.getDependency('lottie-web');
+  const depWebVitals = WebDependencyManager.getDependency('web-vitals');
+  const depPico = WebDependencyManager.getDependency('@supra-dev/pico');
+  const depLodashMerge = WebDependencyManager.getDependency('lodash.merge');
+
   const imports = [
     {
-      name: WebDependencyManager.getDependency('lottie-web')?.dependency,
-      url: WebDependencyManager.getDependency('lottie-web')?.cdn?.links?.at(0)
+      name: depLottie.dependency,
+      url: depLottie?.cdn?.links?.at(0)
     },
     {
-      name: WebDependencyManager.getDependency('web-vitals')?.dependency,
-      url: WebDependencyManager.getDependency('web-vitals')?.cdn?.links?.at(0)
+      name: depWebVitals?.dependency,
+      url: depWebVitals?.cdn?.links?.at(0)
     },
     {
-      name: WebDependencyManager.getDependency('@supra-dev/pico')?.dependency,
-      url: WebDependencyManager.getDependency('@supra-dev/pico')?.cdn?.links?.at(0)
+      name: depPico?.dependency,
+      url: depPico?.cdn?.links?.at(0)
     },
     {
-      name: WebDependencyManager.getDependency('lodash-merge')?.dependency,
-      url: WebDependencyManager.getDependency('lodash-merge')?.cdn?.links?.at(0)
+      name: depLodashMerge?.dependency,
+      url: depLodashMerge?.cdn?.links?.at(0)
     }
   ];
 
@@ -43,7 +48,7 @@ export default async function homePageHandler(req, res, next) {
     ])
   ).map((label) => ({
     label,
-    selected: false
+    selected: label === 'Software Engineering'
   }));
 
   const $posts = posts.map(([k, data]) => ({
@@ -51,15 +56,17 @@ export default async function homePageHandler(req, res, next) {
     title: data?.metadata?.title,
     genres: data?.metadata?.genres || [],
     description: data?.metadata?.description,
-    author: data?.metadata?.author,
+    author: data?.metadata?.author?.length && data?.metadata?.author[0],
     href: '/posts/' + k,
-    key: k
+    key: k,
+    id: k,
+    visibility: data?.metadata?.genres?.includes('Software Engineering') ? 'visible' : 'hidden'
   }));
 
   try {
     res.status(200).render('index', {
       title: 'Project Arcturus',
-      description: 'A content microengine, maintained by the team at Arcturus',
+      description: 'A content microengine, maintained by the team at <b>Arcturus</b>',
       imports,
       categories,
       posts: $posts,
@@ -67,7 +74,11 @@ export default async function homePageHandler(req, res, next) {
         include: {
           post: false
         }
-      }
+      },
+      state: JSON.stringify({
+        posts: $posts,
+        categories
+      })
     });
     return;
   } catch (e) {

@@ -1,4 +1,4 @@
-<article class="post-card__root">
+<article id="<%= post.id %>" class="post-card__root" data-visibility="<%= post.visibility %>">
   <header class="post-card__header">
     <b class="post-card__estimated-reading-time"><%= post.estimatedReadingTime %></b>
   </header>
@@ -14,9 +14,12 @@
     <p class="post-card__description">
       <%= post.description %>
     </p>
-    <small class="post-card__author">
-      <%= post.author %>
-    </small>
+    <div>
+      <img style="aspect-ratio: 1 / 1; object-fit: cover; object-position: center; image-orientation: from-image; image-rendering: optimizeQuality; border-radius: 24px;" height="48" width="48" src="<%= post.author.avatar %>" alt="<%= post.author.first_name %> <%= post.author.last_name %> Avatar" class="post-card__author-avatar">
+      <a href="/authors/<%= post.author.id || 1 %>" class="post-card__author">
+        <%= post.author.first_name %> <%= post.author.last_name %> "<small> < <%= post.author.nickname %> > </small>"
+      </a>
+    </div>
   </div>
   <footer class="post-card__footer">
     <button data-post-href="<%= post.href %>">Read Post</button>

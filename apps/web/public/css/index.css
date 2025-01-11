@@ -229,6 +229,10 @@ article.post-card__root {
   }
 }
 
+article.post-card__root[data-visibility='hidden'] {
+  display: none;
+}
+
 div.post-card__body-root {
   display: flex;
   flex-direction: column;
@@ -285,7 +289,7 @@ div.minor-info__chips {
 span.selectable-chip {
   cursor: pointer;
   padding: 4px 16px;
-  border-radius: 32px;
+  border-radius: 4px;
   font-size: 18px;
   font-weight: 600;
   border: 1.5px solid var(--pico-primary);
@@ -301,4 +305,8 @@ span.selectable-chip:hover {
 span.selectable-chip[data-current-selection="true"] {
   background-color: var(--pico-primary);
   color: var(--text-soft);
+
+  &::before {
+    content: 'x';
+  }
 }
