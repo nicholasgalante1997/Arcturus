@@ -28,22 +28,49 @@ export function runAttachCategoryChipEventListeners() {
       const isActive = active.includes(chipLabel);
       chip.dataset.currentSelection = isActive.toString();
     }
+
+    for (const postCard of postsCards) {
+      const postId = postCard.id;
+      if (postId) {
+        const post = posts.find((post) => post.id === postId);
+        const postGenres = post.genres;
+        const visbility = !!postGenres.find((genre) => active.includes(genre)) ? `visible` : `hidden`;
+        postCard.dataset.visibility = visbility;
+      }
+    }
   });
 
   for (const element of document.querySelectorAll(chipsTag)) {
     element.addEventListener('click', () => {
       const label = element.dataset.chipLabel;
-      const state = useStore();
-      const currentActiveLabels = state.ui.home.categories.active || [];
-      currentActiveLabels.push(label);
-      const ui = state.ui;
-      ui.home.categories.active = currentActiveLabels;
-      dispatch({
-        type: 'set',
-        data: {
-          ui
-        }
-      });
+      const isActive = element.dataset.currentSelection === 'true';
+
+      if (!isActive) {
+        const state = useStore();
+        const currentActiveLabels = state.ui.home.categories.active || [];
+        currentActiveLabels.push(label);
+        const ui = state.ui;
+        ui.home.categories.active = currentActiveLabels;
+        dispatch({
+          type: 'set',
+          data: {
+            ui
+          }
+        });
+      } else {
+        const state = useStore();
+        const currentActiveLabels = state.ui.home.categories.active || [];
+        const index = currentActiveLabels.indexOf(label);
+        currentActiveLabels.splice(index, 1);
+        const ui = state.ui;
+        ui.home.categories.active = currentActiveLabels;
+        dispatch({
+          type: 'set',
+          data: {
+            ui
+          }
+        });
+      }
     });
   }
 }
