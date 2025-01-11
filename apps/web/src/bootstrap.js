@@ -61,9 +61,9 @@ App.on('error', (err) => error(err));
  */
 process.on('uncaughtException', () => {
   clearInterval(jobQueueInterval);
-  closeAppSafely(interval, 'uncaughtException');
+  closeAppSafely('uncaughtException');
 });
 process.on('unhandledRejection', () => {
   clearInterval(jobQueueInterval);
-  closeAppSafely(interval, 'unhandledRejection');
+  closeAppSafely('unhandledRejection');
 });

@@ -1,3 +1,5 @@
+import merge from 'lodash.merge';
+
 function createStore(reducer, initState) {
   let state = initState;
   let listeners = [];
@@ -25,8 +27,11 @@ function createStore(reducer, initState) {
 const defaultState = {
   posts: [],
   ui: {
-    settings: {
-      visibleCategories: ['WEB DEVELOPMENT', 'FICTION', 'CONTENT AND MEDIA', 'FOOTBALL']
+    home: {
+      categories: {
+        active: ['Software Engineering'],
+        all: []
+      }
     }
   }
 };
@@ -34,13 +39,11 @@ const defaultState = {
 function reducer(state = defaultState, action) {
   const { type, data } = action;
   switch (type) {
-    case 'set.posts': {
-      if (Array.isArray(data)) {
-        return {
-          ...state,
-          posts: data
-        };
-      }
+    case 'set': {
+      return merge(state, data);
+    };
+    default: {
+      return state;
     }
   }
 }

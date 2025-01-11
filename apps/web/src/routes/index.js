@@ -8,6 +8,10 @@ import postRouter from './pages/post.js';
 export function setupWebRoutes(app) {
   app.use('/', homePageRouter);
   app.use('/posts', postRouter);
+
+  app.use('/test-error', (req, res) => {
+    throw new Error('Test Error');
+  });
 }
 
 /**

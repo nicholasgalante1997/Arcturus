@@ -33,7 +33,15 @@ function closeAppSafely(type) {
   try {
     warn(':warning: Closing server! Receieved %s event', type);
     info('Attempting to close the server gracefully, please wait...');
-    App.close();
+    App.close((err) => {
+      warn('App closed due to issue with %s event', type);
+      warn('Error: %o', err);
+      process.exit(
+        type === 'unhandledRejection'
+          ? AppErrorCodes.UNCAUGHT_REJECTION
+          : AppErrorCodes.UNCAUGHT_EXCEPTION
+      )
+    });
   } catch (e) {
     error(e instanceof Error ? e?.name + ': ' + e?.message : e);
     process.exit(

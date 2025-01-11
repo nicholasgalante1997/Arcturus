@@ -23,24 +23,28 @@ export default async function homePageHandler(req, res, next) {
     {
       name: WebDependencyManager.getDependency('@supra-dev/pico')?.dependency,
       url: WebDependencyManager.getDependency('@supra-dev/pico')?.cdn?.links?.at(0)
+    },
+    {
+      name: WebDependencyManager.getDependency('lodash-merge')?.dependency,
+      url: WebDependencyManager.getDependency('lodash-merge')?.cdn?.links?.at(0)
     }
   ];
 
   const categories = Array.from(
-    new Set(
+    new Set([
       ...posts
-        .map(
-          ([
-            ,
-            {
-              metadata: { genres = [] }
-            }
-          ]) => genres
-        )
+        .map(([_uuid, data]) => {
+          const { metadata, pathFragment } = data;
+          info('Serving article from', pathFragment);
+          return metadata.genres;
+        })
         .flat()
         .filter(Boolean)
-    )
-  ).map((cat) => ({ label: cat, selected: false }));
+    ])
+  ).map((label) => ({
+    label,
+    selected: false
+  }));
 
   const $posts = posts.map(([k, data]) => ({
     estimatedReadingTime: data?.metadata?.estimatedReadingTime || '5 mins',
@@ -51,8 +55,6 @@ export default async function homePageHandler(req, res, next) {
     href: '/posts/' + k,
     key: k
   }));
-
-  info('Categories: %o', categories);
 
   try {
     res.status(200).render('index', {

@@ -42,6 +42,16 @@
     <div id="sidebar-overlay" class="sidebar-overlay"></div>
     
   </body>
+
+  <script>
+    window.$arc = {};
+    window.$arc.posts = JSON.parse('{}');
+    window.$arc.categories = JSON.parse('{}');
+  </script>
+
+  <script>
+    console.log('Server provided state: %o', window.$arc);
+  </script>
 </html>
 <script type="module" src="js/theme/bootstrap.js"></script>
 <script type="module" src="js/events/DOMContentLoaded.js"></script>

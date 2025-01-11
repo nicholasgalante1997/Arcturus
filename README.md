@@ -15,6 +15,7 @@
     - [ ] Fiction (Literature)
     - [ ] Content and Media (Writing/Opinion)
     - [ ] Sports & Gaming (Sports)
+- [ ] Add pm2 support to web
 - [ ] Add Search Functionality
 - [ ] Add Pagination
 - [ ] Add Tags
@@ -30,3 +31,10 @@
   - [ ] Shares
   - [ ] Clicks
   - [ ] Pixel Tracking
+
+- ## FIX
+
+- [ ] Change URL path from UUID to post slug
+- [ ] Fix broken image paths
+- [ ] Fix broken author sections
+- [ ] Fix Categories Chips + Add Functionality for Selection

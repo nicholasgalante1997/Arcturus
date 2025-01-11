@@ -16,7 +16,7 @@ const _warn = $debug(LOGGER_PREFIX + ':warn');
 const _error = $debug(LOGGER_PREFIX + ':error');
 
 function shouldLog(level) {
-  const LOG_LEVEL = process.env[NODE_PROCESS_LOG_LEVEL_KEY] || 'debug';
+  const LOG_LEVEL = process.env[NODE_PROCESS_LOG_LEVEL_KEY] || 'error';
   const processLevel = LOG_LEVEL;
   const processLevelInt = LOG_TO_INT_MAP.get(processLevel);
   const levelInt = LOG_TO_INT_MAP.get(level);
