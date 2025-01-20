@@ -1,0 +1,9 @@
+<script type="importmap">
+  {
+      "imports": {
+        <% imports.forEach((_import, index) => { %>
+          "<%= _import.name %>": "<%= _import.url %>"<%= index < imports.length - 1 ? ',' : '' %>
+        <% }); %>
+      }
+    }
+</script>

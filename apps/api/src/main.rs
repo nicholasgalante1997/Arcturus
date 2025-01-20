@@ -1,12 +1,10 @@
-use actix_web::{
-    middleware::{self, Logger},
-    web::{self, ServiceConfig},
-};
-use shuttle_actix_web::ShuttleActixWeb;
-use sqlx::PgPool;
+use actix_cors::Cors;
+use actix_web::{dev::Service, http, middleware, web, App, HttpServer};
 
 mod config;
 mod database;
+mod env;
+mod log;
 mod models;
 mod routes;
 mod services;
@@ -15,44 +13,58 @@ mod util;
 use routes as AppRoutes;
 use services as AppServices;
 
-#[shuttle_runtime::main]
-async fn main(
-    #[shuttle_shared_db::Postgres] pool: PgPool,
-) -> ShuttleActixWeb<impl FnOnce(&mut ServiceConfig) + Send + Clone + 'static> {
-    sqlx::migrate!()
-        .run(&pool)
+#[actix_web::main]
+async fn main() -> std::io::Result<()> {
+    env::setup_env();
+
+    let pool = database::establish_connection()
         .await
-        .expect("Failed to run migrations");
+        .expect("Failed to connect to database");
 
-    let config = move |cfg: &mut ServiceConfig| {
-        cfg.app_data(web::Data::new(pool.clone()));
-        cfg.service(
-            web::scope("/api")
-                .wrap(Logger::default())
-                .wrap(
-                    middleware::DefaultHeaders::new().add(("X-Dotafts-Server-API-Version", "0.1")),
-                )
-                .wrap(middleware::DefaultHeaders::new().add(("X-Dotafts-Markdown-Version", "0.1")))
-                .wrap(middleware::Compress::default())
-                .configure(|scoped_cfg| {
-                    AppServices::service_configurations::api::configure_api_service(scoped_cfg)
-                }),
-        );
-        cfg.service(
-            web::scope("")
-                .wrap(Logger::default())
-                .wrap(
-                    middleware::DefaultHeaders::new().add(("X-Dotafts-Server-API-Version", "0.1")),
-                )
-                .wrap(middleware::DefaultHeaders::new().add(("X-Dotafts-Markdown-Version", "0.1")))
-                .wrap(middleware::Compress::default())
-                .configure(|scoped_cfg| {
-                    AppServices::service_configurations::file::configure_static_file_service(
-                        scoped_cfg,
-                    )
-                }),
-        );
-    };
-
-    Ok(config.into())
+    HttpServer::new(move || {
+        App::new()
+            .app_data(web::Data::new(pool.clone()))
+            .wrap(
+                Cors::default()
+                    .allow_any_origin() // Temporarily allow any origin -> .allowed_origin("http://example.com") // Allow only this origin
+                    .allowed_methods(vec!["GET", "OPTIONS"])
+                    .allowed_headers(vec![http::header::AUTHORIZATION, http::header::ACCEPT])
+                    .allowed_header(http::header::CONTENT_TYPE)
+                    .max_age(3600),
+            )
+            .wrap_fn(|req, srv| {
+                let mut logger = log::get_logger("middleware");
+                let logline = format!("{} {}", req.method(), req.path());
+                logger.write(logline);
+                let fut = srv.call(req);
+                async {
+                    let res = fut.await?;
+                    Ok(res)
+                }
+            })
+            .wrap(
+                middleware::DefaultHeaders::new()
+                    .add(("X-RS-Project-Arcturus-Server-API-Version", "0.2")),
+            )
+            .service(web::scope("/api").configure(|api_config| {
+                AppServices::service_configurations::api::configure_api_service(api_config);
+            }))
+            .service(web::scope("/health").configure(|health_config| {
+                AppServices::service_configurations::health::configure_health_check_service(
+                    health_config,
+                );
+            }))
+            .service(
+                web::scope("")
+                    .wrap(middleware::Compress::default())
+                    .configure(|web_config| {
+                        AppServices::service_configurations::file::configure_static_file_service(
+                            web_config,
+                        );
+                    }),
+            )
+    })
+    .bind(("0.0.0.0", 8080))?
+    .run()
+    .await
 }

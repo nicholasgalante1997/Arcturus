@@ -1,5 +1,8 @@
-# Build stage for Rust application, using same env as runner
-FROM debian:buster-slim as builder
+# Create a base layer with a small Linux image
+FROM debian:buster-slim AS base
+
+# Create a layer where we setup Rust
+FROM base AS rust
 
 # Install dependencies needed for building Rust application
 RUN apt-get update && apt-get install -y \
@@ -13,78 +16,58 @@ RUN apt-get update && apt-get install -y \
     && rustup update stable \
     && rustup default stable
 
-# Create our working dir
-RUN mkdir -p /home/app/dotafts
+# Create a layer for setting up the workspace
+FROM rust AS workspace
 
-# Move over to our working dir
-WORKDIR /home/app/dotafts
+# Create our working directory
+RUN mkdir -p /home/app/project-arcturus/apps/api
+
+# Move over to our working directory
+WORKDIR /home/app/project-arcturus/apps/api
 
 # Copy our server dependencies
-COPY Cargo.toml Cargo.lock ./
+COPY Cargo.* ./
 
 # Copy our source code
 COPY ./src/ ./src/
-COPY ./data/ ./data/
-COPY ./markdown/ ./markdown/
+COPY ./public/ ./public/
+
+# Create a layer to build our app
+FROM workspace AS builder
 
 # Build our production server
 RUN . $HOME/.cargo/env && cargo build --release
 
-FROM node:22-alpine as nodebuilder
+# Create a layer to run our app, we can reuse our teeny tiny linux image
+FROM base AS runner
 
-# Set PNPM Env Variables, Necessary for PNPM setup in Docker Env
-ENV PNPM_HOME="/pnpm"
-ENV PATH="$PNPM_HOME:$PATH"
-ENV RUNTIME_STAGE="production"
-
-RUN corepack enable
-
-RUN mkdir -p /home/app/dotafts/www
-
-WORKDIR /home/app/dotafts/www
-
-COPY ./www/package.json ./package.json
-COPY ./www/pnpm-lock.yaml ./pnpm-lock.yaml
-
-RUN pnpm install --frozen-lockfile
-
-COPY ./www/tsconfig.json ./tsconfig.json
-COPY ./www/babel.config.json ./babel.config.json
-COPY ./www/webpack/ ./webpack/
-COPY ./www/public ./public/
-COPY ./www/src/ ./src/
-
-RUN pnpm build
-
-RUN rm -rf node_modules \
-    src \
-    webpack \
-    babel.config.json \
-    tsconfig.json
-
-# Runtime stage
-FROM debian:buster-slim as runner
-
-# Install necessary runtime dependencies
+# Install necessary runtime dependencies (note, we don't even need Rust!)
 RUN apt-get update && apt-get install -y \
     libssl-dev \
     ca-certificates \
     libpq-dev \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
 # Create working directory
-RUN mkdir -p /app/dotafts
-WORKDIR /app/dotafts
+RUN mkdir -p /home/app/project-arcturus/apps/api
+WORKDIR /home/app/project-arcturus/apps/api
 
-# Copy Rust binary and Node.js build artifacts
-COPY --from=builder /home/app/dotafts/target/release/dotafts-server /app/dotafts
-COPY --from=builder /home/app/dotafts/data /app/dotafts/data
-COPY --from=builder /home/app/dotafts/markdown /app/dotafts/markdown
-COPY --from=nodebuilder /home/app/dotafts/www/public /app/dotafts/www/public
+# Copy Rust binary + public folder
+COPY --from=builder /home/app/project-arcturus/apps/api/target/release/project-arcturus-file-server /home/app/project-arcturus/apps/api
+COPY --from=builder /home/app/project-arcturus/apps/api/public/ /home/app/project-arcturus/apps/api/public/
 
 # Ensure the Rust binary has execution permissions
-RUN chmod +x /app/dotafts/dotafts-server
+RUN chmod +x /home/app/project-arcturus/apps/api/project-arcturus-file-server
 
+# Expose port 8080
+EXPOSE 8080
+
+# Set environment variables
+ENV PORT=8080
+ENV RUST_ENV=DOCKER
 
 # Run the Rust binary
-CMD ["./dotafts-server"]
+CMD ["./project-arcturus-file-server"]
+
+HEALTHCHECK --interval=30s --timeout=10s --retries=3 CMD curl --fail http://localhost:8080/health || exit 1

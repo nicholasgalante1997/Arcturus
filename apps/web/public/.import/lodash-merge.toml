@@ -1,0 +1,8 @@
+dependency = "lodash.merge"
+version = "4.6.2"
+
+[cdn]
+links = [ "https://cdn.jsdelivr.net/npm/lodash.merge@4.6.2/+esm", ]
+
+[usage]
+description = "Deep merge javascript objects"

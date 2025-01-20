@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+    <%- include('partials/head', { document_title: title, document_description: description, imports: imports, css: { include: { post: true }} }); %>
+  <body>
+    <main>
+        <section class="article-container">
+            <article class="article-root">
+              <div class="article-supplementary-info-container text-container">
+                <span class="article-date fira-sans-semibold"><%= post.releaseDate %></span>
+                <span class="article-supp-divider"></span>
+                <span class="article-series fira-sans-semibold">
+                  <i>from</i> <b>the <%= post.series %> Series</b>
+                </span>
+              </div>
+      
+              <div class="article-title-container text-container">
+                <h1 class="article-title fira-sans-bold"><%= post.title %></h1>
+              </div>
+      
+              <div class="article-description-container text-container">
+                <p class="article-description noto-serif"><%= post.description %></p>
+              </div>
+      
+              <div class="article-author-container text-container">
+                <p class="article-author noto-serif">
+                  by <%= post.author %>
+                </p>
+              </div>
+      
+              <div class="article-headline-image-container">
+                <img
+                  src="<%= post.image %>"
+                  alt="Doodles NFT"
+                  style="aspect-ratio: 16 / 9;"
+                  class="article-headline-image"
+                />
+                <span class="article-headline-image-publisher">
+                  Doodles NFT 2023
+                </span>
+              </div>
+
+              <section class="article__markdown-root">
+                <%- post.body %>
+              </section>
+            </article>
+          </section>
+    </main>
+  </body>
+</html>
+<script type="module" src="js/performance/web-vitals.js"></script>
+<script type="module" src="js/events/DOMContentLoaded.js"></script>

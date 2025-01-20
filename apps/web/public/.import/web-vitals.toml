@@ -1,0 +1,8 @@
+dependency = "web-vitals"
+version = "4.2.3"
+
+[cdn]
+links = [ "https://cdn.jsdelivr.net/npm/web-vitals@4.2.3/+esm", ]
+
+[usage]
+description = "A library for analyzing web performance."

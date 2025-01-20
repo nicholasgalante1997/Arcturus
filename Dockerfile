@@ -1,37 +1,72 @@
-FROM node:22-alpine as builder
+# Use the official Node.js 22 Image (Alpine version) as the base
+FROM oven/bun:1-alpine AS base
 
-ARG TURBO_VERCEL_TEAM_NAMESPACE
-ENV TURBO_TEAM=${TURBO_VERCEL_TEAM_NAMESPACE}
+# Create a layer for dependency installation
+FROM base as dependencies
 
-ARG TURBO_VERCEL_REMOTE_CACHE_TOKEN
-ENV TURBO_TOKEN=${TURBO_VERCEL_REMOTE_CACHE_TOKEN}
+# Create our working directory
+RUN mkdir -p /home/app/project-arcturus
 
-ENV TURBO_REMOTE_CACHE=true
+# Move over to our working directory
+WORKDIR /home/app/project-arcturus
 
-RUN echo "${TURBO_REMOTE_CACHE}"
-RUN echo "${TURBO_TEAM}"
-RUN echo "${TURBO_TOKEN}"
-
-# Set PNPM Env Variables, Necessary for PNPM setup in Docker Env
-ENV PNPM_HOME="/pnpm"
-ENV PATH="$PNPM_HOME:$PATH"
-ENV RUNTIME_STAGE="production"
-
-RUN corepack enable
-
-RUN mkdir -p /home/app/turbo
-
-WORKDIR /home/app/turbo
-
+# Copy our turborepo workspace root package.json
 COPY ./package.json ./package.json
-COPY ./pnpm-lock.yaml ./pnpm-lock.yaml
-COPY ./pnpm-workspace.yaml ./pnpm-workspace.yaml
+
+# Copy our turborepo workspace root bun.lockb
+COPY ./bun.lockb ./bun.lockb
+
+# Copy our turborepo workspace root turbo.json
 COPY ./turbo.json ./turbo.json
-COPY ./apps ./apps
+
+# Copy our website
+COPY ./apps/web ./apps/web
+
+# Copy our packages
 COPY ./packages ./packages
 
-RUN pnpm install --frozen-lockfile
+# Install dependencies
+RUN bun install
 
-RUN pnpm build
+# Create a layer for build
+FROM dependencies AS build
 
-CMD ["pnpm",  "start"]
+# Build the application
+RUN bun run check-types
+RUN bun run build
+
+# Create a layer for running the app
+# We can use our smaller pnpm enabled node base image here
+# And copy over the built application
+# Without the source code and development dependency bloat
+FROM base AS runtime
+
+# Create our working directory
+RUN mkdir -p /home/app/project-arcturus
+
+# Move over to our working directory
+WORKDIR /home/app/project-arcturus
+
+# Copy the turborepo package.json from the build layer
+COPY --from=build /home/app/project-arcturus/package.json /home/app/project-arcturus/package.json
+
+# Copy the turborepo pnpm-lock.yaml from the build layer
+COPY --from=build /home/app/project-arcturus/bun.lockb /home/app/project-arcturus/bun.lockb
+
+# Copy the turborepo turbo.json from the build layer
+COPY --from=build /home/app/project-arcturus/turbo.json /home/app/project-arcturus/turbo.json
+
+# Copy the turborepo workspace root from the build layer
+COPY --from=build /home/app/project-arcturus/apps/web /home/app/project-arcturus/apps/web
+COPY --from=build /home/app/project-arcturus/packages /home/app/project-arcturus/packages
+
+RUN rm -rf /home/app/project-arcturus/node_modules \
+    home/app/project-arcturus/apps/web/node_modules \
+    home/app/project-arcturus/packages/@tokens/node_modules \
+    home/app/project-arcturus/packages/@components/node_modules \
+    home/app/project-arcturus/packages/@state/node_modules \
+    home/app/project-arcturus/packages/@renderer/node_modules
+
+RUN bun install --production
+
+CMD ["bun", "run", "start"]
