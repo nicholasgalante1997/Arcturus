@@ -14,7 +14,8 @@
     "check-types": "turbo run check-types",
     "test": "turbo run test",
     "dev": "turbo run dev",
-    "start": "turbo run start"
+    "start": "turbo run start",
+    "docker": "turbo run docker"
   },
   "packageManager": "bun@1.39.0",
   "dependencies": {

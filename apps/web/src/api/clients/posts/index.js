@@ -8,7 +8,7 @@ class PostLibrary {
   /**
    * Use the docker container name to resolve the host from within the shared container network
    */
-  static #postsApiEndpoint = 'http://localhost:8080/';
+  static #postsApiEndpoint = process.env.EXEC_CONTEXT === 'docker' ? process.env.DOCKER_POSTS_API_ENDPOINT : process.env.LOCAL_POSTS_API_ENDPOINT;
   static #postsApiEndpointReadAll = PostLibrary.#postsApiEndpoint + 'api/files';
 
   /**
