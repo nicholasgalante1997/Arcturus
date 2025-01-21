@@ -30,6 +30,10 @@
       "start": {
         "cache": false,
         "dependsOn": ["^start"]
+      },
+      "docker": {
+        "cache": false,
+        "dependsOn": ["^docker"]
       }
     }
   }

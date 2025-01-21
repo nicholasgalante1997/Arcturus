@@ -1,7 +1,27 @@
+use anyhow::{Context, Result};
 use sqlx::postgres::PgPoolOptions;
 use std::env;
 
 use crate::log::get_logger;
+
+pub trait DatabaseConnection<PoolType> {
+    async fn connect(&self) -> Result<PoolType>;
+    fn new() -> Self;
+}
+
+pub struct PostgresConnection;
+
+pub type PostgresPool = sqlx::PgPool;
+
+impl DatabaseConnection<PostgresPool> for PostgresConnection {
+    async fn connect(&self) -> Result<PostgresPool> {
+        establish_connection_to_pg_database().await
+    }
+
+    fn new() -> Self {
+        PostgresConnection
+    }
+}
 
 /// Establishes a connection to the PostgreSQL database using the DATABASE_URL
 /// environment variable. Returns a `sqlx::PgPool` representing the connection pool.
@@ -9,15 +29,22 @@ use crate::log::get_logger;
 /// #### Errors
 ///
 /// Returns an error if the DATABASE_URL is not set or if the connection cannot be established.
-pub async fn establish_connection() -> sqlx::Result<sqlx::PgPool> {
+async fn establish_connection_to_pg_database() -> Result<sqlx::PgPool> {
     let mut db_connection_logger = get_logger("db_connection");
-
     db_connection_logger.write("Connecting to database...".to_string());
-    let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
+    let database_url = env::var("PG_DATABASE_URL").expect("PG_DATABASE_URL must be set");
     let pool = PgPoolOptions::new()
-        .max_connections(2)
+        .max_connections(10)
+        .min_connections(1)
+        .idle_timeout(std::time::Duration::from_secs(300))
         .connect(&database_url)
-        .await?;
+        .await
+        .context(r#"
+            mod `database` fn `establish_connection_to_pg_database` produced a non-recoverable error.
+            env `DATABASE_URL` is available, but the database has refused the connection.
+            please check your database configuration options.
+            Closing!
+            "#)?;
 
     db_connection_logger.write("Connected to database!".to_string());
     Ok(pool)

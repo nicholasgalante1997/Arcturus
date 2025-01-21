@@ -61,12 +61,8 @@ COPY --from=build /home/app/project-arcturus/apps/web /home/app/project-arcturus
 COPY --from=build /home/app/project-arcturus/packages /home/app/project-arcturus/packages
 
 RUN rm -rf /home/app/project-arcturus/node_modules \
-    home/app/project-arcturus/apps/web/node_modules \
-    home/app/project-arcturus/packages/@tokens/node_modules \
-    home/app/project-arcturus/packages/@components/node_modules \
-    home/app/project-arcturus/packages/@state/node_modules \
-    home/app/project-arcturus/packages/@renderer/node_modules
+    home/app/project-arcturus/apps/web/node_modules
 
 RUN bun install --production
 
-CMD ["bun", "run", "start"]
+CMD ["bun", "run", "docker"]
