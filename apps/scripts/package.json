@@ -1,0 +1,23 @@
+{
+  "name": "@project-arcturus/scripts",
+  "module": "bin/exec.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@project-arcturus/database": "workspace:*",
+    "@project-arcturus/logger": "workspace:*",
+    "chalk": "^5.4.1",
+    "commander": "^13.1.0",
+    "debug": "^4.4.0",
+    "dotenv": "^16.4.7",
+    "front-matter": "^4.0.2",
+    "neo4j-driver": "^5.27.0",
+    "node-emoji": "^2.2.0",
+    "pg": "^8.13.1"
+  }
+}
