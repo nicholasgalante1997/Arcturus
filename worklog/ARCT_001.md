@@ -1,5 +1,9 @@
 # Worklog Item - ARCT 001
 
+## STATUS
+
+[DONE (MERGED)]
+
 ## Task Overview
 
 Task Name: **Set up database schema and migrations**
@@ -23,3 +27,5 @@ Changed 'articles' to 'posts'
 ## Date Log
 
 Opened ticket on 1/20/2025
+
+PR Closed on 1/20/2025

@@ -1,2 +1,0 @@
-#! /bin/bash
-cargo shuttle run --external --port 8080
