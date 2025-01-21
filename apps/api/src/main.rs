@@ -13,17 +13,22 @@ mod util;
 use routes as AppRoutes;
 use services as AppServices;
 
+use database::DatabaseConnection;
+
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     env::setup_env();
 
-    let pool = database::establish_connection()
+    let pg_database = database::PostgresConnection::new();
+
+    let pg_pool = pg_database
+        .connect()
         .await
         .expect("Failed to connect to database");
 
     HttpServer::new(move || {
         App::new()
-            .app_data(web::Data::new(pool.clone()))
+            .app_data(web::Data::new(pg_pool.clone()))
             .wrap(
                 Cors::default()
                     .allow_any_origin() // Temporarily allow any origin -> .allowed_origin("http://example.com") // Allow only this origin
