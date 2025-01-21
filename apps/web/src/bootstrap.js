@@ -1,3 +1,5 @@
+import './env.js';
+
 import {
   App,
   JobManager,
