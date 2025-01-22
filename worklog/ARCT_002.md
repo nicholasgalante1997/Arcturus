@@ -2,7 +2,7 @@
 
 ## STATUS
 
-[IN PROGRESS]
+[DONE (MERGED)]
 
 ## Task Overview
 
@@ -22,7 +22,7 @@ Task Name: **Add database connection to the Actix Web Service**
 - [x] Database connection pooling is enabled and functional.
 - [x] Proper error messages are logged if the connection fails.
 - [ ] The connection setup is verified via unit tests. [skipped]
-- [ ] Code changes are committed and reviewed with a passing CI status.
+- [x] Code changes are committed and reviewed with a passing CI status.
 
 ## Notes
 
@@ -41,3 +41,5 @@ Swapped error handling to use anyhow for db module.
 ## Date Log
 
 Opened ticket on 1/20/2025
+
+Closed ticket on 1/20/2025
