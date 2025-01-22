@@ -5,15 +5,35 @@ slug: "/media/content-reviews/south-park/breast-cancer-show-ever"
 
 title: "South Park: The Breast Cancer Show Ever (Season 12 Episode 9), OR What's Inexplicably Beautiful About the Attachment to the Self?"
 description: "The story isn't always about you, but when it is make it count."
-author: "Washington Irving"
 
-releaseDate: "06/26/2024"
-estimatedReadingTime: "14 minutes"
+author:
+  - first_name: "Jerry"
+    last_name: "Rattler"
+    email: "rustycloud42@protonmail.com"
+    github: "nicholasgalante1997"
+    avatar: "/assets/headshot.jpg"
+    nickname: "Cthu"
+
+category: "CASE STUDY"
+archCategory: "SOFTWARE ENGINEERING"
+
+searchTerms:
+  - Springfield
+  - System Audit
+  - Microfrontends
+
+releaseDate: "12/28/2024"
+estimatedReadingTime: "20 minutes"
 
 media:
-  - source: "/assets/wendy-principal-victoria.webp"
-    alt: "Wendy and Principal Victoria speaking in Principal Victoria's Office."
-    aspectRatio: "12 / 9"
+  - source: "/assets/doodles.jpg"
+    alt: "An image from the 'Doodles' NFT collection"
+    aspectRatio: "16 / 9"
+
+genres:
+  - "System Audit"
+  - "Software Engineering"
+  - "Microfrontends"
 
 show: "South Park"
 season: 12

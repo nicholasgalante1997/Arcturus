@@ -1,6 +1,4 @@
 ---
-id: "0afe99b8-d404-4962-bce6-b62727eef534"
-order: "HIGH"
 slug: "/developers/work/spectrum/system-audit-part-one"
 
 title: "Auditing an internal microfrontend system at moderate scale - Part 1"

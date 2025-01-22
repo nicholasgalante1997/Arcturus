@@ -1,3 +1,5 @@
+import '../src/env.js';
+
 import { Command } from 'commander';
 
 import { seed } from '../src';
@@ -15,3 +17,4 @@ program
     .description('Seed the pg database')
     .action(seed);
 
+program.parse();

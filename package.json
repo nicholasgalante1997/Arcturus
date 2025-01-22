@@ -15,7 +15,8 @@
     "test": "turbo run test",
     "dev": "turbo run dev",
     "start": "turbo run start",
-    "docker": "turbo run docker"
+    "docker": "turbo run docker",
+    "exec:seed:pg": "turbo run exec-seed-pg"
   },
   "packageManager": "bun@1.39.0",
   "dependencies": {

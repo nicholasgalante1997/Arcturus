@@ -1,7 +1,11 @@
 {
   "name": "@project-arcturus/scripts",
-  "module": "bin/exec.ts",
+  "module": "bin/exec.js",
   "type": "module",
+  "scripts": {
+    "help": "bun run bin/exec.js help",
+    "exec-seed-pg": "bun run bin/exec.js seed:pg"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },

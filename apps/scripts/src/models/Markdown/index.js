@@ -26,6 +26,23 @@ class Markdown {
   getAttribute(key) {
     return this.#attrs[key];
   }
+
+  valid() {
+    return Boolean(
+      this.getAttribute("slug") &&
+      this.getAttribute("title") &&
+      this.getAttribute("description") &&
+      this.getAttribute("author") &&
+      this.getAttribute("category") &&
+      this.getAttribute("archCategory") &&
+      this.getAttribute("searchTerms") &&
+      this.getAttribute("genres") &&
+      this.getAttribute("releaseDate") &&
+      this.getAttribute("estimatedReadingTime") &&
+      this.getAttribute("media") &&
+      this.body
+    );
+  }
 }
 
 export default Markdown;

@@ -1,6 +1,4 @@
 ---
-id: "0afe99b8-d404-4962-bce6-b62727eef534"
-order: "MED"
 slug: "/developers/series/blockchain/pokemon"
 
 title: "TCGTrader - A Case Study"
@@ -29,8 +27,8 @@ releaseDate: "1/16/2025"
 estimatedReadingTime: "A Series (Extended)"
 
 media:
-  - source: "/assets/doodles.jpg"
-    alt: "An image from the 'Doodles' NFT collection"
+  - source: https://raw.githubusercontent.com/nicholasgalante1997/Arcturus/refs/heads/main/apps/web/public/assets/doodles.jpg
+    alt: "Doodles"
     aspectRatio: "16 / 9"
 
 genres:

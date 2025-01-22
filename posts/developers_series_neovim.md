@@ -1,6 +1,4 @@
 ---
-id: "0c7dcaeb-3d62-48cb-b390-12f7f4c75ade"
-order: "MED"
 slug: "/developers/series/neovim"
 
 title: "Learning NeoVim - A Case Study"
@@ -27,7 +25,7 @@ releaseDate: "12/28/2024"
 estimatedReadingTime: "A Series (Extended)"
 
 media:
-  - source: "/assets/doodles.jpg"
+  - source: "https://raw.githubusercontent.com/nicholasgalante1997/Arcturus/refs/heads/main/apps/web/public/assets/doodles.jpg"
     alt: "An image from the 'Doodles' NFT collection"
     aspectRatio: "16 / 9"
 

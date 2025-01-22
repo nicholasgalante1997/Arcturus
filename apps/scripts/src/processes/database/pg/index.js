@@ -1,84 +1,82 @@
-import { exists, readdir } from "fs/promises";
-import path from "path";
-
 import { postgres } from "@project-arcturus/database";
 
-import Markdown from "../../../models/Markdown/index.js";
 import log from "../../../lib/log.js";
+import PostsLoader from "../../../models/Posts/Loader.js";
 
-// Add verbose logging to this seed function
 export async function seed() {
+
+  log.info("Seeding database...");
+
   if (!postgres.envOk()) {
+    log.error("Database environment variables not set");
     throw new Error("Database environment variables not set");
   }
 
+  log.info('Setting up database connection...');
   const pgPool = postgres.getPool();
 
-  const pathToPostsDir = path.resolve(process.cwd(), "..", "..", "posts");
+  log.info('Loading posts from filesystem...');
+  const posts = await new PostsLoader().loadFromFs();
 
-  if (!(await exists(pathToPostsDir))) {
-    throw new Error("Posts directory does not exist");
-  }
 
-  const posts = await readdir(pathToPostsDir, {
-    withFileTypes: true,
-    encoding: "utf8",
-  });
+  log.info('Posts: %d', posts.length);
 
-  const mds = await Promise.all(
-    posts
-      .filter((dirent) => dirent.isFile() && dirent.name.endsWith(".md"))
-      .map(async (file) => {
-        const bfile = Bun.file(
-          path.resolve(path.join(file.parentPath || file.path, file.name))
-        );
-        const fileContents = await bfile.text();
-        const markdown = new Markdown(fileContents);
-        return markdown;
-      })
-  );
-
-  for (const md of mds) {
+  for (const post of posts) {
     try {
+      log.info('Processing post %s', post.getAttribute('slug'));
+
+      if (!post.valid()) {
+        log.error('Failed to write %s to database', post.getAttribute('slug'));
+        log.error('Post is invalid, skipping.');
+        continue;
+      }
+
+      log.warn('Writing post %s to database', post.getAttribute('slug'));
+
+      const queryResult = await postgres.runQuery(
+        pgPool,
+        `
+          INSERT INTO posts (
+              slug, title, description, author, category, arch_category, search_terms, genres, release_date, estimated_reading_time, media, content
+          ) values (
+              $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12
+          ) ON CONFLICT DO NOTHING; 
+          `,
+          [
+            post.getAttribute("slug"),
+            post.getAttribute("title"),
+            post.getAttribute("description"),
+            post.getAttribute("author") && post.getAttribute("author").length ? post.getAttribute("author")[0] : {},
+            post.getAttribute("category"),
+            post.getAttribute("archCategory"),
+            post.getAttribute("searchTerms"),
+            post.getAttribute("genres"),
+            post.getAttribute("releaseDate"),
+            post.getAttribute("estimatedReadingTime"),
+            post.getAttribute("media") && post.getAttribute("media").length ? post.getAttribute("media")[0] : {},
+            post.body,
+          ]
+      );
+
+      if (queryResult.rowCount !== 1) {
+        throw new Error("Failed to write post to database");
+      }
+
+      log.info('Successfully wrote post %s to database', post.getAttribute('slug'));
 
     } catch(e) {
-      log.error(e);
+      log.error('Failed to write %s to database', post.getAttribute('slug'));
+      if (e instanceof Error) {
+        log.error('####################################################');
+        log.error('Error: %s', e.name);
+        log.error('Message: %s', e.message);
+        log.error('Stack: %s', e.stack);
+        log.error('####################################################');
+      }
+      log.error('Was able to fail gracefully.');
+      log.error('Recovering, attempting next write.')
     }
-    const r = await postgres.runQuery(
-      pgPool,
-      `
-        INSERT INTO posts (
-            slug, title, description, author, category, arch_category, search_terms, genres, release_date, estimated_reading_time, media, content
-        ) values (
-            $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12
-        ) ON CONFLICT SET 
-        slug = EXCLUDED.slug,
-        title = EXCLUDED.title,
-        description = EXCLUDED.description,
-        author = EXCLUDED.author,
-        category = EXCLUDED.category,
-        arch_category = EXCLUDED.arch_category,
-        search_terms = EXCLUDED.search_terms,
-        genres = EXCLUDED.genres,
-        release_date = EXCLUDED.release_date,
-        estimated_reading_time = EXCLUDED.estimated_reading_time,
-        media = EXCLUDED.media,
-        content = EXCLUDED.content;
-        `,
-        [
-          md.getAttribute("slug"),
-          md.getAttribute("title"),
-          md.getAttribute("description"),
-          md.getAttribute("author"),
-          md.getAttribute("category"),
-          md.getAttribute("arch_category"),
-          md.getAttribute("search_terms"),
-          md.getAttribute("genres"),
-          md.getAttribute("release_date"),
-          md.getAttribute("estimated_reading_time"),
-          md.getAttribute("media"),
-          md.body,
-        ]
-    );
   }
+
+  await pgPool.end();
 }

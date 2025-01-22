@@ -1,6 +1,4 @@
 ---
-id: "33b716d5-f6c5-4a22-8e41-3f3878c87b27"
-order: "HIGH"
 slug: "/developers/blog/opinion/react/polemic"
 
 title: "A Polemic; A Discourse on React and the State of Web Development in 2024, and Leading To."
@@ -10,16 +8,16 @@ releaseDate: "11/14/2024"
 estimatedReadingTime: "30m"
 
 author:
-    - name: "Nick 'Duffman' Galante"
-      email: "CTHULHU@pPARCTURUS.xyz"
-      github: "nicholasgalante1997"
-      avatar: "/assets/avatars/butters.png"
-      nickname:
-        - 'Duffman'
-        - 'Cthulhu'
+  - first_name: "Washington"
+    last_name: "Irving"
+    email: "rustycloud42@protonmail.com"
+    github: "nicholasgalante1997"
+    avatar: "/assets/headshot.jpg"
+    nickname: "Cthu"
+    id: '001'
       
 category: Web Development
-archCategory: Technology
+archCategory: SOFTWARE ENGINEERING
 
 media:
   - source: https://raw.githubusercontent.com/nicholasgalante1997/Arcturus/refs/heads/main/apps/web/public/assets/doodles.jpg
