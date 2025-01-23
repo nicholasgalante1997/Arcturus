@@ -24,6 +24,11 @@ media:
     alt: "Doodles"
     aspectRatio: "16 / 9"
 
+searchTerms:
+  - Web Development
+  - Javascript
+  - React
+
 genres:
   - Web Development
   - Javascript

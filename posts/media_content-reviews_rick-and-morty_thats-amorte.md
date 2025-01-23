@@ -1,6 +1,4 @@
 ---
-id: "7c54d7c0-1e62-4363-8c8e-7d95c02ead47"
-order: "LOW"
 slug: "/media/content-reviews/rick-and-morty/thats-amorte"
 
 title: "Rick and Morty: That's Amorte (Season 07, Episode 04), OR An Artificial Burden Of Cognizance"
@@ -46,3 +44,5 @@ episode: 04
 synopsis: This one's a real a-spicy meatball!
 
 ---
+
+## Takes
