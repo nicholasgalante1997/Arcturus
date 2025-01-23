@@ -2,50 +2,64 @@ include:
   - ./database/docker-compose.yml
 
 services:
-  node-turborepo:
-    image: project-arcturus-node-turborepo
-    container_name: node-turborepo
-    restart: always
-    build: 
+  # bun-web:
+  #   image: project-arcturus-bun-web:latest
+  #   container_name: project-arcturus-bun-web
+  #   restart: always
+  #   build: 
+  #     context: .
+  #     dockerfile: Dockerfile.web
+  #   expose:
+  #     - '4040'
+  #   ports:
+  #     - "4040:4040"
+  #   depends_on:
+  #     markdown-api:
+  #       condition: service_healthy
+  #       restart: true
+  #     postgres:
+  #       condition: service_healthy
+  #       restart: true
+  #   networks:
+  #     - arc.net
+  bun-scripts:
+    image: project-arcturus-bun-scripts:latest
+    container_name: project-arcturus-bun-scripts
+    build:
       context: .
-      dockerfile: Dockerfile
-    expose:
-      - '4040'
-    ports:
-      - "4040:4040"
-    depends_on:
-      markdown-api:
-        condition: service_healthy
-        restart: true
-      postgres:
-        condition: service_healthy
-        restart: true
-    networks:
-      - arc.net
-  markdown-api:
-    image: project-arcturus-markdown-api
-    container_name: markdown-api
-    healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:8080/health || exit 1"]
-      interval: 10s
-      timeout: 3s
-      retries: 3
-    restart: unless-stopped
+      dockerfile: Dockerfile.scripts
     depends_on:
       postgres:
         condition: service_healthy
         restart: true
-    build: 
-      context: ./apps/api
-      dockerfile: Dockerfile
     env_file:
-      - ./apps/api/.env
-    expose:
-      - '8080'
-    ports:
-      - "8080:8080"
+      - ./apps/scripts/.env
     networks:
       - arc.net
+  # markdown-api:
+  #   image: project-arcturus-markdown-api
+  #   container_name: markdown-api
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "curl -f http://localhost:8080/health || exit 1"]
+  #     interval: 10s
+  #     timeout: 3s
+  #     retries: 3
+  #   restart: unless-stopped
+  #   depends_on:
+  #     postgres:
+  #       condition: service_healthy
+  #       restart: true
+  #   build: 
+  #     context: ./apps/api
+  #     dockerfile: Dockerfile
+  #   env_file:
+  #     - ./apps/api/.env
+  #   expose:
+  #     - '8080'
+  #   ports:
+  #     - "8080:8080"
+  #   networks:
+  #     - arc.net
 
 networks:
   arc.net:

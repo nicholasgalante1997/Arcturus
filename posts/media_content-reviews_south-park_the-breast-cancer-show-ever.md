@@ -1,0 +1,57 @@
+---
+id: "39db0efa-fc46-4563-a77d-3822554d70ae"
+order: "LOW"
+slug: "/media/content-reviews/south-park/breast-cancer-show-ever"
+
+title: "South Park: The Breast Cancer Show Ever (Season 12 Episode 9), OR What's Inexplicably Beautiful About the Attachment to the Self?"
+description: "The story isn't always about you, but when it is make it count."
+
+author:
+  - first_name: "Jerry"
+    last_name: "Rattler"
+    email: "rustycloud42@protonmail.com"
+    github: "nicholasgalante1997"
+    avatar: "/assets/headshot.jpg"
+    nickname: "Cthu"
+
+category: "CASE STUDY"
+archCategory: "SOFTWARE ENGINEERING"
+
+searchTerms:
+  - Springfield
+  - System Audit
+  - Microfrontends
+
+releaseDate: "12/28/2024"
+estimatedReadingTime: "20 minutes"
+
+media:
+  - source: "/assets/doodles.jpg"
+    alt: "An image from the 'Doodles' NFT collection"
+    aspectRatio: "16 / 9"
+
+genres:
+  - "System Audit"
+  - "Software Engineering"
+  - "Microfrontends"
+
+show: "South Park"
+season: 12
+episode: 09
+synopsis: "Principal Veronica is a breast cancer survivor."
+
+motifs:
+  - Survival
+---
+
+# South Park: The Breast Cancer Show Ever (Season 12 Episode 9), OR What's Inexplicably Beautiful About the Attachment to the Self
+
+## Abstract
+
+Wendy gives a class report on breast cancer. Cartman absolutely loses it, thinking it's [the breast cancer, not the report] the funniest shit he's ever heard. A fallout ensues. Cartman eats his own underwear (we're going to mention that as many times as we can tonight). Wendy finds herself in a moral bind, due in large by the fact that Cartman has manipulated the situation in the eyes of her parents to depict Wendy as the aggressor. As such, she's put in a position in which 
+
+## Takes
+
+I think Wendy has like maybe 6 or 7 episodes where she's the protagonist. But every time they make it a Wendy episode, you know it's going to be one that sticks with you. This one sneaks up on you like that. And Jesus Christ, Principal Victoria. A fucking bit character. Maybe 65 words in the whole episode, but god damn you. She makes them count.
+
+We get a lot of things in this one. For one, Cartman eats his own underwear. It's edgy, it's bold, and it's a marked statement against the sustained existence of a bipartisan American political system. Moving on, the larger 
