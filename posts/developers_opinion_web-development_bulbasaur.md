@@ -24,6 +24,11 @@ media:
     alt: "Doodles"
     aspectRatio: "16 / 9"
 
+searchTerms:
+  - Web Development
+  - Javascript
+  - React
+
 genres:
   - Web Development
   - Javascript
@@ -31,3 +36,5 @@ genres:
   - Opinion
 
 ---
+
+# I have eaten the Web Development Memberberries, maybe you should too
