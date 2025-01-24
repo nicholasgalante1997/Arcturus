@@ -1,3 +1,3 @@
 pub mod events;
 pub mod health;
-pub mod info;
+pub mod posts;

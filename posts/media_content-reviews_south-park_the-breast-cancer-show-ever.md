@@ -13,6 +13,7 @@ author:
     github: "nicholasgalante1997"
     avatar: "/assets/headshot.jpg"
     nickname: "Cthu"
+    id: '001'
 
 category: "CASE STUDY"
 archCategory: "SOFTWARE ENGINEERING"

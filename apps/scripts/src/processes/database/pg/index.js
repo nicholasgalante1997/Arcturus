@@ -35,9 +35,7 @@ export async function seed() {
     log.error("Failed to load test users");
   }
 
-
-
-  log.info('Closing database connection...');
+  log.info("Closing database connection...");
   await pgPool.end();
 }
 
@@ -74,7 +72,15 @@ async function seedPostsFromFs(pgPool) {
           post.getAttribute("description"),
           post.getAttribute("author") && post.getAttribute("author").length
             ? post.getAttribute("author")[0]
-            : {},
+            : {
+                first_name: "Test",
+                last_name: "User",
+                email: `test-${i}@test.com`,
+                github: `test-${i}@github.com`,
+                avatar: "https://i.pravatar.cc/150?img=1",
+                nickname: "Test User",
+                id: `test-${i}`,
+              },
           post.getAttribute("category"),
           post.getAttribute("archCategory"),
           post.getAttribute("searchTerms"),
@@ -83,7 +89,11 @@ async function seedPostsFromFs(pgPool) {
           post.getAttribute("estimatedReadingTime"),
           post.getAttribute("media") && post.getAttribute("media").length
             ? post.getAttribute("media")[0]
-            : {},
+            : {
+                source: "test",
+                alt: "test",
+                aspect_ratio: "1/1",
+              },
           post.body,
           false,
         ]
@@ -131,14 +141,26 @@ async function seedTestPosts(pgPool) {
           `test-${i}`,
           `Test Post ${i}`,
           `Test Post ${i}`,
-          {},
+          {
+            first_name: "Test",
+            last_name: "User",
+            email: `test-${i}@test.com`,
+            github: `test-${i}@github.com`,
+            avatar: "https://i.pravatar.cc/150?img=1",
+            nickname: "Test User",
+            id: `test-${i}`,
+          },
           "test",
           "test",
           ["test"],
           ["test"],
           "test",
           "test",
-          {},
+          {
+            source: "test",
+            alt: "test",
+            aspect_ratio: "1/1",
+          },
           "test",
           true,
         ]

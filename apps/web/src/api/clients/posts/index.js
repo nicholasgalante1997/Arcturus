@@ -1,4 +1,3 @@
-import frontmatter from 'front-matter';
 import { LRUCache } from 'lru-cache';
 import { Attempt, AttemptState } from 'sleepydogs';
 
@@ -9,7 +8,7 @@ class PostLibrary {
    * Use the docker container name to resolve the host from within the shared container network
    */
   static #postsApiEndpoint = process.env.EXEC_CONTEXT === 'docker' ? process.env.DOCKER_POSTS_API_ENDPOINT : process.env.LOCAL_POSTS_API_ENDPOINT;
-  static #postsApiEndpointReadAll = PostLibrary.#postsApiEndpoint + 'api/files';
+  static #postsApiEndpointReadAll = PostLibrary.#postsApiEndpoint + 'api/posts';
 
   /**
    * @type {LRUCache<string, { key: string; metadata: any, article: string, pathFragment: string }>}
@@ -27,14 +26,13 @@ class PostLibrary {
   async loadPost(postUrlPathFragment) {
     const options = this.#createDefaultHttpOptions();
     const response = await fetch(PostLibrary.#postsApiEndpoint + postUrlPathFragment, options);
-    const file = await response.text();
-    const parsed = frontmatter(file);
+    const post = await response.json();
 
-    const key = parsed.attributes?.id;
+    const key = post.id;
     const data = {
       key,
-      metadata: parsed.attributes,
-      article: parsed.body,
+      metadata: { ...post },
+      article: post.body,
       pathFragment: postUrlPathFragment
     };
 
@@ -46,14 +44,10 @@ class PostLibrary {
   }
 
   async loadAllPosts() {
-    const headers = { Accept: 'application/json' };
-    const options = this.#createDefaultHttpOptions({ headers });
+    const options = this.#createDefaultHttpOptions();
     const fileListResponse = await fetch(PostLibrary.#postsApiEndpointReadAll, options);
     const fileList = await fileListResponse.json();
-    const promises =
-      fileList?.data
-        ?.filter((file) => file.endsWith('.md'))
-        .map((filePath) => this.loadPost(filePath)) || [];
+    const promises = fileList?.data.map(({ id }) => this.loadPost(`/id/${id}`)) || [];
 
     if (promises.length === 0) {
       error(new Error('Failed to load posts'));
@@ -86,7 +80,7 @@ class PostLibrary {
   }
 
   #createDefaultHttpOptions(suppliedOptions) {
-    const headers = { Accept: 'text/markdown' };
+    const headers = { Accept: 'application/json' };
     const mode = 'cors';
     const method = 'GET';
     const options = { headers, mode, method };

@@ -36,30 +36,30 @@ services:
       - ./apps/scripts/.env
     networks:
       - arc.net
-  # markdown-api:
-  #   image: project-arcturus-markdown-api
-  #   container_name: markdown-api
-  #   healthcheck:
-  #     test: ["CMD-SHELL", "curl -f http://localhost:8080/health || exit 1"]
-  #     interval: 10s
-  #     timeout: 3s
-  #     retries: 3
-  #   restart: unless-stopped
-  #   depends_on:
-  #     postgres:
-  #       condition: service_healthy
-  #       restart: true
-  #   build: 
-  #     context: ./apps/api
-  #     dockerfile: Dockerfile
-  #   env_file:
-  #     - ./apps/api/.env
-  #   expose:
-  #     - '8080'
-  #   ports:
-  #     - "8080:8080"
-  #   networks:
-  #     - arc.net
+  markdown-api:
+    image: project-arcturus-markdown-api
+    container_name: markdown-api
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8080/health || exit 1"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+        restart: true
+    build: 
+      context: ./apps/api
+      dockerfile: Dockerfile
+    env_file:
+      - ./apps/api/.env
+    expose:
+      - '8080'
+    ports:
+      - "8080:8080"
+    networks:
+      - arc.net
 
 networks:
   arc.net:
