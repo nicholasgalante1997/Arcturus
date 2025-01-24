@@ -1,2 +1,1 @@
-pub mod fs;
-pub mod res;
+pub mod json;
