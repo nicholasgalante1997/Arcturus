@@ -1,7 +1,7 @@
 use std::error::Error;
 use std::fmt::Display;
 
-use crate::util::res::convert_to_json_body;
+use crate::util::json::convert_to_json_body;
 use actix_web::body::BoxBody;
 use actix_web::{HttpResponse, Responder};
 use serde::{Deserialize, Serialize};

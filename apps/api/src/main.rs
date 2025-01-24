@@ -1,7 +1,6 @@
 use actix_cors::Cors;
 use actix_web::{dev::Service, http, middleware, web, App, HttpServer};
 
-mod config;
 mod database;
 mod env;
 mod log;

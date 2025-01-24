@@ -11,11 +11,14 @@ pub fn configure_api_service(cfg: &mut web::ServiceConfig) {
             .route(web::delete().to(HttpResponse::MethodNotAllowed)),
     );
     cfg.service(
-        web::resource("/files")
-            .route(web::get().to(AppRoutes::info::get_all_articles_in_public))
-            .route(web::post().to(HttpResponse::MethodNotAllowed))
-            .route(web::put().to(HttpResponse::MethodNotAllowed))
-            .route(web::patch().to(HttpResponse::MethodNotAllowed))
-            .route(web::delete().to(HttpResponse::MethodNotAllowed)),
+        web::resource("/posts")
+            .route(web::get().to(AppRoutes::posts::get_all))
+            .route(web::post().to(AppRoutes::posts::create))
+            .route(web::put().to(AppRoutes::posts::update))
+            .route(web::delete().to(AppRoutes::posts::delete)),
+    );
+    cfg.service(web::resource("/posts/id/{id}").route(web::get().to(AppRoutes::posts::get_by_id)));
+    cfg.service(
+        web::resource("/posts/slug/{slug}").route(web::get().to(AppRoutes::posts::get_by_slug)),
     );
 }
