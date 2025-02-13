@@ -2,7 +2,7 @@ import { pico } from '@supra-dev/pico';
 
 console.log('Running theme/bootstrap.js');
 
-const { init } = pico();
+const { init } = pico({ theme: 'jade' });
 
 init();
 

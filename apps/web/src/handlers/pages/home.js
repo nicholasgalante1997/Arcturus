@@ -9,7 +9,25 @@ import { error, info } from '../../lib/log/index.js';
  * @returns {Promise<void>}
  */
 export default async function homePageHandler(req, res, next) {
-  const posts = Posts.getAll();
+  const api = Posts.PostsAPIClientLazySingleton.getInstance();
+  let posts = api.getAllFromCacheSync();
+
+  if (posts.length === 0) {
+    info('No posts found in the cache!');
+    try {
+      await api.fetchAll();
+      posts = api.getAllFromCacheSync();
+    } catch (e) {
+      error('An error has been thrown in attempt to fetch all posts');
+      error(e);
+      next(e);
+    }
+
+    if (posts.length === 0) {
+      error('Failed to fetch any posts');
+      next(new Error('FailedToFetchPosts'));
+    }
+  }
 
   const depLottie = WebDependencyManager.getDependency('lottie-web');
   const depWebVitals = WebDependencyManager.getDependency('web-vitals');
@@ -35,32 +53,15 @@ export default async function homePageHandler(req, res, next) {
     }
   ];
 
-  const categories = Array.from(
-    new Set([
-      ...posts
-        .map(([_uuid, data]) => {
-          const { metadata, pathFragment } = data;
-          info('Serving article from', pathFragment);
-          return metadata.genres;
-        })
-        .flat()
-        .filter(Boolean)
-    ])
-  ).map((label) => ({
-    label,
-    selected: label === 'Software Engineering'
-  }));
-
-  const $posts = posts.map(([k, data]) => ({
+  const $posts = posts.map((data) => ({
     estimatedReadingTime: data?.metadata?.estimatedReadingTime || '5 mins',
     title: data?.metadata?.title,
     genres: data?.metadata?.genres || [],
     description: data?.metadata?.description,
-    author: data?.metadata?.author?.length && data?.metadata?.author[0],
-    href: '/posts/' + k,
-    key: k,
-    id: k,
-    visibility: data?.metadata?.genres?.includes('Software Engineering') ? 'visible' : 'hidden'
+    author: data?.metadata?.author,
+    href: '/posts/' + data?.metadata?.id,
+    key: data?.metadata?.id,
+    id: data?.metadata?.id
   }));
 
   try {
@@ -68,7 +69,6 @@ export default async function homePageHandler(req, res, next) {
       title: 'Project Arcturus',
       description: 'A content microengine, maintained by the team at <b>Arcturus</b>',
       imports,
-      categories,
       posts: $posts,
       css: {
         include: {
@@ -76,8 +76,7 @@ export default async function homePageHandler(req, res, next) {
         }
       },
       state: JSON.stringify({
-        posts: $posts,
-        categories
+        posts: $posts
       })
     });
     return;

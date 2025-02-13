@@ -3,6 +3,24 @@ import WebDependencyManager from '../../lib/dependencies/index.js';
 import { error } from '../../lib/log/index.js';
 import MarkdownHelper from '../../lib/markdown/index.js';
 
+async function convertPostToEJSObject(post) {
+  return {
+    series: post.metadata?.series,
+    title: post.metadata?.title,
+    description: post.metadata?.description,
+    releaseDate: post.metadata?.release_date,
+    estimatedReadingTime: post.metadata?.estimated_reading_time,
+    author: post.metadata?.author,
+    image: {
+      src: post.metadata?.media?.source,
+      alt: post.metadata?.media?.alt,
+      publisherInfo: post.metadata?.media?.publisherInfo,
+      aspectRatio: post.metadata?.media?.aspectRatio
+    },
+    body: await MarkdownHelper.convert(post?.article || '')
+  }
+}
+
 /**
  * @param {import('express').Request} req
  * @param {import('express').Response} res
@@ -18,44 +36,32 @@ export default async function articlePageHandler(req, res, next) {
     return;
   }
 
-  const post = Posts.get(id);
+  const post = await Posts.PostsAPIClientLazySingleton.getInstance().getOneFromAnywhereAsync(id);
 
   if (!post) {
     next(new Error('UnableToFindPostWithKey'));
     return;
   }
 
-  console.log('image', post?.metadata?.media);
+  const title = 'Project Arcturus - ' + post.metadata?.title;
+  const description = post.metadata?.description;
+  const imports = [
+    {
+      name: WebDependencyManager.getDependency('web-vitals')?.dependency,
+      url: WebDependencyManager.getDependency('web-vitals')?.cdn?.links?.at(0)
+    },
+    {
+      name: WebDependencyManager.getDependency('sleepydogs')?.dependency,
+      url: WebDependencyManager.getDependency('sleepydogs')?.cdn?.links?.at(0)
+    }
+  ];
 
   try {
     res.status(200).render('post', {
-      title: 'Project Arcturus - ' + post.metadata?.title,
-      description: post.metadata?.description,
-      imports: [
-        {
-          name: WebDependencyManager.getDependency('web-vitals')?.dependency,
-          url: WebDependencyManager.getDependency('web-vitals')?.cdn?.links?.at(0)
-        },
-        {
-          name: WebDependencyManager.getDependency('sleepydogs')?.dependency,
-          url: WebDependencyManager.getDependency('sleepydogs')?.cdn?.links?.at(0)
-        }
-      ],
-      post: {
-        series: post.metadata?.series,
-        title: post.metadata?.title,
-        description: post.metadata?.description,
-        releaseDate: post.metadata?.releaseDate,
-        estimatedReadingTime: post.metadata?.estimatedReadingTime,
-        author: post.metadata?.author,
-        image: {
-          src: post.metadata?.media?.source,
-          alt: post.metadata?.media?.alt,
-          publisherInfo: post.metadata?.media?.publisherInfo,
-          aspectRatio: post.metadata?.media?.aspectRatio
-        },
-        body: await MarkdownHelper.convert(post.article)
-      }
+      title,
+      description,
+      imports,
+      post: await convertPostToEJSObject(post)
     });
     return;
   } catch (e) {

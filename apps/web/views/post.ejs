@@ -2,14 +2,16 @@
 <html lang="en">
     <%- include('partials/head', { document_title: title, document_description: description, imports: imports, css: { include: { post: true }} }); %>
   <body>
+    <%- include('partials/header') %>
     <main>
         <section class="article-container">
             <article class="article-root">
               <div class="article-supplementary-info-container text-container">
                 <span class="article-date fira-sans-semibold"><%= post.releaseDate %></span>
-                <span class="article-supp-divider"></span>
+                <span style="height:24px;width:1px;background-color:var(--pico-primary-inverse);"></span>
                 <span class="article-series fira-sans-semibold">
-                  <i>from</i> <b>the <%= post.series %> Series</b>
+                  Estimated Reading Time:&nbsp;
+                  <b><%= post.estimatedReadingTime %></b>
                 </span>
               </div>
       
@@ -23,14 +25,19 @@
       
               <div class="article-author-container text-container">
                 <p class="article-author noto-serif">
-                  by <%= post.author %>
+                  <div style="display:flex;flex-direction:row;align-items:center;gap:8px;">
+                    <img style="aspect-ratio: 1 / 1; object-fit: cover; object-position: center; image-orientation: from-image; image-rendering: optimizeQuality; border-radius: 24px;" height="48" width="48" src="<%= post.author.avatar %>" alt="<%= post.author.first_name %> <%= post.author.last_name %> Avatar" class="post-card__author-avatar">
+                    <a href="/authors/<%= post.author.id || 1 %>" class="post-card__author">
+                      <%= post.author.first_name %> <%= post.author.last_name %> "<small> < <%= post.author.nickname %> > </small>"
+                    </a>
+                  </div>
                 </p>
               </div>
       
               <div class="article-headline-image-container">
                 <img
-                  src="<%= post.image %>"
-                  alt="Doodles NFT"
+                  src="<%= post.image.src %>"
+                  alt="<%= post.image.alt %>"
                   style="aspect-ratio: 16 / 9;"
                   class="article-headline-image"
                 />
@@ -47,5 +54,6 @@
     </main>
   </body>
 </html>
-<script type="module" src="js/performance/web-vitals.js"></script>
+<script type="module" src="js/theme/bootstrap.js"></script>
 <script type="module" src="js/events/DOMContentLoaded.js"></script>
+<script type="module" src="js/performance/web-vitals.js"></script>

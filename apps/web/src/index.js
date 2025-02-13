@@ -16,7 +16,7 @@ import { run, default as App } from './server/index.js';
  */
 function queueRefreshPostsJob() {
   JobManager.queueRecurringJob(
-    async () => await Posts.loadAllPosts(),
+    async () => await Posts.PostsAPIClientLazySingleton.getInstance().fetchAll(),
     '0 0 * * *',
     'refresh-posts'
   );

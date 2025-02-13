@@ -124,3 +124,17 @@ section.article-container {
     }
   }
 }
+
+@media screen and (min-width: 768px) and (max-width: 1048px) {
+  section.article-container {
+    --inner-article-max-width: 100%;
+    --article-headline-image-width: calc(100% - 16px);
+  }
+}
+
+@media screen and (min-width: 300px) and (max-width: 767px) {
+  section.article-container {
+    --inner-article-max-width: 100%;
+    --article-headline-image-width: calc(100% - 16px);
+  }
+}

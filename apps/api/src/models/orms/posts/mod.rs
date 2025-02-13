@@ -2,7 +2,7 @@ use anyhow::Result;
 use serde::{Deserialize, Serialize};
 use sqlx::{postgres::PgRow, types::Json, FromRow, PgPool, Row};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Clone, Debug, Deserialize, Serialize)]
 pub struct Author {
     first_name: String,
     last_name: String,
@@ -13,29 +13,29 @@ pub struct Author {
     id: String,
 }
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Clone, Debug, Deserialize, Serialize)]
 pub struct Media {
     source: String,
     alt: String,
 }
 
 /// Represents a Post item from the psql database 'posts' table
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Clone, Debug, Deserialize, Serialize)]
 pub struct Post {
-    id: i32,
-    slug: String,
-    title: String,
-    description: String,
-    author: Json<Author>,
-    category: String,
-    arch_category: Option<String>,
-    search_terms: Vec<String>,
-    genres: Vec<String>,
-    release_date: String,
-    estimated_reading_time: String,
-    media: Json<Media>,
-    content: String,
-    is_test_data: Option<bool>,
+    pub id: i32,
+    pub slug: String,
+    pub title: String,
+    pub description: String,
+    pub author: Json<Author>,
+    pub category: String,
+    pub arch_category: Option<String>,
+    pub search_terms: Vec<String>,
+    pub genres: Vec<String>,
+    pub release_date: String,
+    pub estimated_reading_time: String,
+    pub media: Json<Media>,
+    pub content: String,
+    pub is_test_data: Option<bool>,
 }
 
 impl FromRow<'_, PgRow> for Post {

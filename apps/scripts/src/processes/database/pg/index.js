@@ -21,20 +21,6 @@ export async function seed() {
     log.error("Failed to load posts from filesystem");
   }
 
-  try {
-    await seedTestPosts(pgPool);
-  } catch (e) {
-    log.error(e);
-    log.error("Failed to load test posts");
-  }
-
-  try {
-    await seedTestUsers(pgPool);
-  } catch (e) {
-    log.error(e);
-    log.error("Failed to load test users");
-  }
-
   log.info("Closing database connection...");
   await pgPool.end();
 }
