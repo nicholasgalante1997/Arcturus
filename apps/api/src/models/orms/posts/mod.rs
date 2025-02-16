@@ -36,6 +36,7 @@ pub struct Post {
     pub media: Json<Media>,
     pub content: String,
     pub is_test_data: Option<bool>,
+    pub visible: Option<bool>,
 }
 
 impl FromRow<'_, PgRow> for Post {
@@ -55,6 +56,7 @@ impl FromRow<'_, PgRow> for Post {
             media: row.try_get("media")?,
             content: row.try_get("content")?,
             is_test_data: row.try_get("is_test_data")?,
+            visible: row.try_get("visible")?,
         })
     }
 }
@@ -75,6 +77,7 @@ pub struct CreatePost {
     media: Json<Media>,
     content: String,
     is_test_data: Option<bool>,
+    visible: Option<bool>,
 }
 
 pub struct Posts<'a> {
@@ -111,8 +114,8 @@ impl<'a> Posts<'a> {
 
     pub async fn create(&self, post: CreatePost) -> Result<Post> {
         let post = sqlx::query_as::<_, Post>(
-            "INSERT INTO posts (slug, title, description, author, category, arch_category, search_terms, genres, release_date, estimated_reading_time, media, content, is_test_data)
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
+            "INSERT INTO posts (slug, title, description, author, category, arch_category, search_terms, genres, release_date, estimated_reading_time, media, content, is_test_data, visible)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
             RETURNING *",
         )
         .bind(post.slug)
@@ -128,6 +131,7 @@ impl<'a> Posts<'a> {
         .bind(post.media)
         .bind(post.content)
         .bind(post.is_test_data)
+        .bind(post.visible)
         .fetch_one(self.pool)
         .await?;
         Ok(post)
@@ -139,10 +143,10 @@ impl<'a> Posts<'a> {
             UPDATE posts
             SET slug = $1, title = $2, description = $3, author = $4, category = $5, arch_category = $6, 
                 search_terms = $7, genres = $8, release_date = $9, estimated_reading_time = $10, 
-                media = $11, content = $12, is_test_data = $13
-            WHERE id = $14
+                media = $11, content = $12, is_test_data = $13, visible = $14
+            WHERE id = $15
             RETURNING id, slug, title, description, author, category, arch_category, search_terms, genres, 
-                    release_date, estimated_reading_time, media, content, is_test_data
+                    release_date, estimated_reading_time, media, content, is_test_data, visible
         "#;
 
         let post = sqlx::query_as(query)
@@ -159,6 +163,7 @@ impl<'a> Posts<'a> {
             .bind(post.media)
             .bind(post.content)
             .bind(post.is_test_data)
+            .bind(post.visible)
             .bind(id)
             .fetch_one(self.pool)
             .await?;

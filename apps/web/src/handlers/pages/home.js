@@ -12,7 +12,11 @@ export default async function homePageHandler(req, res, next) {
   const api = Posts.PostsAPIClientLazySingleton.getInstance();
   let posts = api.getAllFromCacheSync();
 
-  if (posts.length === 0) {
+  /**
+   * For now, we can disable this block
+   */
+  const failOnEmpty = false;
+  if (failOnEmpty && posts.length === 0) {
     info('No posts found in the cache!');
     try {
       await api.fetchAll();

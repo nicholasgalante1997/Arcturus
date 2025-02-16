@@ -1,6 +1,6 @@
 import { Posts } from '../../api/index.js';
 import WebDependencyManager from '../../lib/dependencies/index.js';
-import { error } from '../../lib/log/index.js';
+import { error, info } from '../../lib/log/index.js';
 import MarkdownHelper from '../../lib/markdown/index.js';
 
 async function convertPostToEJSObject(post) {
@@ -55,6 +55,8 @@ export default async function articlePageHandler(req, res, next) {
       url: WebDependencyManager.getDependency('sleepydogs')?.cdn?.links?.at(0)
     }
   ];
+
+  info('Post Media %o', post?.metadata?.media);
 
   try {
     res.status(200).render('post', {

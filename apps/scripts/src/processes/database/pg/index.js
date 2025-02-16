@@ -47,9 +47,9 @@ async function seedPostsFromFs(pgPool) {
         pgPool,
         `
           INSERT INTO posts (
-              slug, title, description, author, category, arch_category, search_terms, genres, release_date, estimated_reading_time, media, content, is_test_data
+              slug, title, description, author, category, arch_category, search_terms, genres, release_date, estimated_reading_time, media, content, is_test_data, visible
           ) values (
-              $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13
+              $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14
           ) ON CONFLICT DO NOTHING; 
           `,
         [
@@ -82,6 +82,7 @@ async function seedPostsFromFs(pgPool) {
               },
           post.body,
           false,
+          Boolean(post.getAttribute("visible"))
         ]
       );
 

@@ -1,9 +1,12 @@
 ---
 slug: "/developers/series/neovim/one"
-
+visible: true
 title: "Learning NeoVim - A Case Study"
 description: "2025 is the year of growth. Refusing to grow is accepting to die. Alright maybe that's a lot. Either way, we're gonna become proficient at neovim this year. It's my new year's resolution of sorts. Also, I want to belong to that 1%. You know the one I'm talking about. That class of developer that literally never leaves their terminal, demolishes tickets, and grows larger via sucking in the souls of lesser lifeforms."
-
+media:
+  - source: "/assets/doodles-ember.avif"
+    alt: "An image from the 'Doodles' NFT collection"
+    aspectRatio: "16 / 9"
 author:
   - first_name: "Nick"
     last_name: "Galante"
@@ -12,23 +15,14 @@ author:
     avatar: "/assets/headshot.jpg"
     nickname: "Cthu"
     id: '001'
-
+releaseDate: "12/28/2024"
+estimatedReadingTime: "A Series (Extended)"
 category: "CASE STUDY"
 archCategory: "SOFTWARE ENGINEERING"
-
 searchTerms:
   - NeoVim
   - Case Study
   - Editors
-
-releaseDate: "12/28/2024"
-estimatedReadingTime: "A Series (Extended)"
-
-media:
-  - source: "https://raw.githubusercontent.com/nicholasgalante1997/Arcturus/refs/heads/main/apps/web/public/assets/doodles.jpg"
-    alt: "An image from the 'Doodles' NFT collection"
-    aspectRatio: "16 / 9"
-
 genres:
   - "NeoVim"
   - "Software Engineering"

@@ -14,6 +14,7 @@ pub async fn get_all(pool: web::Data<PgPool>) -> Result<HttpResponse, Box<dyn Er
     let filtered: Vec<Post> = posts
         .iter()
         .filter(|post| !post.is_test_data.unwrap_or_else(|| false))
+        .filter(|post| post.visible.unwrap_or_else(|| false))
         .map(|post| post.clone())
         .collect();
     logger.write("Posts pulled!".to_string());

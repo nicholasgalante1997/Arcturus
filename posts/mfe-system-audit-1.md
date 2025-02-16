@@ -1,9 +1,12 @@
 ---
 slug: "/developers/mfes/system-audit-part-one"
-
+visible: true
 title: "Auditing an Internal Microfrontend System at Moderate Scale - Part 1"
 description: "The pursuit of perfect software is the pursuit of perfect processes; and a bunch of other things you can say at parties to indicate that you believe progress is usually a snake eating its own tail."
-
+media:
+  - source: "/assets/doodles-adventurer.jpg"
+    alt: "A 'Doodles' style landscape image of a lone doodle about to embark on an adventure through a valley, with several mountains in the background."
+    aspectRatio: "16 / 9"
 author:
   - first_name: "Nick"
     last_name: "Galante"
@@ -12,23 +15,14 @@ author:
     avatar: "/assets/headshot.jpg"
     nickname: "Cthu"
     id: '001'
-
+releaseDate: "12/28/2024"
+estimatedReadingTime: "20 minutes"
 category: "CASE STUDY"
 archCategory: "SOFTWARE ENGINEERING"
-
 searchTerms:
   - Springfield
   - System Audit
   - Microfrontends
-
-releaseDate: "12/28/2024"
-estimatedReadingTime: "20 minutes"
-
-media:
-  - source: "/assets/doodles.jpg"
-    alt: "An image from the 'Doodles' NFT collection"
-    aspectRatio: "16 / 9"
-
 genres:
   - "System Audit"
   - "Software Engineering"
