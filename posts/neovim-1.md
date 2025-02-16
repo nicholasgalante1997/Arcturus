@@ -1,12 +1,12 @@
 ---
-slug: "/developers/series/neovim"
+slug: "/developers/series/neovim/one"
 
 title: "Learning NeoVim - A Case Study"
-description: "2025 is the year of growth. Refusing to grow is accepting to die. Alright maybe that's a lot. Either way, we're gonna become proficient at neovim this year. It's my new year's resolution of sorts. Also, I want to belong to that 1%. You know the one I'm talking about. That class of developer that literally never leaves ghostty, demolishes tickets, and sucks the souls of lesser lifeforms."
+description: "2025 is the year of growth. Refusing to grow is accepting to die. Alright maybe that's a lot. Either way, we're gonna become proficient at neovim this year. It's my new year's resolution of sorts. Also, I want to belong to that 1%. You know the one I'm talking about. That class of developer that literally never leaves their terminal, demolishes tickets, and grows larger via sucking in the souls of lesser lifeforms."
 
 author:
-  - first_name: "Washington"
-    last_name: "Irving"
+  - first_name: "Nick"
+    last_name: "Galante"
     email: "rustycloud42@protonmail.com"
     github: "nicholasgalante1997"
     avatar: "/assets/headshot.jpg"
@@ -43,11 +43,11 @@ I hope you said VSCode, or maybe eclipse if you're trying to show your age, but 
 
 Why didn't you say NeoVim? There's no direct correlation to the editor you use and how proficient you are at a given software development task. But still, you didn't say neovim. Huh, weird.  
 
-One day, despite their being again absolutely no correlation to editor usage and software proficiency, I'll sit down and write about the guy that taught me about [ms paint IDE](https://github.com/MSPaintIDE/MSPaintIDE?tab=readme-ov-file), and how he is, unrelatedly I have to add, the most intelligent person I know. 
+One day, despite their being again absolutely no correlation to editor usage and software proficiency, I'll sit down and write about the guy that taught me about [ms paint IDE](https://github.com/MSPaintIDE/MSPaintIDE?tab=readme-ov-file), and how he is, unrelatedly I have to add, the most intelligent person I know.  
 
-> Holy hell MS Paint IDE. What a thing. The [guy who made it]'s github tagline literally says "What you call a waste of time, I call my projects". If I was ever in the market for a new hero, this guy makes the board. 
+> Holy hell MS Paint IDE. What a thing. The [guy who made it]'s github tagline literally says "What you call a waste of time, I call my projects". If I was ever in the market for a new hero, this guy makes the board.  
 
-Well it's 2025. I've tried VSCode, Zed, Windsurf (gag), Cursor (gag), Atom, and buddy you better believe Im ready to be hurt again. We're going all in on neovim this year. Join me for the ride.
+Well it's 2025. Im ready to be hurt again. We're going all in on neovim this year. Join me for the ride.
 
 ## January 08, 2025
 
@@ -61,9 +61,7 @@ If you're a Mac user, just use homebrew.
 brew install neovim
 ```
 
-If you're a Linux user, you're probably using a distro that has a package manager. Use your package manager to install neovim. I run Ubuntu 24 with an Omakase Linux flavor (Thanks DHH, if you're reading this hire me at HEY <small>👋</small>). I also run some Pop_OS systems, which spoiler is fucking amazing but also not super widely known yet. Was able to get away with using snap.  
-
-> Also, I will pause to acknowledge that I have a lot of computers, It's what I like to spend my money on. I will acknowledge the privilege I have to be in a position to do that.  
+If you're a Linux user, you're probably using a distro that has a package manager. Use your package manager to install neovim. I run Ubuntu 24 and some Pop_OS systems, which spoiler alert is fucking amazing but also not super widely known yet. Was able to get away with using snap there.  
 
 **Ubuntu 24:**
 
@@ -77,7 +75,7 @@ sudo apt install neovim
 sudo snap install nvim --classic --beta
 ```
 
-> Sidebar: Im gonna run another series where we get pretty intimate (gross) with the Pop_OS operating system. We're gonna dig into it. What's it like using it. What sucks about it. Why aren't other operating systems cosmos themed? Why does the System76 Pangolin Track Pad suck so hard? We'll try to answer all of the above.
+> Sidebar: Im gonna run another series where we get pretty intimate (gross) with the Pop_OS operating system. We're gonna dig into it. What's it like using it. What sucks about it? Why aren't other operating systems cosmos themed? Why does the System76 Pangolin Track Pad suck so hard? We'll try to answer all of the above. We'll also do a deep dive into some of the source code, which I hear is now predominantly Rust!  
 
 ### Kickstart
 
@@ -85,7 +83,7 @@ Okay so, I have been recommended by a buddy to use this thing called [nvim.kicks
 
 My expectations were low. My expectations are almost always low. I try to be a pragmatist. So that's probably why. However, the last 6 months, I don't know man. Software has been here forcing me to practice a little optimism. Recently got into Bun/Zig and just wow. My bar was so low and I was so wrong. Both projects are phenomenal. So I'm taking that reluctant optimism with me into neovim.  
 
-exckstart did not make me regret that. Wow. Dude hats off. Soup to nuts, this thing is another exercise in simplicity getting set up. Basically, the whole thing boils down to forking [this repo](https://github.com/nvim-lua/kickstart.nvim) (Dog, don't be lazy just fork the forking thing) and then cloning it into `$HOME/.config/nvim`. That's actually it. Then the next time you run `nvim` the thing spazzes so hard for like 20 seconds and then metamorphoses out of its cocoon into a fully usable editor, baked in with some plugins that make setting up language servers pretty easy, for like syntax highlighting and stuff. However, VSCode users note, the language server setup that it comes out of the box with is not synonymous with VSCode's intellisense/autocompletion. So I guess that's going to be our next task.  
+Kickstart did not make me regret that so far. Wow. Dude hats off. Soup to nuts, this thing is another exercise in simplicity getting set up. Basically, the whole thing boils down to forking [this repo](https://github.com/nvim-lua/kickstart.nvim) (Dog, don't be lazy just fork the forking thing) and then cloning it into `$HOME/.config/nvim`. That's actually it. Then the next time you run `nvim` the thing spazzes so hard for like 20 seconds and then metamorphoses out of its cocoon into a fully usable editor, baked in with some plugins that make setting up language servers pretty easy, for like syntax highlighting and stuff. However, VSCode users note, the language server setup that it comes out of the box with is not synonymous with VSCode's intellisense/autocompletion. So I guess that's going to be our next task.  
 
 Here's perhaps some of the coolest stuff about kickstart from a guy who's used it for all of 86 seconds.
 
@@ -100,3 +98,11 @@ Here's perhaps some of the coolest stuff about kickstart from a guy who's used i
 - Instant language server setup
 - The :Tutor command again (Worth it)
 - The out of the box theme is not bad. Take it as a compliment or leave it.  
+
+## February 13, 2025
+
+Okay, we're back after roughly a month. Feeling comfortable enough to use it at work on a screenshare with co-workers, so not bad. Have been able to keep up with it enough to knock out a few small editing tasks a day. Updates to deployment files, quick file explorer stuff.
+
+### Intellisense, Language Server Protocol Setup
+
+Okay so I teased at it, but I think, starting out with neovim, you'll want to set up their version of intellisense. 
