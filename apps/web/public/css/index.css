@@ -310,3 +310,14 @@ span.selectable-chip[data-current-selection="true"] {
     content: 'x';
   }
 }
+
+span.post-card__chip {
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 4px 16px;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: 600;
+  border: 1.5px solid var(--pico-primary);
+  color: var(--pico-primary);
+}

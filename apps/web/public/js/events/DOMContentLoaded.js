@@ -2,7 +2,7 @@ import JobRunner from '../models/Jobs/JobRunner.js';
 import Store from '../store/index.js';
 import { setupWindowLogLevel, error } from '../log/index.js';
 
-const { dispatch, subscribe, useStore } = Store;
+const { dispatch, subscribe } = Store;
 
 const homeRoutes = ['/', '/index', '/index.html'];
 
@@ -35,16 +35,6 @@ document.addEventListener('DOMContentLoaded', async () => {
           runAttachPostCardEventListeners,
           'high',
           runAttachPostCardEventListenersKey
-        );
-      })
-      .catch((e) => error(e));
-
-    import('../models/Jobs/runAttachCategoryChipEventListeners.js')
-      .then(({ runAttachCategoryChipEventListeners, runAttachCategoryChipEventListenersKey }) => {
-        JobRunner.queueJob(
-          runAttachCategoryChipEventListeners,
-          'high',
-          runAttachCategoryChipEventListenersKey
         );
       })
       .catch((e) => error(e));

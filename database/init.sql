@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS posts (
     media JSONB NOT NULL,  -- Store media information as JSON
     content TEXT NOT NULL,  -- Store the markdown content
     is_test_data BOOLEAN DEFAULT FALSE,
+    visible BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

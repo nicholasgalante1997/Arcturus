@@ -3,7 +3,7 @@ use sqlx::PgPool;
 use std::error::Error;
 
 use crate::log::get_logger;
-use crate::models::orms::posts::Posts;
+use crate::models::orms::posts::{Post, Posts};
 use crate::util::json::convert_to_json_body;
 
 pub async fn get_all(pool: web::Data<PgPool>) -> Result<HttpResponse, Box<dyn Error>> {
@@ -11,8 +11,14 @@ pub async fn get_all(pool: web::Data<PgPool>) -> Result<HttpResponse, Box<dyn Er
     logger.write("Pulling all posts from psql ...".to_string());
     let orm = Posts::new(pool.as_ref());
     let posts = orm.read_all().await?;
+    let filtered: Vec<Post> = posts
+        .iter()
+        .filter(|post| !post.is_test_data.unwrap_or_else(|| false))
+        .filter(|post| post.visible.unwrap_or_else(|| false))
+        .map(|post| post.clone())
+        .collect();
     logger.write("Posts pulled!".to_string());
-    Ok(convert_to_json_body(&posts))
+    Ok(convert_to_json_body(&filtered))
 }
 
 pub async fn get_by_id(

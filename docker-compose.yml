@@ -1,27 +1,28 @@
 include:
   - ./database/docker-compose.yml
+  # - ./nginx/docker-compose.yml
 
 services:
-  # bun-web:
-  #   image: project-arcturus-bun-web:latest
-  #   container_name: project-arcturus-bun-web
-  #   restart: always
-  #   build: 
-  #     context: .
-  #     dockerfile: Dockerfile.web
-  #   expose:
-  #     - '4040'
-  #   ports:
-  #     - "4040:4040"
-  #   depends_on:
-  #     markdown-api:
-  #       condition: service_healthy
-  #       restart: true
-  #     postgres:
-  #       condition: service_healthy
-  #       restart: true
-  #   networks:
-  #     - arc.net
+  bun-web:
+    image: project-arcturus-bun-web:latest
+    container_name: project-arcturus-bun-web
+    restart: always
+    build: 
+      context: .
+      dockerfile: Dockerfile.web
+    expose:
+      - '4040'
+    ports:
+      - "4040:4040"
+    depends_on:
+      markdown-api:
+        condition: service_healthy
+        restart: true
+      postgres:
+        condition: service_healthy
+        restart: true
+    networks:
+      - arc.net
   bun-scripts:
     image: project-arcturus-bun-scripts:latest
     container_name: project-arcturus-bun-scripts

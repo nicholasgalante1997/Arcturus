@@ -1,12 +1,14 @@
 ---
 slug: "/developers/blog/opinion/react/polemic"
-
+visible: false
 title: "A Polemic; A Discourse on React and the State of Web Development in 2024, and Leading To."
 description: "We'll engage in a discussion on React, it's emergence into the realm of Web Development and Open Source, its sustained popularity and continued community expansion, and the trends that have persisted in modern web development that have called forth this polemic into existence. We'll try and support all claims made with numbers and data."
-
+media:
+  - source: "/assets/doodles-shark.jpg"
+    alt: "Doodles"
+    aspectRatio: "16 / 16"
 releaseDate: "11/14/2024"
 estimatedReadingTime: "30m"
-
 author:
   - first_name: "Washington"
     last_name: "Irving"
@@ -15,26 +17,17 @@ author:
     avatar: "/assets/headshot.jpg"
     nickname: "Cthu"
     id: '001'
-      
 category: Web Development
 archCategory: SOFTWARE ENGINEERING
-
-media:
-  - source: https://raw.githubusercontent.com/nicholasgalante1997/Arcturus/refs/heads/main/apps/web/public/assets/doodles.jpg
-    alt: "Doodles"
-    aspectRatio: "16 / 9"
-
 searchTerms:
   - Web Development
   - Javascript
   - React
-
 genres:
   - Web Development
   - Javascript
   - React
   - Opinion
-
 ---
 
 ## Claim

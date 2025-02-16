@@ -27,7 +27,7 @@ info('Import map configurations loaded! :sparkle: :sparkle: :sparkle:');
  * This will be used to populate the home page + article pages
  */
 info('Loading posts :page: :page: :page:');
-await Posts.loadAllPosts();
+await Posts.PostsAPIClientLazySingleton.getInstance().fetchAll();
 info('Posts loaded! :sparkle: :sparkle: :sparkle:');
 
 /**

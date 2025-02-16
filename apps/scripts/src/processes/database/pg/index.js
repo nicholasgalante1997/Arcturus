@@ -21,20 +21,6 @@ export async function seed() {
     log.error("Failed to load posts from filesystem");
   }
 
-  try {
-    await seedTestPosts(pgPool);
-  } catch (e) {
-    log.error(e);
-    log.error("Failed to load test posts");
-  }
-
-  try {
-    await seedTestUsers(pgPool);
-  } catch (e) {
-    log.error(e);
-    log.error("Failed to load test users");
-  }
-
   log.info("Closing database connection...");
   await pgPool.end();
 }
@@ -61,9 +47,9 @@ async function seedPostsFromFs(pgPool) {
         pgPool,
         `
           INSERT INTO posts (
-              slug, title, description, author, category, arch_category, search_terms, genres, release_date, estimated_reading_time, media, content, is_test_data
+              slug, title, description, author, category, arch_category, search_terms, genres, release_date, estimated_reading_time, media, content, is_test_data, visible
           ) values (
-              $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13
+              $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14
           ) ON CONFLICT DO NOTHING; 
           `,
         [
@@ -96,6 +82,7 @@ async function seedPostsFromFs(pgPool) {
               },
           post.body,
           false,
+          Boolean(post.getAttribute("visible"))
         ]
       );
 
