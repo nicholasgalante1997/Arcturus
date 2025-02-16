@@ -1,6 +1,6 @@
 include:
   - ./database/docker-compose.yml
-  # - ./nginx/docker-compose.yml
+  - ./nginx/docker-compose.yml
 
 services:
   bun-web:
