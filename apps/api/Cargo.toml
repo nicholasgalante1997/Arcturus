@@ -14,7 +14,7 @@ dotenv = "0.15.0"
 glob = "0.3.2"
 pulldown-cmark = "0.12.2"
 futures-util = "0.3.31"
-tokio = { version = "1.43.0", features = ["full"] }
+tokio = { version = "1.43.1", features = ["full"] }
 sqlx = { version = "0.8.3", features = [
     "postgres",
     "runtime-tokio-native-tls",
